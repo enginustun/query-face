@@ -1,0 +1,28 @@
+{
+  "name": "query-face",
+  "nameVar": "queryFace",
+  "version": "0.0.0",
+  "description": "front-end ORM for javascript projects.",
+  "main": "lib/query-face.js",
+  "module": "lib/query-face.module.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "build": "eslint --fix src/ && rollup -c",
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "engin üstün",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.4.4",
+    "@babel/preset-env": "^7.4.4",
+    "@types/jest": "^24.0.11",
+    "eslint": "^5.16.0",
+    "eslint-config-prettier": "^4.1.0",
+    "eslint-plugin-prettier": "^3.0.1",
+    "jest": "^24.7.1",
+    "prettier": "1.17.0",
+    "rollup": "^1.10.1",
+    "rollup-plugin-terser": "^4.0.4"
+  }
+}
