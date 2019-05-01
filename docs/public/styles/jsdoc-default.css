@@ -238,12 +238,14 @@ span.param-type {
   border-radius: 5px;
 }
 
-.param-desc + dl dd {
+.param-desc + dl dd,
+h5 + dl dd {
   margin-top: -26px;
   margin-left: 50px;
 }
 
-.param-desc + dl dt {
+.param-desc + dl dt,
+h5 + dl dt {
   font-size: 120%;
   font-weight: bold;
   letter-spacing: -0.01em;
