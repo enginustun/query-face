@@ -19,6 +19,12 @@ output query object which will be sent to server you desire:
   { "$op": "where", "$params": ["user_id", "=", 1] }
 ]
 ```
+
+## Documentation
+
+  - [ ] [API documentation](https://enginustun.github.io/query-face/) (incomplete)
+  - [ ] Tutorials (not started)
+
 ## Contributing
 
 Any contributions are welcome.

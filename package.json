@@ -8,7 +8,14 @@
   "types": "lib/index.d.ts",
   "scripts": {
     "build": "eslint --fix src/ && rollup -c",
-    "test": "jest"
+    "test": "jest",
+    "docs": "node .jsdoc/node/before-generation.js && npm run build && eslint --fix .jsdoc/src && jsdoc -c ./.jsdoc/config.js && node .jsdoc/node/after-generation.js && prettier --write ./docs/query-face/**/*.html"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run docs && npm test && git add ./docs",
+      "pre-push": "npm test"
+    }
   },
   "keywords": [],
   "author": "engin üstün",
@@ -20,7 +27,9 @@
     "eslint": "^5.16.0",
     "eslint-config-prettier": "^4.1.0",
     "eslint-plugin-prettier": "^3.0.1",
+    "husky": "^2.1.0",
     "jest": "^24.7.1",
+    "jsdoc": "^3.5.5",
     "prettier": "1.17.0",
     "rollup": "^1.10.1",
     "rollup-plugin-terser": "^4.0.4"
