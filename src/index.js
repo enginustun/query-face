@@ -6,17 +6,24 @@ import {
 } from './constants';
 /**
  * This is the front-end focused ORM-like query language.
- * @module queryFace
+ * @class QueryFace
+ * @example
+ * import QueryFace from 'query-face';
+ * new QueryFace();
+ * QueryFace(); // shortened
+ * // -----
+ * const qf = QueryFace();
+ * qf.select('*').from('users');
  */
-export default function queryFace() {
+export default function QueryFace() {
   if (!new.target) {
-    return new queryFace(...arguments);
+    return new QueryFace(...arguments);
   }
 
   /**
    * This is the hidden/private argument to specify instance type.
    * Object instance methods will be calculated based on this type.
-   * @memberof module:queryFace
+   * @memberof QueryFace
    * @private
    * @inner
    * @argument
@@ -25,14 +32,14 @@ export default function queryFace() {
 
   /**
    * This is the hidden/private argument to specify instance is created by inner query.
-   * @memberof module:queryFace
+   * @memberof QueryFace
    * @private
    * @inner
    * @argument
    * @example
    * qf.where((queryBuilder)=> {
    *  // an inner query instance is created because of this function.
-   *  // queryBuilder is new innerQuery instance of queryFace module.
+   *  // queryBuilder is new innerQuery instance of QueryFace class.
    * })
    */
   let isInnerQuery = arguments[1];
@@ -44,8 +51,8 @@ export default function queryFace() {
   this.getQuery = getQuery;
 
   /**
-   * Query stack that will be filled through module's orm functions
-   * @memberof module:queryFace
+   * Query stack that will be filled through class's orm functions
+   * @memberof QueryFace
    * @private
    * @inner
    * @constant
@@ -54,7 +61,7 @@ export default function queryFace() {
 
   /**
    * Returns current queryStack array
-   * @memberof module:queryFace#
+   * @memberof QueryFace#
    * @function
    * @returns {Array<QueryInfo>}
    */
@@ -64,7 +71,7 @@ export default function queryFace() {
 
   /**
    * Adds called query to queryStack array as a query information object
-   * @memberof module:queryFace
+   * @memberof QueryFace
    * @private
    * @inner
    * @param {string} $op Current operation
@@ -86,7 +93,7 @@ export default function queryFace() {
         extendQuery(
           queryType,
           arg1
-            .call(null, new queryFace(SUPPORTED_QUERIES.__INNER_WHERE, true))
+            .call(null, new QueryFace(SUPPORTED_QUERIES.__INNER_WHERE, true))
             .getQuery(),
           true
         );
@@ -110,10 +117,10 @@ export default function queryFace() {
   const queries = {
     /**
      * Prepares select query informations
-     * @memberof module:queryFace#
+     * @memberof QueryFace#
      * @function select
      * @param {...string} columnNames - one or more column names to include result object
-     * @returns {queryFace} instance of this module
+     * @returns {QueryFace} instance of this class
      * @example
      * qf.select('*');
      * qf.select('id', 'name');
@@ -125,10 +132,10 @@ export default function queryFace() {
 
     /**
      * Prepares select query informations
-     * @memberof module:queryFace#
+     * @memberof QueryFace#
      * @function from
      * @param {string} tableName - table name to query
-     * @returns {queryFace} instance of this module
+     * @returns {QueryFace} instance of this class
      * @example
      * qf.select('*').from('users');
      */
@@ -145,12 +152,12 @@ export default function queryFace() {
      * (key, operator, value)
      * (innerQueryFunction)
      * </pre>
-     * @memberof module:queryFace#
+     * @memberof QueryFace#
      * @function where
      * @param {function()|string} keyOrInnerQueryFunction
      * @param {string} [operatorOrValue==]
      * @param {string|number} [value]
-     * @returns {queryFace} instance of this module
+     * @returns {QueryFace} instance of this class
      * @example
      * // function parameter
      * qf.select('*').from('users').where((queryBuilder) => queryBuilder.where('name', 'engin').orWhere('age', '>', 18));
@@ -178,11 +185,11 @@ export default function queryFace() {
 
   /**
    * Calculates and returns next queries based on last executed query.
-   * @memberof module:queryFace
+   * @memberof QueryFace
    * @private
    * @inner
    * @param {string} type name of current query
-   * @returns {queryFace} instance of queryFace
+   * @returns {QueryFace} instance of QueryFace
    */
   const getQueriesByType = type => {
     // prevent concurrent function calls to avoid break the chain

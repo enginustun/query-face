@@ -15,8 +15,6 @@ module.exports = {
   },
   templates: {
     default: {
-      includeDate: false,
-      layoutFile: './layout.tmpl',
       outputSourceFiles: false,
     },
   },

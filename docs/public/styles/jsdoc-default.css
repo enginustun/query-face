@@ -443,3 +443,28 @@ h4.name:target::before {
 .disabled {
   color: #454545;
 }
+
+#nav > ul ul {
+  margin-left: 25px;
+  margin-top: -6px;
+}
+
+li.doc-function {
+  position: relative;
+}
+
+.doc-function::before {
+  content: 'f';
+  position: absolute;
+  left: -22px;
+  top: -2px;
+  border: 2px solid #8959a8;
+  background: aliceblue;
+  padding: 1px 8px 3px 5px;
+  border-radius: 25px;
+  font-weight: bold;
+  color: #404;
+  font-size: 12px;
+  width: 3px;
+  height: 12px;
+}

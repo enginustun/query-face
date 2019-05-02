@@ -1,6 +1,7 @@
 /**
  * Default query type which is used to initialize query-face module.
  * @constant
+ * @private
  * @type {string}
  * @default init
  */
@@ -9,6 +10,7 @@ export const DEFAULT_QUERY_TYPE = 'init';
 /**
  * Supported query types in library.
  * @constant
+ * @private
  * @type {Object}
  * @property {string} SELECT - select string refers sql query { value: 'select' }
  * @property {string} INSERT - insert string refers sql query { value: 'insert' }
@@ -38,6 +40,7 @@ export const SUPPORTED_QUERIES = {
 /**
  * Defines which query return which available chain methods after each call.
  * @constant
+ * @private
  * @type {Object}
  */
 export const RETURN_QUERIES_BY_TYPE = {

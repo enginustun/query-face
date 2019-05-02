@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>query-face Module: queryFace</title>
+    <title>query-face Class: QueryFace</title>
 
     <script src="../../public/scripts/prettify/prettify.js"></script>
     <script src="../../public/scripts/prettify/lang-css.js"></script>
@@ -35,36 +35,62 @@
     </div>
 
     <nav id="nav">
-      <h2><a href="index.html">Home</a></h2>
-      <h3>Modules</h3>
-      <ul>
-        <li><a href="module-queryFace.html">queryFace</a></li>
-      </ul>
-      <h3>Global</h3>
-      <ul>
-        <li><a href="global.html#DEFAULT_QUERY_TYPE">DEFAULT_QUERY_TYPE</a></li>
-        <li>
-          <a href="global.html#RETURN_QUERIES_BY_TYPE"
-            >RETURN_QUERIES_BY_TYPE</a
-          >
+      <h3>Classes</h3>
+      <ul class="classes">
+        <li class="doc-class">
+          <a href="QueryFace.html">QueryFace</a>
+          <h3></h3>
+          <ul class="">
+            <li class="doc-function"><a href="QueryFace.html#from">from</a></li>
+            <li class="doc-function">
+              <a href="QueryFace.html#getQuery">getQuery</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#select">select</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#where">where</a>
+            </li>
+          </ul>
         </li>
-        <li><a href="global.html#SUPPORTED_QUERIES">SUPPORTED_QUERIES</a></li>
       </ul>
     </nav>
 
     <div id="main">
-      <h1 class="page-title">Module: queryFace</h1>
+      <h1 class="page-title">Class: QueryFace</h1>
 
       <section>
-        <header></header>
+        <header>
+          <h2>
+            <span class="attribs"><span class="type-signature"></span></span
+            >QueryFace<span class="signature">()</span
+            ><span class="type-signature"></span>
+          </h2>
+        </header>
 
         <article>
           <div class="container-overview">
+            <h4 class="name" id="QueryFace">
+              <span class="type-signature"></span>new QueryFace<span
+                class="signature"
+                >()</span
+              ><span class="type-signature"></span>
+            </h4>
+
             <div class="description">
               This is the front-end focused ORM-like query language.
             </div>
 
             <dl class="details"></dl>
+
+            <h5>Example</h5>
+
+            <pre class="prettyprint"><code>import QueryFace from 'query-face';
+new QueryFace();
+QueryFace(); // shortened
+// -----
+const qf = QueryFace();
+qf.select('*').from('users');</code></pre>
           </div>
 
           <h3 class="subsection-title">Methods</h3>
@@ -72,7 +98,9 @@
           <h4 class="name" id="from">
             <span class="type-signature"></span>from<span class="signature"
               >(tableName)</span
-            ><span class="type-signature"> &rarr; {queryFace}</span>
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
           </h4>
 
           <div class="description">
@@ -110,7 +138,7 @@
           <h5>Returns:</h5>
 
           <div class="param-desc">
-            instance of this module
+            instance of this class
           </div>
 
           <dl>
@@ -118,7 +146,9 @@
               Type
             </dt>
             <dd>
-              <span class="param-type">queryFace</span>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
             </dd>
           </dl>
 
@@ -154,7 +184,9 @@
           <h4 class="name" id="select">
             <span class="type-signature"></span>select<span class="signature"
               >(&hellip;columnNames)</span
-            ><span class="type-signature"> &rarr; {queryFace}</span>
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
           </h4>
 
           <div class="description">
@@ -198,7 +230,7 @@
           <h5>Returns:</h5>
 
           <div class="param-desc">
-            instance of this module
+            instance of this class
           </div>
 
           <dl>
@@ -206,7 +238,9 @@
               Type
             </dt>
             <dd>
-              <span class="param-type">queryFace</span>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
             </dd>
           </dl>
 
@@ -221,7 +255,9 @@ qf.select('id', 'name');</code></pre>
                 class="signature-attributes"
                 >opt</span
               >, value<span class="signature-attributes">opt</span>)</span
-            ><span class="type-signature"> &rarr; {queryFace}</span>
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
           </h4>
 
           <div class="description">
@@ -309,7 +345,7 @@ qf.select('id', 'name');</code></pre>
           <h5>Returns:</h5>
 
           <div class="param-desc">
-            instance of this module
+            instance of this class
           </div>
 
           <dl>
@@ -317,7 +353,9 @@ qf.select('id', 'name');</code></pre>
               Type
             </dt>
             <dd>
-              <span class="param-type">queryFace</span>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
             </dd>
           </dl>
 
@@ -359,10 +397,13 @@ qf.select('*').from('users').where('age', '>', 18);</code></pre>
         selectElement.appendChild(optionElement);
       }
 
-      var homeLink = navElement.getElementsByTagName('h2')[0];
-      if (homeLink instanceof Node) {
-        navElement.removeChild(homeLink);
-      }
+      document.querySelectorAll('.doc-function a').forEach(elem => {
+        elem.addEventListener('click', function() {
+          setTimeout(() => {
+            window.scrollBy(0, -50);
+          }, 1);
+        });
+      });
     </script>
   </body>
 </html>

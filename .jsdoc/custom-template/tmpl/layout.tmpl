@@ -37,7 +37,7 @@
     <nav id="nav">
       <?js= this.nav ?>
     </nav>
-    
+
     <div id="main">
       <h1 class="page-title"><?js= title ?></h1>
 
@@ -68,10 +68,13 @@
         selectElement.appendChild(optionElement);
       }
 
-      var homeLink = navElement.getElementsByTagName('h2')[0];
-      if (homeLink instanceof Node) {
-        navElement.removeChild(homeLink);
-      }
+      document.querySelectorAll('.doc-function a').forEach(elem => {
+        elem.addEventListener('click', function() {
+          setTimeout(() => {
+            window.scrollBy(0, -50);
+          }, 1);
+        });
+      });
     </script>
   </body>
 </html>

@@ -9,7 +9,7 @@
   "scripts": {
     "build": "eslint --fix src/ && rollup -c",
     "test": "jest",
-    "docs": "node .jsdoc/node/before-generation.js && npm run build && eslint --fix .jsdoc/src && jsdoc -c ./.jsdoc/config.js && node .jsdoc/node/after-generation.js && prettier --write ./docs/query-face/**/*.html"
+    "docs": "node .jsdoc/node/before-generation.js && npm run build && eslint --fix .jsdoc/src && jsdoc -c ./.jsdoc/config.js -t ./.jsdoc/custom-template && node .jsdoc/node/after-generation.js && prettier --write ./docs/query-face/**/*.html"
   },
   "husky": {
     "hooks": {
