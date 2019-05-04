@@ -1,4 +1,5 @@
 import { isFunction } from './utils/function';
+import { isObject } from './utils/object';
 import {
   SUPPORTED_QUERIES,
   RETURN_QUERIES_BY_TYPE,
@@ -69,6 +70,20 @@ export default function QueryFace() {
    * @memberof QueryFace#
    * @function
    * @returns {Array<QueryInfo>}
+   * @example
+   * qf()
+   *   .select('*')
+   *   .from('users')
+   *   .where('user_id', 2)
+   *   .getQuery();
+   *
+   * @example
+   * // output
+   * [
+   *   { "$op": "select", "$params": ["*"] },
+   *   { "$op": "from", "$params": ["users"] },
+   *   { "$op": "where", "$params": ["user_id", "=", 2] }
+   * ]
    */
   function getQuery() {
     return queryStack;
@@ -210,6 +225,64 @@ export default function QueryFace() {
     [SUPPORTED_QUERIES.INTO]: function(tableName) {
       extendQuery(SUPPORTED_QUERIES.INTO, [tableName]);
       return getQueriesByType(SUPPORTED_QUERIES.INTO);
+    },
+
+    /**
+     * Prepares "update" query informations
+     * @memberof QueryFace#
+     * @function update
+     * @param {string} tableName - table name to update values
+     * @returns {QueryFace} instance of this class
+     * @example
+     * qf().update('users');
+     */
+    [SUPPORTED_QUERIES.UPDATE]: function(tableName) {
+      if (typeof tableName !== 'string') {
+        throw new Error(
+          'tableName parameter must be string for .update(tableName) function'
+        );
+      }
+      extendQuery(SUPPORTED_QUERIES.UPDATE, [tableName]);
+      return getQueriesByType(SUPPORTED_QUERIES.UPDATE);
+    },
+
+    /**
+     * Prepares "set" query informations
+     * <pre>
+     * (key, value)
+     * ({ name: 'engin', age: 28, ... })
+     * </pre>
+     * <div class="doc-warning">
+     *  set() query cannot be directly run because of security reasons. Updating all records is restricted.
+     *  <div>
+     *    <s>.set('name', 'engin').run()</s>
+     *  </div>
+     * </div>
+     * @memberof QueryFace#
+     * @function set
+     * @param {string|Object} keyOrData - string key or data object
+     * @param {string|number|boolean} [value] - if first parameter is string key, this is required value parameter
+     * @returns {QueryFace} instance of this class
+     * @example
+     * qf().update('users').set('name', 'engin').where(...);
+     * qf().update('users').set({ name: 'engin', age: 29 }).where(...);
+     */
+    [SUPPORTED_QUERIES.SET]: function() {
+      if (arguments.length === 1) {
+        if (!isObject(arguments[0])) {
+          throw new Error(
+            'When you pass single parameter to .set(object) function, it must be an object.'
+          );
+        }
+      } else if (arguments.length === 2) {
+        if (typeof arguments[0] !== 'string') {
+          throw new Error(
+            'When you pass two parameters to .set(key, value) function, first parameter must be a string.'
+          );
+        }
+      }
+      extendQuery(SUPPORTED_QUERIES.SET, [...arguments]);
+      return getQueriesByType(SUPPORTED_QUERIES.SET, ...arguments);
     },
 
     [SUPPORTED_QUERIES.RUN]: () => {

@@ -52,6 +52,10 @@
             <li class="doc-function">
               <a href="QueryFace.html#select">select</a>
             </li>
+            <li class="doc-function"><a href="QueryFace.html#set">set</a></li>
+            <li class="doc-function">
+              <a href="QueryFace.html#update">update</a>
+            </li>
             <li class="doc-function">
               <a href="QueryFace.html#where">where</a>
             </li>
@@ -189,6 +193,21 @@ qf().insert({ name: 'engin', age: 28 }).into('users'); // Creates a new QueryFac
               <span class="param-type">Array.&lt;QueryInfo></span>
             </dd>
           </dl>
+
+          <h5>Examples</h5>
+
+          <pre class="prettyprint"><code>qf()
+  .select('*')
+  .from('users')
+  .where('user_id', 2)
+  .getQuery();</code></pre>
+
+          <pre class="prettyprint"><code>// output
+[
+  { "$op": "select", "$params": ["*"] },
+  { "$op": "from", "$params": ["users"] },
+  { "$op": "where", "$params": ["user_id", "=", 2] }
+]</code></pre>
 
           <h4 class="name" id="insert">
             <span class="type-signature"></span>insert<span class="signature"
@@ -391,6 +410,172 @@ qf().insert([{ name: 'engin', age: 28 }, { name: 'jon', age: 30 }]); // bulk ins
 
           <pre class="prettyprint"><code>qf().select('*');
 qf().select('id', 'name');</code></pre>
+
+          <h4 class="name" id="set">
+            <span class="type-signature"></span>set<span class="signature"
+              >(keyOrData, value<span class="signature-attributes">opt</span
+              >)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "set" query informations
+            <pre>
+(key, value)
+({ name: 'engin', age: 28, ... })
+</pre
+            >
+            <div class="doc-warning">
+              set() query cannot be directly run because of security reasons.
+              Updating all records is restricted.
+              <div>
+                <s>.set('name', 'engin').run()</s>
+              </div>
+            </div>
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th>Attributes</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>keyOrData</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                  |
+
+                  <span class="param-type">Object</span>
+                </td>
+
+                <td class="attributes"></td>
+
+                <td class="description last">string key or data object</td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>value</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                  |
+
+                  <span class="param-type">number</span>
+                  |
+
+                  <span class="param-type">boolean</span>
+                </td>
+
+                <td class="attributes">&lt;optional><br /></td>
+
+                <td class="description last">
+                  if first parameter is string key, this is required value
+                  parameter
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre
+            class="prettyprint"
+          ><code>qf().update('users').set('name', 'engin').where(...);
+qf().update('users').set({ name: 'engin', age: 29 }).where(...);</code></pre>
+
+          <h4 class="name" id="update">
+            <span class="type-signature"></span>update<span class="signature"
+              >(tableName)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "update" query informations
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>tableName</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">table name to update values</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre class="prettyprint"><code>qf().update('users');</code></pre>
 
           <h4 class="name" id="where">
             <span class="type-signature"></span>where<span class="signature"

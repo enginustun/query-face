@@ -16,7 +16,7 @@ output query object which will be sent to server you desire:
 [
   { "$op": "select", "$params": ["*"] },
   { "$op": "from", "$params": ["posts"] },
-  { "$op": "where", "$params": ["user_id", "=", 1] }
+  { "$op": "where", "$params": ["user_id", "=", 2] }
 ]
 ```
 
@@ -54,7 +54,7 @@ chainable query structure is ready.
 - Queries
   - [x] select
   - [x] insert
-  - [ ] update
+  - [x] update
   - [ ] delete
   - [x] from
   -----------------------------------------------

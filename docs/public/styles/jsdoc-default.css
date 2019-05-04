@@ -468,3 +468,9 @@ li.doc-function {
   width: 3px;
   height: 12px;
 }
+
+.doc-warning {
+  background: lightyellow;
+  padding: 5px;
+  border-left: 5px solid gold;
+}
