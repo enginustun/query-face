@@ -14,6 +14,11 @@ import {
  * // -----
  * const qf = QueryFace();
  * qf.select('*').from('users');
+ *
+ * // Suggested Usage
+ * import qf from 'query-face';
+ * qf().select('*').from('users'); // Creates QueryFace instance
+ * qf().insert({ name: 'engin', age: 28 }).into('users'); // Creates a new QueryFace instance
  */
 export default function QueryFace() {
   if (!new.target) {
@@ -37,7 +42,7 @@ export default function QueryFace() {
    * @inner
    * @argument
    * @example
-   * qf.where((queryBuilder)=> {
+   * qf().where((queryBuilder)=> {
    *  // an inner query instance is created because of this function.
    *  // queryBuilder is new innerQuery instance of QueryFace class.
    * })
@@ -116,14 +121,14 @@ export default function QueryFace() {
 
   const queries = {
     /**
-     * Prepares select query informations
+     * Prepares "select" query informations
      * @memberof QueryFace#
      * @function select
      * @param {...string} columnNames - one or more column names to include result object
      * @returns {QueryFace} instance of this class
      * @example
-     * qf.select('*');
-     * qf.select('id', 'name');
+     * qf().select('*');
+     * qf().select('id', 'name');
      */
     [SUPPORTED_QUERIES.SELECT]: function() {
       extendQuery(SUPPORTED_QUERIES.SELECT, [...arguments]);
@@ -131,13 +136,13 @@ export default function QueryFace() {
     },
 
     /**
-     * Prepares select query informations
+     * Prepares "select" query informations
      * @memberof QueryFace#
      * @function from
      * @param {string} tableName - table name to query
      * @returns {QueryFace} instance of this class
      * @example
-     * qf.select('*').from('users');
+     * qf().select('*').from('users');
      */
     [SUPPORTED_QUERIES.FROM]: function(tableName) {
       extendQuery(SUPPORTED_QUERIES.FROM, [tableName]);
@@ -145,7 +150,7 @@ export default function QueryFace() {
     },
 
     /**
-     * Prepares select query informations.
+     * Prepares "select" query informations.
      * Parameters can be:
      * <pre>
      * (key, value)
@@ -160,13 +165,13 @@ export default function QueryFace() {
      * @returns {QueryFace} instance of this class
      * @example
      * // function parameter
-     * qf.select('*').from('users').where((queryBuilder) => queryBuilder.where('name', 'engin').orWhere('age', '>', 18));
+     * qf().select('*').from('users').where((queryBuilder) => queryBuilder.where('name', 'engin').orWhere('age', '>', 18));
      *
      * // two parameters
-     * qf.select('*').from('users').where('name', 'engin'); // equals .where('name', '=', 'engin');
+     * qf().select('*').from('users').where('name', 'engin'); // equals .where('name', '=', 'engin');
      *
      * //three parameters
-     * qf.select('*').from('users').where('age', '>', 18);
+     * qf().select('*').from('users').where('age', '>', 18);
      */
     [SUPPORTED_QUERIES.WHERE]: function(key, op, value) {
       return where(SUPPORTED_QUERIES.WHERE, ...arguments);
@@ -176,6 +181,35 @@ export default function QueryFace() {
     },
     [SUPPORTED_QUERIES.OR_WHERE]: function(key, op, value) {
       return where(SUPPORTED_QUERIES.OR_WHERE, ...arguments);
+    },
+
+    /**
+     * Prepares "insert" query informations
+     * @memberof QueryFace#
+     * @function insert
+     * @param {Object|Array<Object>} values - values to insert table - { key: value, key: value, ... } | [{ key: value, key: value, ... }, { key: value, key: value, ... }, ...]
+     * @returns {QueryFace} instance of this class
+     * @example
+     * qf().insert({ name: 'engin', age: 28 });
+     * qf().insert([{ name: 'engin', age: 28 }, { name: 'jon', age: 30 }]); // bulk insert
+     */
+    [SUPPORTED_QUERIES.INSERT]: function(values) {
+      extendQuery(SUPPORTED_QUERIES.INSERT, [values]);
+      return getQueriesByType(SUPPORTED_QUERIES.INSERT, ...arguments);
+    },
+
+    /**
+     * Prepares "into" query informations
+     * @memberof QueryFace#
+     * @function into
+     * @param {string} tableName - table name to insert values to
+     * @returns {QueryFace} instance of this class
+     * @example
+     * qf().insert({ name: 'engin', age: 28 }).into('users');
+     */
+    [SUPPORTED_QUERIES.INTO]: function(tableName) {
+      extendQuery(SUPPORTED_QUERIES.INTO, [tableName]);
+      return getQueriesByType(SUPPORTED_QUERIES.INTO);
     },
 
     [SUPPORTED_QUERIES.RUN]: () => {

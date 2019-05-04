@@ -53,7 +53,7 @@ Finish your development and open a PR.
 chainable query structure is ready.
 - Queries
   - [x] select
-  - [ ] insert
+  - [x] insert
   - [ ] update
   - [ ] delete
   - [x] from

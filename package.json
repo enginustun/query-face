@@ -8,7 +8,7 @@
   "types": "lib/index.d.ts",
   "scripts": {
     "build": "eslint --fix src/ && rollup -c",
-    "test": "jest",
+    "test": "jest --verbose",
     "docs": "node .jsdoc/node/before-generation.js && npm run build && eslint --fix .jsdoc/src && jsdoc -c ./.jsdoc/config.js -t ./.jsdoc/custom-template && node .jsdoc/node/after-generation.js && prettier --write ./docs/query-face/**/*.html"
   },
   "husky": {

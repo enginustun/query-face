@@ -46,6 +46,10 @@
               <a href="QueryFace.html#getQuery">getQuery</a>
             </li>
             <li class="doc-function">
+              <a href="QueryFace.html#insert">insert</a>
+            </li>
+            <li class="doc-function"><a href="QueryFace.html#into">into</a></li>
+            <li class="doc-function">
               <a href="QueryFace.html#select">select</a>
             </li>
             <li class="doc-function">
@@ -90,7 +94,12 @@ new QueryFace();
 QueryFace(); // shortened
 // -----
 const qf = QueryFace();
-qf.select('*').from('users');</code></pre>
+qf.select('*').from('users');
+
+// Suggested Usage
+import qf from 'query-face';
+qf().select('*').from('users'); // Creates QueryFace instance
+qf().insert({ name: 'engin', age: 28 }).into('users'); // Creates a new QueryFace instance</code></pre>
           </div>
 
           <h3 class="subsection-title">Methods</h3>
@@ -104,7 +113,7 @@ qf.select('*').from('users');</code></pre>
           </h4>
 
           <div class="description">
-            Prepares select query informations
+            Prepares "select" query informations
           </div>
 
           <h5>Parameters:</h5>
@@ -156,7 +165,7 @@ qf.select('*').from('users');</code></pre>
 
           <pre
             class="prettyprint"
-          ><code>qf.select('*').from('users');</code></pre>
+          ><code>qf().select('*').from('users');</code></pre>
 
           <h4 class="name" id="getQuery">
             <span class="type-signature"></span>getQuery<span class="signature"
@@ -181,6 +190,140 @@ qf.select('*').from('users');</code></pre>
             </dd>
           </dl>
 
+          <h4 class="name" id="insert">
+            <span class="type-signature"></span>insert<span class="signature"
+              >(values)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "insert" query informations
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>values</code></td>
+
+                <td class="type">
+                  <span class="param-type">Object</span>
+                  |
+
+                  <span class="param-type">Array.&lt;Object></span>
+                </td>
+
+                <td class="description last">
+                  values to insert table - { key: value, key: value, ... } | [{
+                  key: value, key: value, ... }, { key: value, key: value, ...
+                  }, ...]
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre
+            class="prettyprint"
+          ><code>qf().insert({ name: 'engin', age: 28 });
+qf().insert([{ name: 'engin', age: 28 }, { name: 'jon', age: 30 }]); // bulk insert</code></pre>
+
+          <h4 class="name" id="into">
+            <span class="type-signature"></span>into<span class="signature"
+              >(tableName)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "into" query informations
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>tableName</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">table name to insert values to</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre
+            class="prettyprint"
+          ><code>qf().insert({ name: 'engin', age: 28 }).into('users');</code></pre>
+
           <h4 class="name" id="select">
             <span class="type-signature"></span>select<span class="signature"
               >(&hellip;columnNames)</span
@@ -190,7 +333,7 @@ qf.select('*').from('users');</code></pre>
           </h4>
 
           <div class="description">
-            Prepares select query informations
+            Prepares "select" query informations
           </div>
 
           <h5>Parameters:</h5>
@@ -246,8 +389,8 @@ qf.select('*').from('users');</code></pre>
 
           <h5>Example</h5>
 
-          <pre class="prettyprint"><code>qf.select('*');
-qf.select('id', 'name');</code></pre>
+          <pre class="prettyprint"><code>qf().select('*');
+qf().select('id', 'name');</code></pre>
 
           <h4 class="name" id="where">
             <span class="type-signature"></span>where<span class="signature"
@@ -261,7 +404,7 @@ qf.select('id', 'name');</code></pre>
           </h4>
 
           <div class="description">
-            Prepares select query informations. Parameters can be:
+            Prepares "select" query informations. Parameters can be:
             <pre>
 (key, value)
 (key, operator, value)
@@ -362,13 +505,13 @@ qf.select('id', 'name');</code></pre>
           <h5>Example</h5>
 
           <pre class="prettyprint"><code>// function parameter
-qf.select('*').from('users').where((queryBuilder) => queryBuilder.where('name', 'engin').orWhere('age', '>', 18));
+qf().select('*').from('users').where((queryBuilder) => queryBuilder.where('name', 'engin').orWhere('age', '>', 18));
 
 // two parameters
-qf.select('*').from('users').where('name', 'engin'); // equals .where('name', '=', 'engin');
+qf().select('*').from('users').where('name', 'engin'); // equals .where('name', '=', 'engin');
 
 //three parameters
-qf.select('*').from('users').where('age', '>', 18);</code></pre>
+qf().select('*').from('users').where('age', '>', 18);</code></pre>
         </article>
       </section>
     </div>
