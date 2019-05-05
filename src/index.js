@@ -285,6 +285,26 @@ export default function QueryFace() {
       return getQueriesByType(SUPPORTED_QUERIES.SET, ...arguments);
     },
 
+    /**
+     * Prepares "delete" query informations
+     * @memberof QueryFace#
+     * @function delete
+     * @param {string} tableName - table name to delete record(s)
+     * @returns {QueryFace} instance of this class
+     * @example
+     * qf().delete('users').where('name', 'engin');
+     * qf().delete('users').where('id', 1);
+     */
+    [SUPPORTED_QUERIES.DELETE]: function(tableName) {
+      if (typeof tableName !== 'string') {
+        throw new Error(
+          'tableName parameter must be string for .delete(tableName) function'
+        );
+      }
+      extendQuery(SUPPORTED_QUERIES.DELETE, [tableName]);
+      return getQueriesByType(SUPPORTED_QUERIES.DELETE);
+    },
+
     [SUPPORTED_QUERIES.RUN]: () => {
       console.log(getQuery());
     },

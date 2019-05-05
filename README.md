@@ -55,7 +55,7 @@ chainable query structure is ready.
   - [x] select
   - [x] insert
   - [x] update
-  - [ ] delete
+  - [x] delete
   - [x] from
   -----------------------------------------------
   - [x] where / andWhere / orWhere
