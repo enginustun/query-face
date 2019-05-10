@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>query-face Class: Config</title>
+
+    <script src="../../public/scripts/prettify/prettify.js"></script>
+    <script src="../../public/scripts/prettify/lang-css.js"></script>
+    <script src="../../public/scripts/versions.browser.js"></script>
+    <script>
+      var locationArray = location.href.split('/');
+      locationArray.pop();
+      var documentVersion = locationArray.pop();
+    </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="../../public/styles/prettify-tomorrow.css"
+    />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="../../public/styles/jsdoc-default.css"
+    />
+  </head>
+
+  <body>
+    <div class="header">
+      <span class="lib-title">query-face</span>
+      <span>Document version:</span
+      ><select id="versions"></select>
+    </div>
+
+    <nav id="nav">
+      <h3>Classes</h3>
+      <ul class="classes">
+        <li class="doc-class">
+          <a href="Config.html">Config</a>
+          <h3></h3>
+          <ul class="">
+            <li class="doc-function"><a href="Config.html#.get">get</a></li>
+            <li class="doc-function"><a href="Config.html#.set">set</a></li>
+          </ul>
+        </li>
+        <li class="doc-class">
+          <a href="QueryFace.html">QueryFace</a>
+          <h3></h3>
+          <ul class="">
+            <li class="doc-function">
+              <a href="QueryFace.html#delete">delete</a>
+            </li>
+            <li class="doc-function"><a href="QueryFace.html#from">from</a></li>
+            <li class="doc-function">
+              <a href="QueryFace.html#getQuery">getQuery</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#insert">insert</a>
+            </li>
+            <li class="doc-function"><a href="QueryFace.html#into">into</a></li>
+            <li class="doc-function">
+              <a href="QueryFace.html#select">select</a>
+            </li>
+            <li class="doc-function"><a href="QueryFace.html#set">set</a></li>
+            <li class="doc-function">
+              <a href="QueryFace.html#update">update</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#where">where</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+
+    <div id="main">
+      <h1 class="page-title">Class: Config</h1>
+
+      <section>
+        <article>
+          <div class="container-overview">
+            <div class="description">
+              This is the configuration class that you can manage internal and
+              external configurations you need.
+              <div>
+                This class and its methods are all static. You cannot create
+                instance of this class.
+              </div>
+            </div>
+
+            <dl class="details"></dl>
+
+            <h5>Example</h5>
+
+            <pre
+              class="prettyprint"
+            ><code>import QueryFace, { Config } from 'query-face';
+
+Config.set('user.name', 'engin');
+Config.get('user.name');</code></pre>
+          </div>
+
+          <h3 class="subsection-title">Methods</h3>
+
+          <h4 class="name" id=".get">
+            <span class="type-signature">(static) </span>get<span
+              class="signature"
+              >(key)</span
+            ><span class="type-signature"></span>
+          </h4>
+
+          <div class="description">
+            You can get configuration value by string key.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>key</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">
+                  parameter to get value from configuration object
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            value of given key parameter
+          </div>
+
+          <h5>Examples</h5>
+
+          <pre
+            class="prettyprint"
+          ><code>// lets assume we have user config as below
+Config.set('user', { name: 'engin', email: 'enginustun@outlook.com' });
+// or we can set as below
+Config.set('user.name', 'engin');
+Config.set('user.email', 'enginustun@outlook.com');</code></pre>
+
+          <pre class="prettyprint"><code>// if we want to get user config
+Config.get('user'); // returns {name: "engin", email: "enginustun@outlook.com"}
+Config.get('user.name'); // returns "engin"
+Config.get('user.email'); // returns "enginustun@outlook.com"</code></pre>
+
+          <h4 class="name" id=".set">
+            <span class="type-signature">(static) </span>set<span
+              class="signature"
+              >(key, value<span class="signature-attributes">opt</span>)</span
+            ><span class="type-signature"></span>
+          </h4>
+
+          <div class="description">
+            Sets configuration object based on key and value. It can set
+            configurations deeply.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th>Attributes</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>key</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                  |
+
+                  <span class="param-type">Object</span>
+                </td>
+
+                <td class="attributes"></td>
+
+                <td class="description last">
+                  required key or key/value object
+                </td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>value</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                  |
+
+                  <span class="param-type">Object</span>
+                </td>
+
+                <td class="attributes">&lt;optional><br /></td>
+
+                <td class="description last">
+                  optional value, when key is string the value is required. it
+                  can be a string or object
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Example</h5>
+
+          <pre
+            class="prettyprint"
+          ><code>// single parameter as Object, it will be useful to initialize configurations.
+Config.set({
+  endpoint: 'https://github.com',
+  headers: {
+    'Content-Type': 'application/json'
+  }
+});
+
+// single key, string value
+Config.set('token', 'Ye4tpWyBNIjl8HVPjZF5OJnjEPAO5mIo');
+
+// single key, object value
+Config.set('user', { name: 'engin', email: 'enginustun@outlook.com' });
+
+// nested keys, string value
+Config.set('user.name', 'engin');
+Config.set('user.email', 'enginustun@outlook.com');
+
+// nested keys, object value
+Config.set('user.info', { age: 28, address: 'İstanbul' })</code></pre>
+        </article>
+      </section>
+    </div>
+
+    <br class="clear" />
+
+    <script>
+      prettyPrint();
+    </script>
+    <script src="../../public/scripts/linenumber.js"></script>
+
+    <script>
+      var versionInfo = versionInfo || {};
+      var versionList = versionInfo.versions || [];
+      var navElement = document.getElementById('nav');
+      var selectElement = document.getElementById('versions');
+      selectElement.addEventListener('change', function(e) {
+        window.location.replace(`../${e.target.value}/module-queryFace.html`);
+      });
+      for (var i = 0; i < versionList.length; i++) {
+        var version = versionList[i];
+        var optionElement = document.createElement('option');
+        optionElement.value = version;
+        optionElement.text = version;
+        optionElement.selected = version === documentVersion;
+        selectElement.appendChild(optionElement);
+      }
+
+      document.querySelectorAll('.doc-function a').forEach(elem => {
+        elem.addEventListener('click', function() {
+          setTimeout(() => {
+            window.scrollBy(0, -50);
+          }, 1);
+        });
+      });
+    </script>
+  </body>
+</html>

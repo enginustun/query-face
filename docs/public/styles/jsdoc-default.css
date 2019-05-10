@@ -474,3 +474,7 @@ li.doc-function {
   padding: 5px;
   border-left: 5px solid gold;
 }
+
+.page-title {
+  margin-bottom: 0;
+}

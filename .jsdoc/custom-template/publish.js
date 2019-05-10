@@ -53,7 +53,7 @@ function needsSignature(doclet) {
   var needsSig = false;
 
   // function and class definitions always get a signature
-  if (doclet.kind === 'function' || doclet.kind === 'class') {
+  if (doclet.kind === 'function') {
     needsSig = true;
   }
   // typedefs that contain functions get a signature, too
@@ -351,15 +351,17 @@ function buildMemberNav(items, itemHeading, itemsSeen, linktoFn, methods = []) {
 
   if (items.length) {
     var itemsNav = '';
-
     items.forEach(function(item) {
       var displayName;
-      methods = methods.filter(method => method.memberof === item.name);
+      var filteredMethods = methods.filter(
+        method => method.memberof === item.name
+      );
+
       if (!hasOwnProp.call(item, 'longname')) {
         itemsNav +=
           '<li>' +
           linktoFn('', item.name) +
-          buildMemberNav(methods, '', itemsSeen, linktoFn) +
+          buildMemberNav(filteredMethods, '', itemsSeen, linktoFn) +
           '</li>';
       } else if (!hasOwnProp.call(itemsSeen, item.longname)) {
         if (env.conf.templates.default.useLongnameInNav) {
@@ -373,7 +375,7 @@ function buildMemberNav(items, itemHeading, itemsSeen, linktoFn, methods = []) {
             item.longname,
             displayName.replace(/\b(module|event):/g, '')
           ) +
-          buildMemberNav(methods, '', itemsSeen, linktoFn) +
+          buildMemberNav(filteredMethods, '', itemsSeen, linktoFn) +
           '</li>';
 
         itemsSeen[item.longname] = true;
