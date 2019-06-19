@@ -104,7 +104,7 @@ samp {
 }
 
 article dl {
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 }
 
 article img {
@@ -477,4 +477,8 @@ li.doc-function {
 
 .page-title {
   margin-bottom: 0;
+}
+
+pre + .name {
+  margin-top: 30px;
 }

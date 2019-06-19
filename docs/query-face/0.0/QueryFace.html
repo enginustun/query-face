@@ -60,6 +60,7 @@
               <a href="QueryFace.html#insert">insert</a>
             </li>
             <li class="doc-function"><a href="QueryFace.html#into">into</a></li>
+            <li class="doc-function"><a href="QueryFace.html#run">run</a></li>
             <li class="doc-function">
               <a href="QueryFace.html#select">select</a>
             </li>
@@ -403,6 +404,200 @@ qf().insert([{ name: 'engin', age: 28 }, { name: 'jon', age: 30 }]); // bulk ins
           <pre
             class="prettyprint"
           ><code>qf().insert({ name: 'engin', age: 28 }).into('users');</code></pre>
+
+          <h4 class="name" id="run">
+            <span class="type-signature"></span>run<span class="signature"
+              >(endpoint<span class="signature-attributes">opt</span>,
+              headers<span class="signature-attributes">opt</span>, method<span
+                class="signature-attributes"
+                >opt</span
+              >, mode<span class="signature-attributes">opt</span>, cache<span
+                class="signature-attributes"
+                >opt</span
+              >, credentials<span class="signature-attributes">opt</span>,
+              redirect<span class="signature-attributes">opt</span>,
+              referrer<span class="signature-attributes">opt</span>)</span
+            ><span class="type-signature"> &rarr; {Promise.&lt;Response>}</span>
+          </h4>
+
+          <div class="description">
+            Sends query to server and fetches response
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th>Attributes</th>
+
+                <th>Default</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>endpoint</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="attributes">&lt;optional><br /></td>
+
+                <td class="default"></td>
+
+                <td class="description last">endpoint url to send request</td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>headers</code></td>
+
+                <td class="type">
+                  <span class="param-type">object</span>
+                </td>
+
+                <td class="attributes">&lt;optional><br /></td>
+
+                <td class="default"></td>
+
+                <td class="description last">key-value header map</td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>method</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="attributes">&lt;optional><br /></td>
+
+                <td class="default">
+                  POST
+                </td>
+
+                <td class="description last">request method</td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>mode</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="attributes">&lt;optional><br /></td>
+
+                <td class="default">
+                  cors
+                </td>
+
+                <td class="description last">request mode</td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>cache</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="attributes">&lt;optional><br /></td>
+
+                <td class="default">
+                  no-cache
+                </td>
+
+                <td class="description last">request cache</td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>credentials</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="attributes">&lt;optional><br /></td>
+
+                <td class="default">
+                  same-origin
+                </td>
+
+                <td class="description last">request credentials</td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>redirect</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="attributes">&lt;optional><br /></td>
+
+                <td class="default">
+                  follow
+                </td>
+
+                <td class="description last">request redirect</td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>referrer</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="attributes">&lt;optional><br /></td>
+
+                <td class="default">
+                  no-referrer
+                </td>
+
+                <td class="description last">request referrer</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            server's response as promise object, directly returns fetch's result
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type">Promise.&lt;Response></span>
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre
+            class="prettyprint"
+          ><code>const promiseResponse = qf().select('*').from('users').where('id', 1).run();
+const users = promiseResponse.then(response => response.json());
+// or
+const response = await qf()
+  .select('*')
+  .from('users')
+  .where('id', 1)
+  .run();
+const users = await response.json();</code></pre>
 
           <h4 class="name" id="select">
             <span class="type-signature"></span>select<span class="signature"

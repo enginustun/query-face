@@ -5,6 +5,18 @@ import {
   RETURN_QUERIES_BY_TYPE,
   DEFAULT_QUERY_TYPE,
 } from './constants';
+import Config from './config';
+
+Config.set({
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  mode: 'cors', // no-cors, cors, *same-origin
+  cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+  credentials: 'same-origin', // include, *same-origin, omit
+  redirect: 'follow', // manual, *follow, error
+  referrer: 'no-referrer', // no-referrer, *client
+});
+
 /**
  * This is the base class of query-face library that you can use to create ORM queries for backend with chainable methods.
  * @class QueryFace
@@ -305,8 +317,54 @@ export default function QueryFace() {
       return getQueriesByType(SUPPORTED_QUERIES.DELETE);
     },
 
-    [SUPPORTED_QUERIES.RUN]: () => {
-      console.log(getQuery());
+    /**
+     * Sends query to server and fetches response
+     * @memberof QueryFace#
+     * @function run
+     * @param {string} [endpoint] - endpoint url to send request
+     * @param {object} [headers] - key-value header map
+     * @param {string} [method=POST] - request method
+     * @param {string} [mode=cors] - request mode
+     * @param {string} [cache=no-cache] - request cache
+     * @param {string} [credentials=same-origin] - request credentials
+     * @param {string} [redirect=follow] - request redirect
+     * @param {string} [referrer=no-referrer] - request referrer
+     * @returns {Promise<Response>} server's response as promise object, directly returns fetch's result
+     * @example
+     * const promiseResponse = qf().select('*').from('users').where('id', 1).run();
+     * const users = promiseResponse.then(response => response.json());
+     * // or
+     * const response = await qf()
+     *   .select('*')
+     *   .from('users')
+     *   .where('id', 1)
+     *   .run();
+     * const users = await response.json();
+     */
+    [SUPPORTED_QUERIES.RUN]: ({
+      endpoint = Config.get('endpoint'),
+      headers,
+      method = Config.get('method'),
+      mode = Config.get('mode'),
+      cache = Config.get('cache'),
+      credentials = Config.get('credentials'),
+      redirect = Config.get('redirect'),
+      referrer = Config.get('referrer'),
+    } = {}) => {
+      if (!endpoint) {
+        throw new Error('endpoint must be provided to run any query.');
+      }
+      const configs = {
+        method,
+        headers: { ...Config.get('headers'), ...headers },
+        body: JSON.stringify({ query: getQuery() }),
+        mode,
+        cache,
+        credentials,
+        redirect,
+        referrer,
+      };
+      return fetch(endpoint, configs);
     },
   };
 
