@@ -22,7 +22,7 @@ output query object which will be sent to server you desire:
 
 ## Documentation
 
-  - [ ] [API documentation](https://enginustun.github.io/query-face/) (incomplete)
+  - [x] [API documentation](https://enginustun.github.io/query-face/)
   - [ ] Tutorials (not started)
 
 ## Contributing
@@ -59,7 +59,7 @@ chainable query structure is ready.
   - [x] from
   -----------------------------------------------
   - [x] where / andWhere / orWhere
-  - [ ] whereNot / andWhereNot / orWhereNot
+  - [x] whereNot / andWhereNot / orWhereNot
   - [ ] whereIn / orWhereIn
   - [ ] whereNotIn / orWhereNotIn
   - [ ] whereNull / orWhereNull

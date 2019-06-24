@@ -71,6 +71,9 @@
             <li class="doc-function">
               <a href="QueryFace.html#where">where</a>
             </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#whereNot">whereNot</a>
+            </li>
           </ul>
         </li>
       </ul>
@@ -179,7 +182,7 @@ qf().delete('users').where('id', 1);</code></pre>
           </h4>
 
           <div class="description">
-            Prepares "select" query informations
+            Prepares "from" query informations
           </div>
 
           <h5>Parameters:</h5>
@@ -845,7 +848,7 @@ qf().update('users').set({ name: 'engin', age: 29 }).where(...);</code></pre>
           </h4>
 
           <div class="description">
-            Prepares "select" query informations. Parameters can be:
+            Prepares "where" query informations. Parameters can be:
             <pre>
 (key, value)
 (key, operator, value)
@@ -953,6 +956,127 @@ qf().select('*').from('users').where('name', 'engin'); // equals .where('name', 
 
 //three parameters
 qf().select('*').from('users').where('age', '>', 18);</code></pre>
+
+          <h4 class="name" id="whereNot">
+            <span class="type-signature"></span>whereNot<span class="signature"
+              >(keyOrInnerQueryFunction, operatorOrValue<span
+                class="signature-attributes"
+                >opt</span
+              >, value<span class="signature-attributes">opt</span>)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "whereNot" query informations. Parameters can be:
+            <pre>
+(key, value)
+(key, operator, value)
+(innerQueryFunction)
+</pre
+            >
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th>Attributes</th>
+
+                <th>Default</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>keyOrInnerQueryFunction</code></td>
+
+                <td class="type">
+                  <span class="param-type">function</span>
+                  |
+
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="attributes"></td>
+
+                <td class="default"></td>
+
+                <td class="description last"></td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>operatorOrValue</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="attributes">&lt;optional><br /></td>
+
+                <td class="default">
+                  =
+                </td>
+
+                <td class="description last"></td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>value</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                  |
+
+                  <span class="param-type">number</span>
+                </td>
+
+                <td class="attributes">&lt;optional><br /></td>
+
+                <td class="default"></td>
+
+                <td class="description last"></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre class="prettyprint"><code>// function parameter
+qf().select('*').from('users').whereNot((queryBuilder) => queryBuilder.where('name', 'engin').orWhere('age', '>', 18));
+
+// two parameters
+qf().select('*').from('users').whereNot('name', 'engin'); // equals .whereNot('name', '=', 'engin'); or .where('name', '!=', 'engin');
+
+//three parameters
+qf().select('*').from('users').whereNot('age', '>', 18);</code></pre>
         </article>
       </section>
     </div>

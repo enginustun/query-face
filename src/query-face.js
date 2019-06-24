@@ -163,7 +163,7 @@ export default function QueryFace() {
     },
 
     /**
-     * Prepares "select" query informations
+     * Prepares "from" query informations
      * @memberof QueryFace#
      * @function from
      * @param {string} tableName - table name to query
@@ -177,7 +177,7 @@ export default function QueryFace() {
     },
 
     /**
-     * Prepares "select" query informations.
+     * Prepares "where" query informations.
      * Parameters can be:
      * <pre>
      * (key, value)
@@ -208,6 +208,40 @@ export default function QueryFace() {
     },
     [SUPPORTED_QUERIES.OR_WHERE]: function(key, op, value) {
       return where(SUPPORTED_QUERIES.OR_WHERE, ...arguments);
+    },
+
+    /**
+     * Prepares "whereNot" query informations.
+     * Parameters can be:
+     * <pre>
+     * (key, value)
+     * (key, operator, value)
+     * (innerQueryFunction)
+     * </pre>
+     * @memberof QueryFace#
+     * @function whereNot
+     * @param {function()|string} keyOrInnerQueryFunction
+     * @param {string} [operatorOrValue==]
+     * @param {string|number} [value]
+     * @returns {QueryFace} instance of this class
+     * @example
+     * // function parameter
+     * qf().select('*').from('users').whereNot((queryBuilder) => queryBuilder.where('name', 'engin').orWhere('age', '>', 18));
+     *
+     * // two parameters
+     * qf().select('*').from('users').whereNot('name', 'engin'); // equals .whereNot('name', '=', 'engin'); or .where('name', '!=', 'engin');
+     *
+     * //three parameters
+     * qf().select('*').from('users').whereNot('age', '>', 18);
+     */
+    [SUPPORTED_QUERIES.WHERE_NOT]: function(key, op, value) {
+      return where(SUPPORTED_QUERIES.WHERE_NOT, ...arguments);
+    },
+    [SUPPORTED_QUERIES.AND_WHERE_NOT]: function(key, op, value) {
+      return where(SUPPORTED_QUERIES.AND_WHERE_NOT, ...arguments);
+    },
+    [SUPPORTED_QUERIES.OR_WHERE_NOT]: function(key, op, value) {
+      return where(SUPPORTED_QUERIES.OR_WHERE_NOT, ...arguments);
     },
 
     /**
