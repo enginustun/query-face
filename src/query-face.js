@@ -146,6 +146,40 @@ export default function QueryFace() {
     return getQueriesByType(queryType);
   }
 
+  function whereIn() {
+    const [queryType, arg1, arg2] = [...arguments];
+    let key, op, value;
+    if (arguments.length === 2) {
+      if (isFunction(arg1)) {
+        throw new Error(`whereIn does not support inner query`);
+      }
+    } else if (arguments.length === 3) {
+      key = arg1;
+      op = 'in';
+      value = arg2;
+      return where(queryType, key, op, value);
+    } else {
+      throw new Error(`Parameter count does not match`);
+    }
+  }
+
+  function whereNotIn() {
+    const [queryType, arg1, arg2] = [...arguments];
+    let key, op, value;
+    if (arguments.length === 2) {
+      if (isFunction(arg1)) {
+        throw new Error(`whereNotIn does not support inner query`);
+      }
+    } else if (arguments.length === 3) {
+      key = arg1;
+      op = 'not in';
+      value = arg2;
+      return where(queryType, key, op, value);
+    } else {
+      throw new Error(`Parameter count does not match`);
+    }
+  }
+
   const queries = {
     /**
      * Prepares "select" query informations
@@ -242,6 +276,53 @@ export default function QueryFace() {
     },
     [SUPPORTED_QUERIES.OR_WHERE_NOT]: function(key, op, value) {
       return where(SUPPORTED_QUERIES.OR_WHERE_NOT, ...arguments);
+    },
+
+    /**
+     * Prepares "whereIn" query informations.
+     * @memberof QueryFace#
+     * @function whereIn
+     * @param {string} key
+     * @param {Array} value
+     * @returns {QueryFace} instance of this class
+     * @example
+     *
+     * qf().select('*').from('users').whereIn('age', [18, 21]);
+     * // equals: .where('age', 'in', [18, 21])
+     * // output: select `*` from `users` where `age` in (18, 21)
+     */
+    [SUPPORTED_QUERIES.WHERE_IN]: function(key, value) {
+      return whereIn(SUPPORTED_QUERIES.WHERE, ...arguments);
+    },
+    [SUPPORTED_QUERIES.AND_WHERE_IN]: function(key, value) {
+      return whereIn(SUPPORTED_QUERIES.AND_WHERE, ...arguments);
+    },
+    [SUPPORTED_QUERIES.OR_WHERE_IN]: function(key, value) {
+      return whereIn(SUPPORTED_QUERIES.OR_WHERE, ...arguments);
+    },
+
+    /**
+     * Prepares "whereNotIn" query informations.
+     * @memberof QueryFace#
+     * @function whereNotIn
+     * @param {string} key
+     * @param {Array} value
+     * @returns {QueryFace} instance of this class
+     * @example
+     *
+     * qf().select('*').from('users').whereNotIn('age', [18, 21]);
+     * // equals: .where('age', 'not in', [18, 21])
+     * // NOT EQUALS: .whereNot('age', 'in', [18, 21])
+     * // output: select `*` from `users` where `age` not in (18, 21)
+     */
+    [SUPPORTED_QUERIES.WHERE_NOT_IN]: function(key, value) {
+      return whereNotIn(SUPPORTED_QUERIES.WHERE, ...arguments);
+    },
+    [SUPPORTED_QUERIES.AND_WHERE_NOT_IN]: function(key, value) {
+      return whereNotIn(SUPPORTED_QUERIES.AND_WHERE, ...arguments);
+    },
+    [SUPPORTED_QUERIES.OR_WHERE_NOT_IN]: function(key, value) {
+      return whereNotIn(SUPPORTED_QUERIES.OR_WHERE, ...arguments);
     },
 
     /**

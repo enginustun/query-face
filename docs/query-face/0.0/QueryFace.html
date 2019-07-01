@@ -72,7 +72,13 @@
               <a href="QueryFace.html#where">where</a>
             </li>
             <li class="doc-function">
+              <a href="QueryFace.html#whereIn">whereIn</a>
+            </li>
+            <li class="doc-function">
               <a href="QueryFace.html#whereNot">whereNot</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#whereNotIn">whereNotIn</a>
             </li>
           </ul>
         </li>
@@ -957,6 +963,81 @@ qf().select('*').from('users').where('name', 'engin'); // equals .where('name', 
 //three parameters
 qf().select('*').from('users').where('age', '>', 18);</code></pre>
 
+          <h4 class="name" id="whereIn">
+            <span class="type-signature"></span>whereIn<span class="signature"
+              >(key, value)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "whereIn" query informations.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>key</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last"></td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>value</code></td>
+
+                <td class="type">
+                  <span class="param-type">Array</span>
+                </td>
+
+                <td class="description last"></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre
+            class="prettyprint"
+          ><code>qf().select('*').from('users').whereIn('age', [18, 21]);
+// equals: .where('age', 'in', [18, 21])
+// output: select `*` from `users` where `age` in (18, 21)</code></pre>
+
           <h4 class="name" id="whereNot">
             <span class="type-signature"></span>whereNot<span class="signature"
               >(keyOrInnerQueryFunction, operatorOrValue<span
@@ -1077,6 +1158,83 @@ qf().select('*').from('users').whereNot('name', 'engin'); // equals .whereNot('n
 
 //three parameters
 qf().select('*').from('users').whereNot('age', '>', 18);</code></pre>
+
+          <h4 class="name" id="whereNotIn">
+            <span class="type-signature"></span>whereNotIn<span
+              class="signature"
+              >(key, value)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "whereNotIn" query informations.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>key</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last"></td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>value</code></td>
+
+                <td class="type">
+                  <span class="param-type">Array</span>
+                </td>
+
+                <td class="description last"></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre
+            class="prettyprint"
+          ><code>qf().select('*').from('users').whereNotIn('age', [18, 21]);
+// equals: .where('age', 'not in', [18, 21])
+// NOT EQUALS: .whereNot('age', 'in', [18, 21])
+// output: select `*` from `users` where `age` not in (18, 21)</code></pre>
         </article>
       </section>
     </div>

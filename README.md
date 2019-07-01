@@ -60,8 +60,8 @@ chainable query structure is ready.
   -----------------------------------------------
   - [x] where / andWhere / orWhere
   - [x] whereNot / andWhereNot / orWhereNot
-  - [ ] whereIn / orWhereIn
-  - [ ] whereNotIn / orWhereNotIn
+  - [x] whereIn / andWhereIn / orWhereIn
+  - [x] whereNotIn / andWhereNotIn / orWhereNotIn
   - [ ] whereNull / orWhereNull
   - [ ] whereNotNull / orWhereNotNull
   - [ ] whereExists / orWhereExists
