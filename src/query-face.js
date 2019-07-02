@@ -119,7 +119,7 @@ export default function QueryFace() {
 
   function where() {
     const [queryType, arg1, arg2, arg3] = [...arguments];
-    let key, op, value;
+    let column, op, value;
     if (arguments.length === 2) {
       if (isFunction(arg1)) {
         extendQuery(
@@ -133,31 +133,31 @@ export default function QueryFace() {
         throw new Error(`${queryType} -> parameter must be function`);
       }
     } else if (arguments.length === 3) {
-      key = arg1;
+      column = arg1;
       op = '=';
       value = arg2;
-      extendQuery(queryType, [key, op, value]);
+      extendQuery(queryType, [column, op, value]);
     } else if (arguments.length === 4) {
-      key = arg1;
+      column = arg1;
       op = arg2;
       value = arg3;
-      extendQuery(queryType, [key, op, value]);
+      extendQuery(queryType, [column, op, value]);
     }
     return getQueriesByType(queryType);
   }
 
   function whereIn() {
     const [queryType, arg1, arg2] = [...arguments];
-    let key, op, value;
+    let column, op, value;
     if (arguments.length === 2) {
       if (isFunction(arg1)) {
         throw new Error(`whereIn does not support inner query`);
       }
     } else if (arguments.length === 3) {
-      key = arg1;
+      column = arg1;
       op = 'in';
       value = arg2;
-      return where(queryType, key, op, value);
+      return where(queryType, column, op, value);
     } else {
       throw new Error(`${queryType} -> parameter count does not match`);
     }
@@ -165,16 +165,16 @@ export default function QueryFace() {
 
   function whereNotIn() {
     const [queryType, arg1, arg2] = [...arguments];
-    let key, op, value;
+    let column, op, value;
     if (arguments.length === 2) {
       if (isFunction(arg1)) {
         throw new Error(`whereNotIn does not support inner query`);
       }
     } else if (arguments.length === 3) {
-      key = arg1;
+      column = arg1;
       op = 'not in';
       value = arg2;
-      return where(queryType, key, op, value);
+      return where(queryType, column, op, value);
     } else {
       throw new Error(`${queryType} -> parameter count does not match`);
     }
@@ -182,13 +182,13 @@ export default function QueryFace() {
 
   function whereNull() {
     const [queryType, arg1] = [...arguments];
-    let key;
+    let column;
     if (arguments.length === 2) {
       if (isFunction(arg1)) {
         throw new Error(`${queryType} does not support inner query`);
       }
-      key = arg1;
-      extendQuery(queryType, [key]);
+      column = arg1;
+      extendQuery(queryType, [column]);
     } else {
       throw new Error(`${queryType} -> parameter count does not match`);
     }
@@ -253,13 +253,13 @@ export default function QueryFace() {
      * <code>~mixed</code>
      * Parameters can be:
      * <pre>
-     * (key, value)
-     * (key, operator, value)
+     * (column, value)
+     * (column, operator, value)
      * (innerQueryFunction)
      * </pre>
      * @memberof QueryFace#
      * @function where
-     * @param {function()|string} keyOrInnerQueryFunction
+     * @param {function()|string} columnOrInnerQueryFunction
      * @param {string} [operatorOrValue==]
      * @param {string|number} [value]
      * @returns {QueryFace} instance of this class
@@ -273,13 +273,13 @@ export default function QueryFace() {
      * //three parameters
      * qf().select('*').from('users').where('age', '>', 18);
      */
-    [SUPPORTED_QUERIES.WHERE]: function(key, op, value) {
+    [SUPPORTED_QUERIES.WHERE]: function(column, op, value) {
       return where(SUPPORTED_QUERIES.WHERE, ...arguments);
     },
-    [SUPPORTED_QUERIES.AND_WHERE]: function(key, op, value) {
+    [SUPPORTED_QUERIES.AND_WHERE]: function(column, op, value) {
       return where(SUPPORTED_QUERIES.AND_WHERE, ...arguments);
     },
-    [SUPPORTED_QUERIES.OR_WHERE]: function(key, op, value) {
+    [SUPPORTED_QUERIES.OR_WHERE]: function(column, op, value) {
       return where(SUPPORTED_QUERIES.OR_WHERE, ...arguments);
     },
 
@@ -287,13 +287,13 @@ export default function QueryFace() {
      * Prepares "whereNot" query informations.
      * Parameters can be:
      * <pre>
-     * (key, value)
-     * (key, operator, value)
+     * (column, value)
+     * (column, operator, value)
      * (innerQueryFunction)
      * </pre>
      * @memberof QueryFace#
      * @function whereNot
-     * @param {function()|string} keyOrInnerQueryFunction
+     * @param {function()|string} columnOrInnerQueryFunction
      * @param {string} [operatorOrValue==]
      * @param {string|number} [value]
      * @returns {QueryFace} instance of this class
@@ -307,13 +307,13 @@ export default function QueryFace() {
      * //three parameters
      * qf().select('*').from('users').whereNot('age', '>', 18);
      */
-    [SUPPORTED_QUERIES.WHERE_NOT]: function(key, op, value) {
+    [SUPPORTED_QUERIES.WHERE_NOT]: function(column, op, value) {
       return where(SUPPORTED_QUERIES.WHERE_NOT, ...arguments);
     },
-    [SUPPORTED_QUERIES.AND_WHERE_NOT]: function(key, op, value) {
+    [SUPPORTED_QUERIES.AND_WHERE_NOT]: function(column, op, value) {
       return where(SUPPORTED_QUERIES.AND_WHERE_NOT, ...arguments);
     },
-    [SUPPORTED_QUERIES.OR_WHERE_NOT]: function(key, op, value) {
+    [SUPPORTED_QUERIES.OR_WHERE_NOT]: function(column, op, value) {
       return where(SUPPORTED_QUERIES.OR_WHERE_NOT, ...arguments);
     },
 
@@ -321,7 +321,7 @@ export default function QueryFace() {
      * Prepares "whereIn" query informations.
      * @memberof QueryFace#
      * @function whereIn
-     * @param {string} key - column name to check
+     * @param {string} column - column name to check
      * @param {Array} value - array value to check if given column's value is in it
      * @returns {QueryFace} instance of this class
      * @example
@@ -330,13 +330,13 @@ export default function QueryFace() {
      * // equals: .where('age', 'in', [18, 21])
      * // output: select `*` from `users` where `age` in (18, 21)
      */
-    [SUPPORTED_QUERIES.WHERE_IN]: function(key, value) {
+    [SUPPORTED_QUERIES.WHERE_IN]: function(column, value) {
       return whereIn(SUPPORTED_QUERIES.WHERE, ...arguments);
     },
-    [SUPPORTED_QUERIES.AND_WHERE_IN]: function(key, value) {
+    [SUPPORTED_QUERIES.AND_WHERE_IN]: function(column, value) {
       return whereIn(SUPPORTED_QUERIES.AND_WHERE, ...arguments);
     },
-    [SUPPORTED_QUERIES.OR_WHERE_IN]: function(key, value) {
+    [SUPPORTED_QUERIES.OR_WHERE_IN]: function(column, value) {
       return whereIn(SUPPORTED_QUERIES.OR_WHERE, ...arguments);
     },
 
@@ -344,7 +344,7 @@ export default function QueryFace() {
      * Prepares "whereNotIn" query informations.
      * @memberof QueryFace#
      * @function whereNotIn
-     * @param {string} key - column name to check
+     * @param {string} column - column name to check
      * @param {Array} value - array value to check if given column's value is not in it
      * @returns {QueryFace} instance of this class
      * @example
@@ -354,13 +354,13 @@ export default function QueryFace() {
      * // NOT EQUALS: .whereNot('age', 'in', [18, 21])
      * // output: select `*` from `users` where `age` not in (18, 21)
      */
-    [SUPPORTED_QUERIES.WHERE_NOT_IN]: function(key, value) {
+    [SUPPORTED_QUERIES.WHERE_NOT_IN]: function(column, value) {
       return whereNotIn(SUPPORTED_QUERIES.WHERE, ...arguments);
     },
-    [SUPPORTED_QUERIES.AND_WHERE_NOT_IN]: function(key, value) {
+    [SUPPORTED_QUERIES.AND_WHERE_NOT_IN]: function(column, value) {
       return whereNotIn(SUPPORTED_QUERIES.AND_WHERE, ...arguments);
     },
-    [SUPPORTED_QUERIES.OR_WHERE_NOT_IN]: function(key, value) {
+    [SUPPORTED_QUERIES.OR_WHERE_NOT_IN]: function(column, value) {
       return whereNotIn(SUPPORTED_QUERIES.OR_WHERE, ...arguments);
     },
 
@@ -368,17 +368,17 @@ export default function QueryFace() {
      * Prepares "whereNull" query informations.
      * @memberof QueryFace#
      * @function whereNull
-     * @param {string} key - column name to check if it is null
+     * @param {string} column - column name to check if it is null
      * @returns {QueryFace} instance of this class
      * @example
      *
      * qf().select('*').from('users').whereNull('age');
      * // output: select `*` from `users` where `age` is null
      */
-    [SUPPORTED_QUERIES.WHERE_NULL]: function(key) {
+    [SUPPORTED_QUERIES.WHERE_NULL]: function(column) {
       return whereNull(SUPPORTED_QUERIES.WHERE_NULL, ...arguments);
     },
-    [SUPPORTED_QUERIES.OR_WHERE_NULL]: function(key) {
+    [SUPPORTED_QUERIES.OR_WHERE_NULL]: function(column) {
       return whereNull(SUPPORTED_QUERIES.OR_WHERE_NULL, ...arguments);
     },
 
@@ -386,17 +386,17 @@ export default function QueryFace() {
      * Prepares "whereNotNull" query informations.
      * @memberof QueryFace#
      * @function whereNotNull
-     * @param {string} key - column name to check if it is not null
+     * @param {string} column - column name to check if it is not null
      * @returns {QueryFace} instance of this class
      * @example
      *
      * qf().select('*').from('users').whereNotNull('age');
      * // output: select `*` from `users` where `age` is not null
      */
-    [SUPPORTED_QUERIES.WHERE_NOT_NULL]: function(key) {
+    [SUPPORTED_QUERIES.WHERE_NOT_NULL]: function(column) {
       return whereNull(SUPPORTED_QUERIES.WHERE_NOT_NULL, ...arguments);
     },
-    [SUPPORTED_QUERIES.OR_WHERE_NOT_NULL]: function(key) {
+    [SUPPORTED_QUERIES.OR_WHERE_NOT_NULL]: function(column) {
       return whereNull(SUPPORTED_QUERIES.OR_WHERE_NOT_NULL, ...arguments);
     },
 
@@ -491,7 +491,7 @@ export default function QueryFace() {
     /**
      * Prepares "set" query informations
      * <pre>
-     * (key, value)
+     * (column, value)
      * ({ name: 'engin', age: 28, ... })
      * </pre>
      * <div class="doc-warning">
@@ -502,8 +502,8 @@ export default function QueryFace() {
      * </div>
      * @memberof QueryFace#
      * @function set
-     * @param {string|Object} keyOrData - string key or data object
-     * @param {string|number|boolean} [value] - if first parameter is string key, this is required value parameter
+     * @param {string|Object} columnOrData - string column or data object
+     * @param {string|number|boolean} [value] - if first parameter is string column, this is required value parameter
      * @returns {QueryFace} instance of this class
      * @example
      * qf().update('users').set('name', 'engin').where(...);
@@ -519,7 +519,7 @@ export default function QueryFace() {
       } else if (arguments.length === 2) {
         if (typeof arguments[0] !== 'string') {
           throw new Error(
-            'When you pass two parameters to .set(key, value) function, first parameter must be a string.'
+            'When you pass two parameters to .set(column, value) function, first parameter must be a string.'
           );
         }
       }

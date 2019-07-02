@@ -690,7 +690,7 @@ qf().select('id', 'name');</code></pre>
 
           <h4 class="name" id="set">
             <span class="type-signature"></span>set<span class="signature"
-              >(keyOrData, value<span class="signature-attributes">opt</span
+              >(columnOrData, value<span class="signature-attributes">opt</span
               >)</span
             ><span class="type-signature">
               &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
@@ -700,7 +700,7 @@ qf().select('id', 'name');</code></pre>
           <div class="description">
             Prepares "set" query informations
             <pre>
-(key, value)
+(column, value)
 ({ name: 'engin', age: 28, ... })
 </pre
             >
@@ -730,7 +730,7 @@ qf().select('id', 'name');</code></pre>
 
             <tbody>
               <tr>
-                <td class="name"><code>keyOrData</code></td>
+                <td class="name"><code>columnOrData</code></td>
 
                 <td class="type">
                   <span class="param-type">string</span>
@@ -741,7 +741,7 @@ qf().select('id', 'name');</code></pre>
 
                 <td class="attributes"></td>
 
-                <td class="description last">string key or data object</td>
+                <td class="description last">string column or data object</td>
               </tr>
 
               <tr>
@@ -760,7 +760,7 @@ qf().select('id', 'name');</code></pre>
                 <td class="attributes">&lt;optional><br /></td>
 
                 <td class="description last">
-                  if first parameter is string key, this is required value
+                  if first parameter is string column, this is required value
                   parameter
                 </td>
               </tr>
@@ -856,7 +856,7 @@ qf().update('users').set({ name: 'engin', age: 29 }).where(...);</code></pre>
 
           <h4 class="name" id="where">
             <span class="type-signature"></span>where<span class="signature"
-              >(keyOrInnerQueryFunction, operatorOrValue<span
+              >(columnOrInnerQueryFunction, operatorOrValue<span
                 class="signature-attributes"
                 >opt</span
               >, value<span class="signature-attributes">opt</span>)</span
@@ -870,8 +870,8 @@ qf().update('users').set({ name: 'engin', age: 29 }).where(...);</code></pre>
             <code>~mixed</code>
             Parameters can be:
             <pre>
-(key, value)
-(key, operator, value)
+(column, value)
+(column, operator, value)
 (innerQueryFunction)
 </pre
             >
@@ -896,7 +896,7 @@ qf().update('users').set({ name: 'engin', age: 29 }).where(...);</code></pre>
 
             <tbody>
               <tr>
-                <td class="name"><code>keyOrInnerQueryFunction</code></td>
+                <td class="name"><code>columnOrInnerQueryFunction</code></td>
 
                 <td class="type">
                   <span class="param-type">function</span>
@@ -1046,7 +1046,7 @@ qf().select('*').from('users').where('age', '>', 18);</code></pre>
 
           <h4 class="name" id="whereIn">
             <span class="type-signature"></span>whereIn<span class="signature"
-              >(key, value)</span
+              >(column, value)</span
             ><span class="type-signature">
               &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
             >
@@ -1071,7 +1071,7 @@ qf().select('*').from('users').where('age', '>', 18);</code></pre>
 
             <tbody>
               <tr>
-                <td class="name"><code>key</code></td>
+                <td class="name"><code>column</code></td>
 
                 <td class="type">
                   <span class="param-type">string</span>
@@ -1123,7 +1123,7 @@ qf().select('*').from('users').where('age', '>', 18);</code></pre>
 
           <h4 class="name" id="whereNot">
             <span class="type-signature"></span>whereNot<span class="signature"
-              >(keyOrInnerQueryFunction, operatorOrValue<span
+              >(columnOrInnerQueryFunction, operatorOrValue<span
                 class="signature-attributes"
                 >opt</span
               >, value<span class="signature-attributes">opt</span>)</span
@@ -1135,8 +1135,8 @@ qf().select('*').from('users').where('age', '>', 18);</code></pre>
           <div class="description">
             Prepares "whereNot" query informations. Parameters can be:
             <pre>
-(key, value)
-(key, operator, value)
+(column, value)
+(column, operator, value)
 (innerQueryFunction)
 </pre
             >
@@ -1161,7 +1161,7 @@ qf().select('*').from('users').where('age', '>', 18);</code></pre>
 
             <tbody>
               <tr>
-                <td class="name"><code>keyOrInnerQueryFunction</code></td>
+                <td class="name"><code>columnOrInnerQueryFunction</code></td>
 
                 <td class="type">
                   <span class="param-type">function</span>
@@ -1314,7 +1314,7 @@ qf().select('*').from('users').whereNot('age', '>', 18);</code></pre>
           <h4 class="name" id="whereNotIn">
             <span class="type-signature"></span>whereNotIn<span
               class="signature"
-              >(key, value)</span
+              >(column, value)</span
             ><span class="type-signature">
               &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
             >
@@ -1339,7 +1339,7 @@ qf().select('*').from('users').whereNot('age', '>', 18);</code></pre>
 
             <tbody>
               <tr>
-                <td class="name"><code>key</code></td>
+                <td class="name"><code>column</code></td>
 
                 <td class="type">
                   <span class="param-type">string</span>
@@ -1393,7 +1393,7 @@ qf().select('*').from('users').whereNot('age', '>', 18);</code></pre>
           <h4 class="name" id="whereNotNull">
             <span class="type-signature"></span>whereNotNull<span
               class="signature"
-              >(key)</span
+              >(column)</span
             ><span class="type-signature">
               &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
             >
@@ -1418,7 +1418,7 @@ qf().select('*').from('users').whereNot('age', '>', 18);</code></pre>
 
             <tbody>
               <tr>
-                <td class="name"><code>key</code></td>
+                <td class="name"><code>column</code></td>
 
                 <td class="type">
                   <span class="param-type">string</span>
@@ -1459,7 +1459,7 @@ qf().select('*').from('users').whereNot('age', '>', 18);</code></pre>
 
           <h4 class="name" id="whereNull">
             <span class="type-signature"></span>whereNull<span class="signature"
-              >(key)</span
+              >(column)</span
             ><span class="type-signature">
               &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
             >
@@ -1484,7 +1484,7 @@ qf().select('*').from('users').whereNot('age', '>', 18);</code></pre>
 
             <tbody>
               <tr>
-                <td class="name"><code>key</code></td>
+                <td class="name"><code>column</code></td>
 
                 <td class="type">
                   <span class="param-type">string</span>
