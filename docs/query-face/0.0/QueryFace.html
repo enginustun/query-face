@@ -72,10 +72,16 @@
               <a href="QueryFace.html#where">where</a>
             </li>
             <li class="doc-function">
+              <a href="QueryFace.html#whereExists">whereExists</a>
+            </li>
+            <li class="doc-function">
               <a href="QueryFace.html#whereIn">whereIn</a>
             </li>
             <li class="doc-function">
               <a href="QueryFace.html#whereNot">whereNot</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#whereNotExists">whereNotExists</a>
             </li>
             <li class="doc-function">
               <a href="QueryFace.html#whereNotIn">whereNotIn</a>
@@ -971,6 +977,73 @@ qf().select('*').from('users').where('name', 'engin'); // equals .where('name', 
 //three parameters
 qf().select('*').from('users').where('age', '>', 18);</code></pre>
 
+          <h4 class="name" id="whereExists">
+            <span class="type-signature"></span>whereExists<span
+              class="signature"
+              >(callback)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "whereExists" query informations.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>callback</code></td>
+
+                <td class="type">
+                  <span class="param-type">function</span>
+                </td>
+
+                <td class="description last">callback to check if exists</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre
+            class="prettyprint"
+          ><code>qf().select('*').from('users').whereExists(queryBuilder =>
+  queryBuilder.from('users').where('id', 1)
+);
+// output: select `*` from `users` where exists (select * from `users` where `id` = 1)</code></pre>
+
           <h4 class="name" id="whereIn">
             <span class="type-signature"></span>whereIn<span class="signature"
               >(key, value)</span
@@ -1168,6 +1241,75 @@ qf().select('*').from('users').whereNot('name', 'engin'); // equals .whereNot('n
 
 //three parameters
 qf().select('*').from('users').whereNot('age', '>', 18);</code></pre>
+
+          <h4 class="name" id="whereNotExists">
+            <span class="type-signature"></span>whereNotExists<span
+              class="signature"
+              >(callback)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "whereNotExists" query informations.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>callback</code></td>
+
+                <td class="type">
+                  <span class="param-type">function</span>
+                </td>
+
+                <td class="description last">
+                  callback to check if not exists
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre
+            class="prettyprint"
+          ><code>qf().select('*').from('users').whereNotExists(queryBuilder =>
+  queryBuilder.from('users').where('id', 1)
+);
+// output: select `*` from `users` where not exists (select * from `users` where `id` = 1)</code></pre>
 
           <h4 class="name" id="whereNotIn">
             <span class="type-signature"></span>whereNotIn<span

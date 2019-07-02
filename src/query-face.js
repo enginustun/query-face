@@ -130,7 +130,7 @@ export default function QueryFace() {
           true
         );
       } else {
-        throw new Error(`Parameter must be function`);
+        throw new Error(`${queryType} -> parameter must be function`);
       }
     } else if (arguments.length === 3) {
       key = arg1;
@@ -159,7 +159,7 @@ export default function QueryFace() {
       value = arg2;
       return where(queryType, key, op, value);
     } else {
-      throw new Error(`Parameter count does not match`);
+      throw new Error(`${queryType} -> parameter count does not match`);
     }
   }
 
@@ -176,7 +176,7 @@ export default function QueryFace() {
       value = arg2;
       return where(queryType, key, op, value);
     } else {
-      throw new Error(`Parameter count does not match`);
+      throw new Error(`${queryType} -> parameter count does not match`);
     }
   }
 
@@ -190,7 +190,30 @@ export default function QueryFace() {
       key = arg1;
       extendQuery(queryType, [key]);
     } else {
-      throw new Error(`Parameter count does not match`);
+      throw new Error(`${queryType} -> parameter count does not match`);
+    }
+    return getQueriesByType(queryType);
+  }
+
+  function whereExists() {
+    const [queryType, arg1] = [...arguments];
+    if (arguments.length === 2) {
+      if (isFunction(arg1)) {
+        extendQuery(
+          queryType,
+          arg1
+            .call(
+              null,
+              new QueryFace(SUPPORTED_QUERIES.__INNER_WHERE_EXISTS, true)
+            )
+            .getQuery(),
+          true
+        );
+      } else {
+        throw new Error(`${queryType} -> parameter must be function`);
+      }
+    } else {
+      throw new Error(`${queryType} -> parameter count does not match`);
     }
     return getQueriesByType(queryType);
   }
@@ -375,6 +398,46 @@ export default function QueryFace() {
     },
     [SUPPORTED_QUERIES.OR_WHERE_NOT_NULL]: function(key) {
       return whereNull(SUPPORTED_QUERIES.OR_WHERE_NOT_NULL, ...arguments);
+    },
+
+    /**
+     * Prepares "whereExists" query informations.
+     * @memberof QueryFace#
+     * @function whereExists
+     * @param {function} callback - callback to check if exists
+     * @returns {QueryFace} instance of this class
+     * @example
+     *
+     * qf().select('*').from('users').whereExists(queryBuilder =>
+     *   queryBuilder.from('users').where('id', 1)
+     * );
+     * // output: select `*` from `users` where exists (select * from `users` where `id` = 1)
+     */
+    [SUPPORTED_QUERIES.WHERE_EXISTS]: function(callback) {
+      return whereExists(SUPPORTED_QUERIES.WHERE_EXISTS, ...arguments);
+    },
+    [SUPPORTED_QUERIES.OR_WHERE_EXISTS]: function(callback) {
+      return whereExists(SUPPORTED_QUERIES.OR_WHERE_EXISTS, ...arguments);
+    },
+
+    /**
+     * Prepares "whereNotExists" query informations.
+     * @memberof QueryFace#
+     * @function whereNotExists
+     * @param {function} callback - callback to check if not exists
+     * @returns {QueryFace} instance of this class
+     * @example
+     *
+     * qf().select('*').from('users').whereNotExists(queryBuilder =>
+     *   queryBuilder.from('users').where('id', 1)
+     * );
+     * // output: select `*` from `users` where not exists (select * from `users` where `id` = 1)
+     */
+    [SUPPORTED_QUERIES.WHERE_NOT_EXISTS]: function(callback) {
+      return whereExists(SUPPORTED_QUERIES.WHERE_NOT_EXISTS, ...arguments);
+    },
+    [SUPPORTED_QUERIES.OR_WHERE_NOT_EXISTS]: function(callback) {
+      return whereExists(SUPPORTED_QUERIES.OR_WHERE_NOT_EXISTS, ...arguments);
     },
 
     /**
