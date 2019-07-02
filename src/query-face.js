@@ -180,6 +180,21 @@ export default function QueryFace() {
     }
   }
 
+  function whereNull() {
+    const [queryType, arg1] = [...arguments];
+    let key;
+    if (arguments.length === 2) {
+      if (isFunction(arg1)) {
+        throw new Error(`${queryType} does not support inner query`);
+      }
+      key = arg1;
+      extendQuery(queryType, [key]);
+    } else {
+      throw new Error(`Parameter count does not match`);
+    }
+    return getQueriesByType(queryType);
+  }
+
   const queries = {
     /**
      * Prepares "select" query informations
@@ -212,6 +227,7 @@ export default function QueryFace() {
 
     /**
      * Prepares "where" query informations.
+     * <code>~mixed</code>
      * Parameters can be:
      * <pre>
      * (key, value)
@@ -282,8 +298,8 @@ export default function QueryFace() {
      * Prepares "whereIn" query informations.
      * @memberof QueryFace#
      * @function whereIn
-     * @param {string} key
-     * @param {Array} value
+     * @param {string} key - column name to check
+     * @param {Array} value - array value to check if given column's value is in it
      * @returns {QueryFace} instance of this class
      * @example
      *
@@ -305,8 +321,8 @@ export default function QueryFace() {
      * Prepares "whereNotIn" query informations.
      * @memberof QueryFace#
      * @function whereNotIn
-     * @param {string} key
-     * @param {Array} value
+     * @param {string} key - column name to check
+     * @param {Array} value - array value to check if given column's value is not in it
      * @returns {QueryFace} instance of this class
      * @example
      *
@@ -323,6 +339,42 @@ export default function QueryFace() {
     },
     [SUPPORTED_QUERIES.OR_WHERE_NOT_IN]: function(key, value) {
       return whereNotIn(SUPPORTED_QUERIES.OR_WHERE, ...arguments);
+    },
+
+    /**
+     * Prepares "whereNull" query informations.
+     * @memberof QueryFace#
+     * @function whereNull
+     * @param {string} key - column name to check if it is null
+     * @returns {QueryFace} instance of this class
+     * @example
+     *
+     * qf().select('*').from('users').whereNull('age');
+     * // output: select `*` from `users` where `age` is null
+     */
+    [SUPPORTED_QUERIES.WHERE_NULL]: function(key) {
+      return whereNull(SUPPORTED_QUERIES.WHERE_NULL, ...arguments);
+    },
+    [SUPPORTED_QUERIES.OR_WHERE_NULL]: function(key) {
+      return whereNull(SUPPORTED_QUERIES.OR_WHERE_NULL, ...arguments);
+    },
+
+    /**
+     * Prepares "whereNotNull" query informations.
+     * @memberof QueryFace#
+     * @function whereNotNull
+     * @param {string} key - column name to check if it is not null
+     * @returns {QueryFace} instance of this class
+     * @example
+     *
+     * qf().select('*').from('users').whereNotNull('age');
+     * // output: select `*` from `users` where `age` is not null
+     */
+    [SUPPORTED_QUERIES.WHERE_NOT_NULL]: function(key) {
+      return whereNull(SUPPORTED_QUERIES.WHERE_NOT_NULL, ...arguments);
+    },
+    [SUPPORTED_QUERIES.OR_WHERE_NOT_NULL]: function(key) {
+      return whereNull(SUPPORTED_QUERIES.OR_WHERE_NOT_NULL, ...arguments);
     },
 
     /**

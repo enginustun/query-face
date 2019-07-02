@@ -80,6 +80,12 @@
             <li class="doc-function">
               <a href="QueryFace.html#whereNotIn">whereNotIn</a>
             </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#whereNotNull">whereNotNull</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#whereNull">whereNull</a>
+            </li>
           </ul>
         </li>
       </ul>
@@ -854,7 +860,9 @@ qf().update('users').set({ name: 'engin', age: 29 }).where(...);</code></pre>
           </h4>
 
           <div class="description">
-            Prepares "where" query informations. Parameters can be:
+            Prepares "where" query informations.
+            <code>~mixed</code>
+            Parameters can be:
             <pre>
 (key, value)
 (key, operator, value)
@@ -996,7 +1004,7 @@ qf().select('*').from('users').where('age', '>', 18);</code></pre>
                   <span class="param-type">string</span>
                 </td>
 
-                <td class="description last"></td>
+                <td class="description last">column name to check</td>
               </tr>
 
               <tr>
@@ -1006,7 +1014,9 @@ qf().select('*').from('users').where('age', '>', 18);</code></pre>
                   <span class="param-type">Array</span>
                 </td>
 
-                <td class="description last"></td>
+                <td class="description last">
+                  array value to check if given column's value is in it
+                </td>
               </tr>
             </tbody>
           </table>
@@ -1193,7 +1203,7 @@ qf().select('*').from('users').whereNot('age', '>', 18);</code></pre>
                   <span class="param-type">string</span>
                 </td>
 
-                <td class="description last"></td>
+                <td class="description last">column name to check</td>
               </tr>
 
               <tr>
@@ -1203,7 +1213,9 @@ qf().select('*').from('users').whereNot('age', '>', 18);</code></pre>
                   <span class="param-type">Array</span>
                 </td>
 
-                <td class="description last"></td>
+                <td class="description last">
+                  array value to check if given column's value is not in it
+                </td>
               </tr>
             </tbody>
           </table>
@@ -1235,6 +1247,139 @@ qf().select('*').from('users').whereNot('age', '>', 18);</code></pre>
 // equals: .where('age', 'not in', [18, 21])
 // NOT EQUALS: .whereNot('age', 'in', [18, 21])
 // output: select `*` from `users` where `age` not in (18, 21)</code></pre>
+
+          <h4 class="name" id="whereNotNull">
+            <span class="type-signature"></span>whereNotNull<span
+              class="signature"
+              >(key)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "whereNotNull" query informations.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>key</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">
+                  column name to check if it is not null
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre
+            class="prettyprint"
+          ><code>qf().select('*').from('users').whereNotNull('age');
+// output: select `*` from `users` where `age` is not null</code></pre>
+
+          <h4 class="name" id="whereNull">
+            <span class="type-signature"></span>whereNull<span class="signature"
+              >(key)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "whereNull" query informations.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>key</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">
+                  column name to check if it is null
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre
+            class="prettyprint"
+          ><code>qf().select('*').from('users').whereNull('age');
+// output: select `*` from `users` where `age` is null</code></pre>
         </article>
       </section>
     </div>
