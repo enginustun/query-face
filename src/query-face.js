@@ -236,6 +236,28 @@ export default function QueryFace() {
     return getQueriesByType(queryType);
   }
 
+  function whereRaw() {
+    const [queryType, arg1, arg2] = [...arguments];
+    let rawQuery, bindings;
+    if (arguments.length === 2) {
+      if (isFunction(arg1)) {
+        throw new Error(`${queryType} -> does not support inner query`);
+      }
+      rawQuery = arg1;
+      extendQuery(queryType, [rawQuery]);
+    } else if (arguments.length === 3) {
+      if (!Array.isArray(arg2)) {
+        throw new Error(`${queryType} -> second parameter must be an array`);
+      }
+      rawQuery = arg1;
+      bindings = arg2;
+      extendQuery(queryType, [rawQuery, bindings]);
+    } else {
+      throw new Error(`${queryType} -> parameter count does not match`);
+    }
+    return getQueriesByType(queryType);
+  }
+
   const queries = {
     /**
      * Prepares "select" query informations
@@ -492,6 +514,24 @@ export default function QueryFace() {
     },
     [SUPPORTED_QUERIES.OR_WHERE_NOT_BETWEEN]: function(column, range) {
       return whereBetween(SUPPORTED_QUERIES.OR_WHERE_NOT_BETWEEN, ...arguments);
+    },
+
+    /**
+     * Prepares "whereRaw" query informations.
+     * @memberof QueryFace#
+     * @function whereRaw
+     * @param {string} rawQuery - raw query
+     * @param {Array} [bindings] - array of parameter values you used in raw query
+     * @returns {QueryFace} instance of this class
+     * @example
+     *
+     * qf().select('*').from('users').whereRaw('age = 28');
+     * qf().select('*').from('users').whereRaw('age < 25');
+     * qf().select('*').from('users').whereRaw('age < ?', [25]);
+     * qf().select('*').from('users').whereRaw('age in (18, 27)');
+     */
+    [SUPPORTED_QUERIES.WHERE_RAW]: function(rawQuery, bindings) {
+      return whereRaw(SUPPORTED_QUERIES.WHERE_RAW, ...arguments);
     },
 
     /**

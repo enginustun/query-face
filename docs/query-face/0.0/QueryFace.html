@@ -98,6 +98,9 @@
             <li class="doc-function">
               <a href="QueryFace.html#whereNull">whereNull</a>
             </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#whereRaw">whereRaw</a>
+            </li>
           </ul>
         </li>
       </ul>
@@ -1686,6 +1689,91 @@ qf().select('*').from('users').whereNot('age', '>', 18);</code></pre>
             class="prettyprint"
           ><code>qf().select('*').from('users').whereNull('age');
 // output: select `*` from `users` where `age` is null</code></pre>
+
+          <h4 class="name" id="whereRaw">
+            <span class="type-signature"></span>whereRaw<span class="signature"
+              >(rawQuery, bindings<span class="signature-attributes">opt</span
+              >)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "whereRaw" query informations.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th>Attributes</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>rawQuery</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="attributes"></td>
+
+                <td class="description last">raw query</td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>bindings</code></td>
+
+                <td class="type">
+                  <span class="param-type">Array</span>
+                </td>
+
+                <td class="attributes">&lt;optional><br /></td>
+
+                <td class="description last">
+                  array of parameter values you used in raw query
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre
+            class="prettyprint"
+          ><code>qf().select('*').from('users').whereRaw('age = 28');
+qf().select('*').from('users').whereRaw('age &lt; 25');
+qf().select('*').from('users').whereRaw('age &lt; ?', [25]);
+qf().select('*').from('users').whereRaw('age in (18, 27)');</code></pre>
         </article>
       </section>
     </div>
