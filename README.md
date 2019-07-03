@@ -66,8 +66,8 @@ chainable query structure is ready.
   - [x] whereNotNull / orWhereNotNull
   - [x] whereExists / orWhereExists
   - [x] whereNotExists / orWhereNotExists
-  - [ ] whereBetween / orWhereBetween
-  - [ ] whereNotBetween / orWhereNotBetween
+  - [x] whereBetween / orWhereBetween
+  - [x] whereNotBetween / orWhereNotBetween
   - [ ] whereRaw
   -----------------------------------------------
   - [ ] innerJoin

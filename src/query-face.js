@@ -218,6 +218,24 @@ export default function QueryFace() {
     return getQueriesByType(queryType);
   }
 
+  function whereBetween() {
+    const [queryType, arg1, arg2] = [...arguments];
+    let column, range;
+    if (arguments.length === 3) {
+      if (!Array.isArray(arg2) || arg2.length !== 2) {
+        throw new Error(
+          `${queryType} -> second parameter must be a 2-element array: [min, max]`
+        );
+      }
+      column = arg1;
+      range = arg2;
+      extendQuery(queryType, [column, range]);
+    } else {
+      throw new Error(`${queryType} -> parameter count does not match`);
+    }
+    return getQueriesByType(queryType);
+  }
+
   const queries = {
     /**
      * Prepares "select" query informations
@@ -438,6 +456,42 @@ export default function QueryFace() {
     },
     [SUPPORTED_QUERIES.OR_WHERE_NOT_EXISTS]: function(callback) {
       return whereExists(SUPPORTED_QUERIES.OR_WHERE_NOT_EXISTS, ...arguments);
+    },
+
+    /**
+     * Prepares "whereBetween" query informations.
+     * @memberof QueryFace#
+     * @function whereBetween
+     * @param {string} column - column name to check if it is between range
+     * @param {Array} range - min and max values to check if given column's value is between them
+     * @returns {QueryFace} instance of this class
+     * @example
+     *
+     * qf().select('*').from('users').whereBetween('age', [18, 25]);
+     */
+    [SUPPORTED_QUERIES.WHERE_BETWEEN]: function(column, range) {
+      return whereBetween(SUPPORTED_QUERIES.WHERE_BETWEEN, ...arguments);
+    },
+    [SUPPORTED_QUERIES.OR_WHERE_BETWEEN]: function(column, range) {
+      return whereBetween(SUPPORTED_QUERIES.OR_WHERE_BETWEEN, ...arguments);
+    },
+
+    /**
+     * Prepares "whereNotBetween" query informations.
+     * @memberof QueryFace#
+     * @function whereNotBetween
+     * @param {string} column - column name to check if it is not between range
+     * @param {Array} range - min and max values to check if given column's value is not between them
+     * @returns {QueryFace} instance of this class
+     * @example
+     *
+     * qf().select('*').from('users').whereNotBetween('age', [18, 25]);
+     */
+    [SUPPORTED_QUERIES.WHERE_NOT_BETWEEN]: function(column, range) {
+      return whereBetween(SUPPORTED_QUERIES.WHERE_NOT_BETWEEN, ...arguments);
+    },
+    [SUPPORTED_QUERIES.OR_WHERE_NOT_BETWEEN]: function(column, range) {
+      return whereBetween(SUPPORTED_QUERIES.OR_WHERE_NOT_BETWEEN, ...arguments);
     },
 
     /**
