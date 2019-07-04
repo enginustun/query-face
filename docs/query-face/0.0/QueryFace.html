@@ -50,16 +50,38 @@
           <h3></h3>
           <ul class="">
             <li class="doc-function">
+              <a href="QueryFace.html#crossJoin">crossJoin</a>
+            </li>
+            <li class="doc-function">
               <a href="QueryFace.html#delete">delete</a>
             </li>
             <li class="doc-function"><a href="QueryFace.html#from">from</a></li>
             <li class="doc-function">
+              <a href="QueryFace.html#fullOuterJoin">fullOuterJoin</a>
+            </li>
+            <li class="doc-function">
               <a href="QueryFace.html#getQuery">getQuery</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#innerJoin">innerJoin</a>
             </li>
             <li class="doc-function">
               <a href="QueryFace.html#insert">insert</a>
             </li>
             <li class="doc-function"><a href="QueryFace.html#into">into</a></li>
+            <li class="doc-function">
+              <a href="QueryFace.html#leftJoin">leftJoin</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#leftOuterJoin">leftOuterJoin</a>
+            </li>
+            <li class="doc-function"><a href="QueryFace.html#on">on</a></li>
+            <li class="doc-function">
+              <a href="QueryFace.html#rightJoin">rightJoin</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#rightOuterJoin">rightOuterJoin</a>
+            </li>
             <li class="doc-function"><a href="QueryFace.html#run">run</a></li>
             <li class="doc-function">
               <a href="QueryFace.html#select">select</a>
@@ -135,6 +157,115 @@ qf().insert({ name: 'engin', age: 28 }).into('users'); // Creates a new QueryFac
           </div>
 
           <h3 class="subsection-title">Methods</h3>
+
+          <h4 class="name" id="crossJoin">
+            <span class="type-signature"></span>crossJoin<span class="signature"
+              >(tableName, onColumn1OrCallback, onColumn2<span
+                class="signature-attributes"
+                >opt</span
+              >)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "crossJoin" query informations.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th>Attributes</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>tableName</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="attributes"></td>
+
+                <td class="description last">
+                  table name to perform join operation
+                </td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>onColumn1OrCallback</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                  |
+
+                  <span class="param-type">function</span>
+                </td>
+
+                <td class="attributes"></td>
+
+                <td class="description last">
+                  column name to compare another one or callback function
+                </td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>onColumn2</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="attributes">&lt;optional><br /></td>
+
+                <td class="description last">
+                  column name and required if column1 is string column name
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre
+            class="prettyprint"
+          ><code>qf().select('*').from('users').crossJoin('tokens', 'users.id', 'tokens.user_id');
+qf().select('*').from('users').crossJoin('tokens', queryBuilder =>
+  queryBuilder
+    .on('users.id', '=', 'tokens.user_id')
+    .andOn('users.id', '=', 'tokens.creator_id')
+    .orOn('users.id', '=', 'tokens.owner_id')
+)</code></pre>
 
           <h4 class="name" id="delete">
             <span class="type-signature"></span>delete<span class="signature"
@@ -263,6 +394,116 @@ qf().delete('users').where('id', 1);</code></pre>
             class="prettyprint"
           ><code>qf().select('*').from('users');</code></pre>
 
+          <h4 class="name" id="fullOuterJoin">
+            <span class="type-signature"></span>fullOuterJoin<span
+              class="signature"
+              >(tableName, onColumn1OrCallback, onColumn2<span
+                class="signature-attributes"
+                >opt</span
+              >)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "fullOuterJoin" query informations.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th>Attributes</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>tableName</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="attributes"></td>
+
+                <td class="description last">
+                  table name to perform join operation
+                </td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>onColumn1OrCallback</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                  |
+
+                  <span class="param-type">function</span>
+                </td>
+
+                <td class="attributes"></td>
+
+                <td class="description last">
+                  column name to compare another one or callback function
+                </td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>onColumn2</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="attributes">&lt;optional><br /></td>
+
+                <td class="description last">
+                  column name and required if column1 is string column name
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre
+            class="prettyprint"
+          ><code>qf().select('*').from('users').fullOuterJoin('tokens', 'users.id', 'tokens.user_id');
+qf().select('*').from('users').fullOuterJoin('tokens', queryBuilder =>
+  queryBuilder
+    .on('users.id', '=', 'tokens.user_id')
+    .andOn('users.id', '=', 'tokens.creator_id')
+    .orOn('users.id', '=', 'tokens.owner_id')
+)</code></pre>
+
           <h4 class="name" id="getQuery">
             <span class="type-signature"></span>getQuery<span class="signature"
               >()</span
@@ -300,6 +541,115 @@ qf().delete('users').where('id', 1);</code></pre>
   { "$op": "from", "$params": ["users"] },
   { "$op": "where", "$params": ["user_id", "=", 2] }
 ]</code></pre>
+
+          <h4 class="name" id="innerJoin">
+            <span class="type-signature"></span>innerJoin<span class="signature"
+              >(tableName, onColumn1OrCallback, onColumn2<span
+                class="signature-attributes"
+                >opt</span
+              >)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "innerJoin" query informations.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th>Attributes</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>tableName</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="attributes"></td>
+
+                <td class="description last">
+                  table name to perform join operation
+                </td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>onColumn1OrCallback</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                  |
+
+                  <span class="param-type">function</span>
+                </td>
+
+                <td class="attributes"></td>
+
+                <td class="description last">
+                  column name to compare another one or callback function
+                </td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>onColumn2</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="attributes">&lt;optional><br /></td>
+
+                <td class="description last">
+                  column name and required if column1 is string column name
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre
+            class="prettyprint"
+          ><code>qf().select('*').from('users').innerJoin('tokens', 'users.id', 'tokens.user_id');
+qf().select('*').from('users').innerJoin('tokens', queryBuilder =>
+  queryBuilder
+    .on('users.id', '=', 'tokens.user_id')
+    .andOn('users.id', '=', 'tokens.creator_id')
+    .orOn('users.id', '=', 'tokens.owner_id')
+)</code></pre>
 
           <h4 class="name" id="insert">
             <span class="type-signature"></span>insert<span class="signature"
@@ -434,6 +784,537 @@ qf().insert([{ name: 'engin', age: 28 }, { name: 'jon', age: 30 }]); // bulk ins
           <pre
             class="prettyprint"
           ><code>qf().insert({ name: 'engin', age: 28 }).into('users');</code></pre>
+
+          <h4 class="name" id="leftJoin">
+            <span class="type-signature"></span>leftJoin<span class="signature"
+              >(tableName, onColumn1OrCallback, onColumn2<span
+                class="signature-attributes"
+                >opt</span
+              >)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "leftJoin" query informations.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th>Attributes</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>tableName</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="attributes"></td>
+
+                <td class="description last">
+                  table name to perform join operation
+                </td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>onColumn1OrCallback</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                  |
+
+                  <span class="param-type">function</span>
+                </td>
+
+                <td class="attributes"></td>
+
+                <td class="description last">
+                  column name to compare another one or callback function
+                </td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>onColumn2</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="attributes">&lt;optional><br /></td>
+
+                <td class="description last">
+                  column name and required if column1 is string column name
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre
+            class="prettyprint"
+          ><code>qf().select('*').from('users').leftJoin('tokens', 'users.id', 'tokens.user_id');
+qf().select('*').from('users').leftJoin('tokens', queryBuilder =>
+  queryBuilder
+    .on('users.id', '=', 'tokens.user_id')
+    .andOn('users.id', '=', 'tokens.creator_id')
+    .orOn('users.id', '=', 'tokens.owner_id')
+)</code></pre>
+
+          <h4 class="name" id="leftOuterJoin">
+            <span class="type-signature"></span>leftOuterJoin<span
+              class="signature"
+              >(tableName, onColumn1OrCallback, onColumn2<span
+                class="signature-attributes"
+                >opt</span
+              >)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "leftOuterJoin" query informations.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th>Attributes</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>tableName</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="attributes"></td>
+
+                <td class="description last">
+                  table name to perform join operation
+                </td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>onColumn1OrCallback</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                  |
+
+                  <span class="param-type">function</span>
+                </td>
+
+                <td class="attributes"></td>
+
+                <td class="description last">
+                  column name to compare another one or callback function
+                </td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>onColumn2</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="attributes">&lt;optional><br /></td>
+
+                <td class="description last">
+                  column name and required if column1 is string column name
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre
+            class="prettyprint"
+          ><code>qf().select('*').from('users').leftOuterJoin('tokens', 'users.id', 'tokens.user_id');
+qf().select('*').from('users').leftOuterJoin('tokens', queryBuilder =>
+  queryBuilder
+    .on('users.id', '=', 'tokens.user_id')
+    .andOn('users.id', '=', 'tokens.creator_id')
+    .orOn('users.id', '=', 'tokens.owner_id')
+)</code></pre>
+
+          <h4 class="name" id="on">
+            <span class="type-signature"></span>on<span class="signature"
+              >(column1, op, column2)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "on" query informations.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>column1</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">
+                  column name to compare another one
+                </td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>op</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">comparasion operator</td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>column2</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">
+                  column name to compare another one
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre
+            class="prettyprint"
+          ><code>qf().select('*').from('users').innerJoin('tokens', 'users.id', 'tokens.user_id');
+qf().select('*').from('users').innerJoin('tokens', queryBuilder =>
+  queryBuilder
+    .on('users.id', '=', 'tokens.user_id')
+    .andOn('users.id', '=', 'tokens.creator_id')
+    .orOn('users.id', '=', 'tokens.owner_id')
+)</code></pre>
+
+          <h4 class="name" id="rightJoin">
+            <span class="type-signature"></span>rightJoin<span class="signature"
+              >(tableName, onColumn1OrCallback, onColumn2<span
+                class="signature-attributes"
+                >opt</span
+              >)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "rightJoin" query informations.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th>Attributes</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>tableName</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="attributes"></td>
+
+                <td class="description last">
+                  table name to perform join operation
+                </td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>onColumn1OrCallback</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                  |
+
+                  <span class="param-type">function</span>
+                </td>
+
+                <td class="attributes"></td>
+
+                <td class="description last">
+                  column name to compare another one or callback function
+                </td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>onColumn2</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="attributes">&lt;optional><br /></td>
+
+                <td class="description last">
+                  column name and required if column1 is string column name
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre
+            class="prettyprint"
+          ><code>qf().select('*').from('users').rightJoin('tokens', 'users.id', 'tokens.user_id');
+qf().select('*').from('users').rightJoin('tokens', queryBuilder =>
+  queryBuilder
+    .on('users.id', '=', 'tokens.user_id')
+    .andOn('users.id', '=', 'tokens.creator_id')
+    .orOn('users.id', '=', 'tokens.owner_id')
+)</code></pre>
+
+          <h4 class="name" id="rightOuterJoin">
+            <span class="type-signature"></span>rightOuterJoin<span
+              class="signature"
+              >(tableName, onColumn1OrCallback, onColumn2<span
+                class="signature-attributes"
+                >opt</span
+              >)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "rightOuterJoin" query informations.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th>Attributes</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>tableName</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="attributes"></td>
+
+                <td class="description last">
+                  table name to perform join operation
+                </td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>onColumn1OrCallback</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                  |
+
+                  <span class="param-type">function</span>
+                </td>
+
+                <td class="attributes"></td>
+
+                <td class="description last">
+                  column name to compare another one or callback function
+                </td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>onColumn2</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="attributes">&lt;optional><br /></td>
+
+                <td class="description last">
+                  column name and required if column1 is string column name
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre
+            class="prettyprint"
+          ><code>qf().select('*').from('users').rightOuterJoin('tokens', 'users.id', 'tokens.user_id');
+qf().select('*').from('users').rightOuterJoin('tokens', queryBuilder =>
+  queryBuilder
+    .on('users.id', '=', 'tokens.user_id')
+    .andOn('users.id', '=', 'tokens.creator_id')
+    .orOn('users.id', '=', 'tokens.owner_id')
+)</code></pre>
 
           <h4 class="name" id="run">
             <span class="type-signature"></span>run<span class="signature"

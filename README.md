@@ -70,13 +70,13 @@ chainable query structure is ready.
   - [x] whereNotBetween / orWhereNotBetween
   - [x] whereRaw
   -----------------------------------------------
-  - [ ] innerJoin
-  - [ ] leftJoin
-  - [ ] leftOuterJoin
-  - [ ] rightJoin
-  - [ ] rightOuterJoin
-  - [ ] fullOuterJoin
-  - [ ] crossJoin
+  - [x] innerJoin
+  - [x] leftJoin
+  - [x] leftOuterJoin
+  - [x] rightJoin
+  - [x] rightOuterJoin
+  - [x] fullOuterJoin
+  - [x] crossJoin
   - [ ] joinRaw
   -----------------------------------------------
   - [ ] onIn

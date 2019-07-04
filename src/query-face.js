@@ -108,12 +108,13 @@ export default function QueryFace() {
    * @inner
    * @param {string} $op Current operation
    * @param {Array<any>} $params Operation parameters
-   * @param {bool} isInnerOperation Is this operation inner or not
+   * @param {function}  $callback Is this operation inner or not
    */
-  function extendQuery($op, $params, isInnerOperation) {
+  function extendQuery($op, $params, $callback) {
     queryStack.push({
       $op,
-      ...(isInnerOperation ? { $inner: $params } : { $params }),
+      $params,
+      ...($callback ? { $callback } : {}),
     });
   }
 
@@ -124,10 +125,10 @@ export default function QueryFace() {
       if (isFunction(arg1)) {
         extendQuery(
           queryType,
+          [],
           arg1
-            .call(null, new QueryFace(SUPPORTED_QUERIES.__INNER_WHERE, true))
-            .getQuery(),
-          true
+            .call(null, new QueryFace(SUPPORTED_QUERIES.__CALLBACK_WHERE, true))
+            .getQuery()
         );
       } else {
         throw new Error(`${queryType} -> parameter must be function`);
@@ -201,13 +202,13 @@ export default function QueryFace() {
       if (isFunction(arg1)) {
         extendQuery(
           queryType,
+          [],
           arg1
             .call(
               null,
-              new QueryFace(SUPPORTED_QUERIES.__INNER_WHERE_EXISTS, true)
+              new QueryFace(SUPPORTED_QUERIES.__CALLBACK_WHERE_EXISTS, true)
             )
-            .getQuery(),
-          true
+            .getQuery()
         );
       } else {
         throw new Error(`${queryType} -> parameter must be function`);
@@ -252,6 +253,44 @@ export default function QueryFace() {
       rawQuery = arg1;
       bindings = arg2;
       extendQuery(queryType, [rawQuery, bindings]);
+    } else {
+      throw new Error(`${queryType} -> parameter count does not match`);
+    }
+    return getQueriesByType(queryType);
+  }
+
+  function join() {
+    const [queryType, tableName, onColumn1OrCallback, onColumn2] = [
+      ...arguments,
+    ];
+    if (arguments.length === 3) {
+      if (!isFunction(onColumn1OrCallback)) {
+        throw new Error(
+          `${queryType} -> when you pass 2 parameters, second parameter must be callback function`
+        );
+      }
+      extendQuery(
+        queryType,
+        [tableName],
+        onColumn1OrCallback
+          .call(
+            null,
+            new QueryFace(SUPPORTED_QUERIES.__CALLBACK_JOIN_QUERY, true)
+          )
+          .getQuery()
+      );
+    } else if (arguments.length === 4) {
+      extendQuery(queryType, [tableName, onColumn1OrCallback, onColumn2]);
+    } else {
+      throw new Error(`${queryType} -> parameter count does not match`);
+    }
+    return getQueriesByType(queryType);
+  }
+
+  function on() {
+    const [queryType, column1, op, column2] = [...arguments];
+    if (arguments.length === 4) {
+      extendQuery(queryType, [column1, op, column2]);
     } else {
       throw new Error(`${queryType} -> parameter count does not match`);
     }
@@ -532,6 +571,216 @@ export default function QueryFace() {
      */
     [SUPPORTED_QUERIES.WHERE_RAW]: function(rawQuery, bindings) {
       return whereRaw(SUPPORTED_QUERIES.WHERE_RAW, ...arguments);
+    },
+
+    /**
+     * Prepares "innerJoin" query informations.
+     * @memberof QueryFace#
+     * @function innerJoin
+     * @param {string} tableName - table name to perform join operation
+     * @param {string|function} onColumn1OrCallback - column name to compare another one or callback function
+     * @param {string} [onColumn2] - column name and required if column1 is string column name
+     * @returns {QueryFace} instance of this class
+     * @example
+     *
+     * qf().select('*').from('users').innerJoin('tokens', 'users.id', 'tokens.user_id');
+     * qf().select('*').from('users').innerJoin('tokens', queryBuilder =>
+     *   queryBuilder
+     *     .on('users.id', '=', 'tokens.user_id')
+     *     .andOn('users.id', '=', 'tokens.creator_id')
+     *     .orOn('users.id', '=', 'tokens.owner_id')
+     * )
+     */
+    [SUPPORTED_QUERIES.INNER_JOIN]: function(
+      tableName,
+      onColumn1OrCallback,
+      onColumn2
+    ) {
+      return join(SUPPORTED_QUERIES.INNER_JOIN, ...arguments);
+    },
+
+    /**
+     * Prepares "leftJoin" query informations.
+     * @memberof QueryFace#
+     * @function leftJoin
+     * @param {string} tableName - table name to perform join operation
+     * @param {string|function} onColumn1OrCallback - column name to compare another one or callback function
+     * @param {string} [onColumn2] - column name and required if column1 is string column name
+     * @returns {QueryFace} instance of this class
+     * @example
+     *
+     * qf().select('*').from('users').leftJoin('tokens', 'users.id', 'tokens.user_id');
+     * qf().select('*').from('users').leftJoin('tokens', queryBuilder =>
+     *   queryBuilder
+     *     .on('users.id', '=', 'tokens.user_id')
+     *     .andOn('users.id', '=', 'tokens.creator_id')
+     *     .orOn('users.id', '=', 'tokens.owner_id')
+     * )
+     */
+    [SUPPORTED_QUERIES.LEFT_JOIN]: function(
+      tableName,
+      onColumn1OrCallback,
+      onColumn2
+    ) {
+      return join(SUPPORTED_QUERIES.LEFT_JOIN, ...arguments);
+    },
+
+    /**
+     * Prepares "leftOuterJoin" query informations.
+     * @memberof QueryFace#
+     * @function leftOuterJoin
+     * @param {string} tableName - table name to perform join operation
+     * @param {string|function} onColumn1OrCallback - column name to compare another one or callback function
+     * @param {string} [onColumn2] - column name and required if column1 is string column name
+     * @returns {QueryFace} instance of this class
+     * @example
+     *
+     * qf().select('*').from('users').leftOuterJoin('tokens', 'users.id', 'tokens.user_id');
+     * qf().select('*').from('users').leftOuterJoin('tokens', queryBuilder =>
+     *   queryBuilder
+     *     .on('users.id', '=', 'tokens.user_id')
+     *     .andOn('users.id', '=', 'tokens.creator_id')
+     *     .orOn('users.id', '=', 'tokens.owner_id')
+     * )
+     */
+    [SUPPORTED_QUERIES.LEFT_OUTER_JOIN]: function(
+      tableName,
+      onColumn1OrCallback,
+      onColumn2
+    ) {
+      return join(SUPPORTED_QUERIES.LEFT_OUTER_JOIN, ...arguments);
+    },
+
+    /**
+     * Prepares "rightJoin" query informations.
+     * @memberof QueryFace#
+     * @function rightJoin
+     * @param {string} tableName - table name to perform join operation
+     * @param {string|function} onColumn1OrCallback - column name to compare another one or callback function
+     * @param {string} [onColumn2] - column name and required if column1 is string column name
+     * @returns {QueryFace} instance of this class
+     * @example
+     *
+     * qf().select('*').from('users').rightJoin('tokens', 'users.id', 'tokens.user_id');
+     * qf().select('*').from('users').rightJoin('tokens', queryBuilder =>
+     *   queryBuilder
+     *     .on('users.id', '=', 'tokens.user_id')
+     *     .andOn('users.id', '=', 'tokens.creator_id')
+     *     .orOn('users.id', '=', 'tokens.owner_id')
+     * )
+     */
+    [SUPPORTED_QUERIES.RIGHT_JOIN]: function(
+      tableName,
+      onColumn1OrCallback,
+      onColumn2
+    ) {
+      return join(SUPPORTED_QUERIES.RIGHT_JOIN, ...arguments);
+    },
+
+    /**
+     * Prepares "rightOuterJoin" query informations.
+     * @memberof QueryFace#
+     * @function rightOuterJoin
+     * @param {string} tableName - table name to perform join operation
+     * @param {string|function} onColumn1OrCallback - column name to compare another one or callback function
+     * @param {string} [onColumn2] - column name and required if column1 is string column name
+     * @returns {QueryFace} instance of this class
+     * @example
+     *
+     * qf().select('*').from('users').rightOuterJoin('tokens', 'users.id', 'tokens.user_id');
+     * qf().select('*').from('users').rightOuterJoin('tokens', queryBuilder =>
+     *   queryBuilder
+     *     .on('users.id', '=', 'tokens.user_id')
+     *     .andOn('users.id', '=', 'tokens.creator_id')
+     *     .orOn('users.id', '=', 'tokens.owner_id')
+     * )
+     */
+    [SUPPORTED_QUERIES.RIGHT_OUTER_JOIN]: function(
+      tableName,
+      onColumn1OrCallback,
+      onColumn2
+    ) {
+      return join(SUPPORTED_QUERIES.RIGHT_OUTER_JOIN, ...arguments);
+    },
+
+    /**
+     * Prepares "fullOuterJoin" query informations.
+     * @memberof QueryFace#
+     * @function fullOuterJoin
+     * @param {string} tableName - table name to perform join operation
+     * @param {string|function} onColumn1OrCallback - column name to compare another one or callback function
+     * @param {string} [onColumn2] - column name and required if column1 is string column name
+     * @returns {QueryFace} instance of this class
+     * @example
+     *
+     * qf().select('*').from('users').fullOuterJoin('tokens', 'users.id', 'tokens.user_id');
+     * qf().select('*').from('users').fullOuterJoin('tokens', queryBuilder =>
+     *   queryBuilder
+     *     .on('users.id', '=', 'tokens.user_id')
+     *     .andOn('users.id', '=', 'tokens.creator_id')
+     *     .orOn('users.id', '=', 'tokens.owner_id')
+     * )
+     */
+    [SUPPORTED_QUERIES.FULL_OUTER_JOIN]: function(
+      tableName,
+      onColumn1OrCallback,
+      onColumn2
+    ) {
+      return join(SUPPORTED_QUERIES.FULL_OUTER_JOIN, ...arguments);
+    },
+
+    /**
+     * Prepares "crossJoin" query informations.
+     * @memberof QueryFace#
+     * @function crossJoin
+     * @param {string} tableName - table name to perform join operation
+     * @param {string|function} onColumn1OrCallback - column name to compare another one or callback function
+     * @param {string} [onColumn2] - column name and required if column1 is string column name
+     * @returns {QueryFace} instance of this class
+     * @example
+     *
+     * qf().select('*').from('users').crossJoin('tokens', 'users.id', 'tokens.user_id');
+     * qf().select('*').from('users').crossJoin('tokens', queryBuilder =>
+     *   queryBuilder
+     *     .on('users.id', '=', 'tokens.user_id')
+     *     .andOn('users.id', '=', 'tokens.creator_id')
+     *     .orOn('users.id', '=', 'tokens.owner_id')
+     * )
+     */
+    [SUPPORTED_QUERIES.CROSS_JOIN]: function(
+      tableName,
+      onColumn1OrCallback,
+      onColumn2
+    ) {
+      return join(SUPPORTED_QUERIES.CROSS_JOIN, ...arguments);
+    },
+
+    /**
+     * Prepares "on" query informations.
+     * @memberof QueryFace#
+     * @function on
+     * @param {string} column1 - column name to compare another one
+     * @param {string} op - comparasion operator
+     * @param {string} column2 - column name to compare another one
+     * @returns {QueryFace} instance of this class
+     * @example
+     *
+     * qf().select('*').from('users').innerJoin('tokens', 'users.id', 'tokens.user_id');
+     * qf().select('*').from('users').innerJoin('tokens', queryBuilder =>
+     *   queryBuilder
+     *     .on('users.id', '=', 'tokens.user_id')
+     *     .andOn('users.id', '=', 'tokens.creator_id')
+     *     .orOn('users.id', '=', 'tokens.owner_id')
+     * )
+     */
+    [SUPPORTED_QUERIES.ON]: function(column1, op, column2) {
+      return on(SUPPORTED_QUERIES.ON, ...arguments);
+    },
+    [SUPPORTED_QUERIES.AND_ON]: function(column1, op, column2) {
+      return on(SUPPORTED_QUERIES.AND_ON, ...arguments);
+    },
+    [SUPPORTED_QUERIES.OR_ON]: function(column1, op, column2) {
+      return on(SUPPORTED_QUERIES.OR_ON, ...arguments);
     },
 
     /**
