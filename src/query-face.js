@@ -297,6 +297,19 @@ export default function QueryFace() {
     return getQueriesByType(queryType);
   }
 
+  function onIn() {
+    const [queryType, column, values] = [...arguments];
+    if (arguments.length === 3) {
+      if (!Array.isArray(values)) {
+        throw new Error(`${queryType} -> second parameter must be an array`);
+      }
+      extendQuery(queryType, [column, values]);
+    } else {
+      throw new Error(`${queryType} -> parameter count does not match`);
+    }
+    return getQueriesByType(queryType);
+  }
+
   const queries = {
     /**
      * Prepares "select" query informations
@@ -781,6 +794,56 @@ export default function QueryFace() {
     },
     [SUPPORTED_QUERIES.OR_ON]: function(column1, op, column2) {
       return on(SUPPORTED_QUERIES.OR_ON, ...arguments);
+    },
+
+    /**
+     * Prepares "onIn" query informations.
+     * @memberof QueryFace#
+     * @function onIn
+     * @param {string} column - column name to compare
+     * @param {string} values -  array of values to check if given column's value is in it
+     * @returns {QueryFace} instance of this class
+     * @example
+     *
+     * qf().select('*').from('users').innerJoin('tokens', queryBuilder =>
+     *   queryBuilder
+     *     .onIn('tokens.id', [3, 4])
+     *     .andOnIn('users.id', [1, 2])
+     * )
+     */
+    [SUPPORTED_QUERIES.ON_IN]: function(column, values) {
+      return onIn(SUPPORTED_QUERIES.ON_IN, ...arguments);
+    },
+    [SUPPORTED_QUERIES.AND_ON_IN]: function(column, values) {
+      return onIn(SUPPORTED_QUERIES.AND_ON_IN, ...arguments);
+    },
+    [SUPPORTED_QUERIES.OR_ON_IN]: function(column, values) {
+      return onIn(SUPPORTED_QUERIES.OR_ON_IN, ...arguments);
+    },
+
+    /**
+     * Prepares "onNotIn" query informations.
+     * @memberof QueryFace#
+     * @function onNotIn
+     * @param {string} column - column name to compare
+     * @param {string} values -  array of values to check if given column's value is in it
+     * @returns {QueryFace} instance of this class
+     * @example
+     *
+     * qf().select('*').from('users').innerJoin('tokens', queryBuilder =>
+     *   queryBuilder
+     *     .onNotIn('tokens.id', [3, 4])
+     *     .andOnNotIn('users.id', [1, 2])
+     * )
+     */
+    [SUPPORTED_QUERIES.ON_NOT_IN]: function(column, values) {
+      return onIn(SUPPORTED_QUERIES.ON_NOT_IN, ...arguments);
+    },
+    [SUPPORTED_QUERIES.AND_ON_NOT_IN]: function(column, values) {
+      return onIn(SUPPORTED_QUERIES.AND_ON_NOT_IN, ...arguments);
+    },
+    [SUPPORTED_QUERIES.OR_ON_NOT_IN]: function(column, values) {
+      return onIn(SUPPORTED_QUERIES.OR_ON_NOT_IN, ...arguments);
     },
 
     /**

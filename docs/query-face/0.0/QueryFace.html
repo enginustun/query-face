@@ -76,6 +76,10 @@
               <a href="QueryFace.html#leftOuterJoin">leftOuterJoin</a>
             </li>
             <li class="doc-function"><a href="QueryFace.html#on">on</a></li>
+            <li class="doc-function"><a href="QueryFace.html#onIn">onIn</a></li>
+            <li class="doc-function">
+              <a href="QueryFace.html#onNotIn">onNotIn</a>
+            </li>
             <li class="doc-function">
               <a href="QueryFace.html#rightJoin">rightJoin</a>
             </li>
@@ -1095,6 +1099,164 @@ qf().select('*').from('users').innerJoin('tokens', queryBuilder =>
     .on('users.id', '=', 'tokens.user_id')
     .andOn('users.id', '=', 'tokens.creator_id')
     .orOn('users.id', '=', 'tokens.owner_id')
+)</code></pre>
+
+          <h4 class="name" id="onIn">
+            <span class="type-signature"></span>onIn<span class="signature"
+              >(column, values)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "onIn" query informations.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>column</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">column name to compare</td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>values</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">
+                  array of values to check if given column's value is in it
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre
+            class="prettyprint"
+          ><code>qf().select('*').from('users').innerJoin('tokens', queryBuilder =>
+  queryBuilder
+    .onIn('tokens.id', [3, 4])
+    .andOnIn('users.id', [1, 2])
+)</code></pre>
+
+          <h4 class="name" id="onNotIn">
+            <span class="type-signature"></span>onNotIn<span class="signature"
+              >(column, values)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "onNotIn" query informations.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>column</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">column name to compare</td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>values</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">
+                  array of values to check if given column's value is in it
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre
+            class="prettyprint"
+          ><code>qf().select('*').from('users').innerJoin('tokens', queryBuilder =>
+  queryBuilder
+    .onNotIn('tokens.id', [3, 4])
+    .andOnNotIn('users.id', [1, 2])
 )</code></pre>
 
           <h4 class="name" id="rightJoin">

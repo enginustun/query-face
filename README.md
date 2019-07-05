@@ -79,8 +79,8 @@ chainable query structure is ready.
   - [x] crossJoin
   - [ ] joinRaw
   -----------------------------------------------
-  - [ ] onIn
-  - [ ] onNotIn
+  - [x] onIn
+  - [x] onNotIn
   - [ ] onNull
   - [ ] onNotNull
   - [ ] onExists
