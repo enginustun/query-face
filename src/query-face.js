@@ -310,6 +310,19 @@ export default function QueryFace() {
     return getQueriesByType(queryType);
   }
 
+  function onNull() {
+    const [queryType, column] = [...arguments];
+    if (arguments.length === 2) {
+      if (isFunction(column)) {
+        throw new Error(`${queryType} does not support inner query`);
+      }
+      extendQuery(queryType, [column]);
+    } else {
+      throw new Error(`${queryType} -> parameter count does not match`);
+    }
+    return getQueriesByType(queryType);
+  }
+
   const queries = {
     /**
      * Prepares "select" query informations
@@ -844,6 +857,54 @@ export default function QueryFace() {
     },
     [SUPPORTED_QUERIES.OR_ON_NOT_IN]: function(column, values) {
       return onIn(SUPPORTED_QUERIES.OR_ON_NOT_IN, ...arguments);
+    },
+
+    /**
+     * Prepares "onNull" query informations.
+     * @memberof QueryFace#
+     * @function onNull
+     * @param {string} column - column name to check if null
+     * @returns {QueryFace} instance of this class
+     * @example
+     *
+     * qf().select('*').from('users').innerJoin('tokens', queryBuilder =>
+     *   queryBuilder
+     *     .onNull('tokens.id')
+     *     .orOnNull('users.id')
+     * )
+     */
+    [SUPPORTED_QUERIES.ON_NULL]: function(column) {
+      return onNull(SUPPORTED_QUERIES.ON_NULL, ...arguments);
+    },
+    [SUPPORTED_QUERIES.AND_ON_NULL]: function(column) {
+      return onNull(SUPPORTED_QUERIES.AND_ON_NULL, ...arguments);
+    },
+    [SUPPORTED_QUERIES.OR_ON_NULL]: function(column) {
+      return onNull(SUPPORTED_QUERIES.OR_ON_NULL, ...arguments);
+    },
+
+    /**
+     * Prepares "onNotNull" query informations.
+     * @memberof QueryFace#
+     * @function onNotNull
+     * @param {string} column - column name to check if null
+     * @returns {QueryFace} instance of this class
+     * @example
+     *
+     * qf().select('*').from('users').innerJoin('tokens', queryBuilder =>
+     *   queryBuilder
+     *     .onNotNull('tokens.id')
+     *     .orOnNotNull('users.id')
+     * )
+     */
+    [SUPPORTED_QUERIES.ON_NOT_NULL]: function(column) {
+      return onNull(SUPPORTED_QUERIES.ON_NOT_NULL, ...arguments);
+    },
+    [SUPPORTED_QUERIES.AND_ON_NOT_NULL]: function(column) {
+      return onNull(SUPPORTED_QUERIES.AND_ON_NOT_NULL, ...arguments);
+    },
+    [SUPPORTED_QUERIES.OR_ON_NOT_NULL]: function(column) {
+      return onNull(SUPPORTED_QUERIES.OR_ON_NOT_NULL, ...arguments);
     },
 
     /**

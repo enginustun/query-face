@@ -81,6 +81,12 @@
               <a href="QueryFace.html#onNotIn">onNotIn</a>
             </li>
             <li class="doc-function">
+              <a href="QueryFace.html#onNotNull">onNotNull</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#onNull">onNull</a>
+            </li>
+            <li class="doc-function">
               <a href="QueryFace.html#rightJoin">rightJoin</a>
             </li>
             <li class="doc-function">
@@ -1257,6 +1263,140 @@ qf().select('*').from('users').innerJoin('tokens', queryBuilder =>
   queryBuilder
     .onNotIn('tokens.id', [3, 4])
     .andOnNotIn('users.id', [1, 2])
+)</code></pre>
+
+          <h4 class="name" id="onNotNull">
+            <span class="type-signature"></span>onNotNull<span class="signature"
+              >(column)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "onNotNull" query informations.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>column</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">column name to check if null</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre
+            class="prettyprint"
+          ><code>qf().select('*').from('users').innerJoin('tokens', queryBuilder =>
+  queryBuilder
+    .onNotNull('tokens.id')
+    .orOnNotNull('users.id')
+)</code></pre>
+
+          <h4 class="name" id="onNull">
+            <span class="type-signature"></span>onNull<span class="signature"
+              >(column)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "onNull" query informations.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>column</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">column name to check if null</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre
+            class="prettyprint"
+          ><code>qf().select('*').from('users').innerJoin('tokens', queryBuilder =>
+  queryBuilder
+    .onNull('tokens.id')
+    .orOnNull('users.id')
 )</code></pre>
 
           <h4 class="name" id="rightJoin">
