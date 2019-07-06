@@ -86,8 +86,8 @@ chainable query structure is ready.
   - [x] onNotNull / andOnNotNull / orOnNotNull
   - [x] onExists / andOnExists / orOnExists
   - [x] onNotExists / andOnNotExists / orOnNotExists
-  - [ ] onBetween
-  - [ ] onNotBetween
+  - [x] onBetween / andOnBetween / orOnBetween
+  - [x] onNotBetween / andOnNotBetween / orOnNotBetween
   -----------------------------------------------
   - [ ] having
   - [ ] havingIn

@@ -220,16 +220,13 @@ export default function QueryFace() {
   }
 
   function whereBetween() {
-    const [queryType, arg1, arg2] = [...arguments];
-    let column, range;
+    const [queryType, column, range] = [...arguments];
     if (arguments.length === 3) {
-      if (!Array.isArray(arg2) || arg2.length !== 2) {
+      if (!Array.isArray(range) || range.length !== 2) {
         throw new Error(
           `${queryType} -> second parameter must be a 2-element array: [min, max]`
         );
       }
-      column = arg1;
-      range = arg2;
       extendQuery(queryType, [column, range]);
     } else {
       throw new Error(`${queryType} -> parameter count does not match`);
@@ -322,29 +319,6 @@ export default function QueryFace() {
     }
     return getQueriesByType(queryType);
   }
-
-  // function onExists() {
-  //   const [queryType, arg1] = [...arguments];
-  //   if (arguments.length === 2) {
-  //     if (isFunction(arg1)) {
-  //       extendQuery(
-  //         queryType,
-  //         [],
-  //         arg1
-  //           .call(
-  //             null,
-  //             new QueryFace(SUPPORTED_QUERIES.__CALLBACK_WHERE_EXISTS, true)
-  //           )
-  //           .getQuery()
-  //       );
-  //     } else {
-  //       throw new Error(`${queryType} -> parameter must be function`);
-  //     }
-  //   } else {
-  //     throw new Error(`${queryType} -> parameter count does not match`);
-  //   }
-  //   return getQueriesByType(queryType);
-  // }
 
   const queries = {
     /**
@@ -982,6 +956,54 @@ export default function QueryFace() {
     },
     [SUPPORTED_QUERIES.OR_ON_NOT_EXISTS]: function(callback) {
       return whereExists(SUPPORTED_QUERIES.OR_ON_NOT_EXISTS, ...arguments);
+    },
+
+    /**
+     * Prepares "onBetween" query informations.
+     * @memberof QueryFace#
+     * @function onBetween
+     * @param {string} column - column name to check if it is between range
+     * @param {Array} range - min and max values to check if given column's value is between them
+     * @returns {QueryFace} instance of this class
+     * @example
+     *
+     * qf().select('*').from('users').innerJoin('tokens', queryBuilder =>
+     *   queryBuilder
+     *     .onBetween('users.id', [2, 8])
+     * )
+     */
+    [SUPPORTED_QUERIES.ON_BETWEEN]: function(column, range) {
+      return whereBetween(SUPPORTED_QUERIES.ON_BETWEEN, ...arguments);
+    },
+    [SUPPORTED_QUERIES.AND_ON_BETWEEN]: function(column, range) {
+      return whereBetween(SUPPORTED_QUERIES.AND_ON_BETWEEN, ...arguments);
+    },
+    [SUPPORTED_QUERIES.OR_ON_BETWEEN]: function(column, range) {
+      return whereBetween(SUPPORTED_QUERIES.OR_ON_BETWEEN, ...arguments);
+    },
+
+    /**
+     * Prepares "onNotBetween" query informations.
+     * @memberof QueryFace#
+     * @function onNotBetween
+     * @param {string} column - column name to check if it is not between range
+     * @param {Array} range - min and max values to check if given column's value is not between them
+     * @returns {QueryFace} instance of this class
+     * @example
+     *
+     * qf().select('*').from('users').innerJoin('tokens', queryBuilder =>
+     *   queryBuilder
+     *     .onNotBetween('users.id', [2, 8])
+     * )
+     */
+    [SUPPORTED_QUERIES.ON_NOT_BETWEEN]: function(column, range) {
+      return whereBetween(SUPPORTED_QUERIES.ON_NOT_BETWEEN, ...arguments);
+    },
+    [SUPPORTED_QUERIES.AND_ON_NOT_BETWEEN]: function(column, range) {
+      return whereBetween(SUPPORTED_QUERIES.AND_ON_NOT_BETWEEN, ...arguments);
+    },
+    [SUPPORTED_QUERIES.OR_ON_NOT_BETWEEN]: function(column, range) {
+      return whereBetween(SUPPORTED_QUERIES.OR_ON_NOT_BETWEEN, ...arguments);
     },
 
     /**

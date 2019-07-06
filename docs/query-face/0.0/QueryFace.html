@@ -77,9 +77,15 @@
             </li>
             <li class="doc-function"><a href="QueryFace.html#on">on</a></li>
             <li class="doc-function">
+              <a href="QueryFace.html#onBetween">onBetween</a>
+            </li>
+            <li class="doc-function">
               <a href="QueryFace.html#onExists">onExists</a>
             </li>
             <li class="doc-function"><a href="QueryFace.html#onIn">onIn</a></li>
+            <li class="doc-function">
+              <a href="QueryFace.html#onNotBetween">onNotBetween</a>
+            </li>
             <li class="doc-function">
               <a href="QueryFace.html#onNotExists">onNotExists</a>
             </li>
@@ -1113,6 +1119,87 @@ qf().select('*').from('users').innerJoin('tokens', queryBuilder =>
     .orOn('users.id', '=', 'tokens.owner_id')
 )</code></pre>
 
+          <h4 class="name" id="onBetween">
+            <span class="type-signature"></span>onBetween<span class="signature"
+              >(column, range)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "onBetween" query informations.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>column</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">
+                  column name to check if it is between range
+                </td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>range</code></td>
+
+                <td class="type">
+                  <span class="param-type">Array</span>
+                </td>
+
+                <td class="description last">
+                  min and max values to check if given column's value is between
+                  them
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre
+            class="prettyprint"
+          ><code>qf().select('*').from('users').innerJoin('tokens', queryBuilder =>
+  queryBuilder
+    .onBetween('users.id', [2, 8])
+)</code></pre>
+
           <h4 class="name" id="onExists">
             <span class="type-signature"></span>onExists<span class="signature"
               >(callback)</span
@@ -1258,6 +1345,88 @@ qf().select('*').from('users').innerJoin('tokens', queryBuilder =>
   queryBuilder
     .onIn('tokens.id', [3, 4])
     .andOnIn('users.id', [1, 2])
+)</code></pre>
+
+          <h4 class="name" id="onNotBetween">
+            <span class="type-signature"></span>onNotBetween<span
+              class="signature"
+              >(column, range)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "onNotBetween" query informations.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>column</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">
+                  column name to check if it is not between range
+                </td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>range</code></td>
+
+                <td class="type">
+                  <span class="param-type">Array</span>
+                </td>
+
+                <td class="description last">
+                  min and max values to check if given column's value is not
+                  between them
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre
+            class="prettyprint"
+          ><code>qf().select('*').from('users').innerJoin('tokens', queryBuilder =>
+  queryBuilder
+    .onNotBetween('users.id', [2, 8])
 )</code></pre>
 
           <h4 class="name" id="onNotExists">
