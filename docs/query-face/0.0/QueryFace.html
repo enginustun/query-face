@@ -76,7 +76,13 @@
               <a href="QueryFace.html#leftOuterJoin">leftOuterJoin</a>
             </li>
             <li class="doc-function"><a href="QueryFace.html#on">on</a></li>
+            <li class="doc-function">
+              <a href="QueryFace.html#onExists">onExists</a>
+            </li>
             <li class="doc-function"><a href="QueryFace.html#onIn">onIn</a></li>
+            <li class="doc-function">
+              <a href="QueryFace.html#onNotExists">onNotExists</a>
+            </li>
             <li class="doc-function">
               <a href="QueryFace.html#onNotIn">onNotIn</a>
             </li>
@@ -1107,6 +1113,74 @@ qf().select('*').from('users').innerJoin('tokens', queryBuilder =>
     .orOn('users.id', '=', 'tokens.owner_id')
 )</code></pre>
 
+          <h4 class="name" id="onExists">
+            <span class="type-signature"></span>onExists<span class="signature"
+              >(callback)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "onExists" query informations.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>callback</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">callback to check on exists</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre class="prettyprint"><code>qf()
+  .select('*')
+  .from('users')
+  .innerJoin('tokens', joinQueryBuilder =>
+    joinQueryBuilder.onExists(queryBuilder =>
+      queryBuilder.from('tokens').whereRaw('users.id = tokens.user_id')
+    )
+  );</code></pre>
+
           <h4 class="name" id="onIn">
             <span class="type-signature"></span>onIn<span class="signature"
               >(column, values)</span
@@ -1185,6 +1259,77 @@ qf().select('*').from('users').innerJoin('tokens', queryBuilder =>
     .onIn('tokens.id', [3, 4])
     .andOnIn('users.id', [1, 2])
 )</code></pre>
+
+          <h4 class="name" id="onNotExists">
+            <span class="type-signature"></span>onNotExists<span
+              class="signature"
+              >(callback)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "onNotExists" query informations.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>callback</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">
+                  callback to check on not exists
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre class="prettyprint"><code>qf()
+  .select('*')
+  .from('users')
+  .innerJoin('tokens', joinQueryBuilder =>
+    joinQueryBuilder.onNotExists(queryBuilder =>
+      queryBuilder.from('tokens').whereRaw('users.id = tokens.user_id')
+    )
+  );</code></pre>
 
           <h4 class="name" id="onNotIn">
             <span class="type-signature"></span>onNotIn<span class="signature"
@@ -2311,9 +2456,9 @@ qf().select('*').from('users').where('age', '>', 18);</code></pre>
           <pre
             class="prettyprint"
           ><code>qf().select('*').from('users').whereExists(queryBuilder =>
-  queryBuilder.from('users').where('id', 1)
+  queryBuilder.from('tokens').whereRaw('users.id = tokens.user_id')
 );
-// output: select `*` from `users` where exists (select * from `users` where `id` = 1)</code></pre>
+// output: select `*` from `users` where exists (select * from `tokens` where `users`.`id` = `tokens`.`user_id`)</code></pre>
 
           <h4 class="name" id="whereIn">
             <span class="type-signature"></span>whereIn<span class="signature"
@@ -2657,9 +2802,9 @@ qf().select('*').from('users').whereNot('age', '>', 18);</code></pre>
           <pre
             class="prettyprint"
           ><code>qf().select('*').from('users').whereNotExists(queryBuilder =>
-  queryBuilder.from('users').where('id', 1)
+  queryBuilder.from('tokens').whereRaw('users.id = tokens.user_id')
 );
-// output: select `*` from `users` where not exists (select * from `users` where `id` = 1)</code></pre>
+// output: select `*` from `users` where not exists (select * from `tokens` where `users`.`id` = `tokens`.`user_id`)</code></pre>
 
           <h4 class="name" id="whereNotIn">
             <span class="type-signature"></span>whereNotIn<span

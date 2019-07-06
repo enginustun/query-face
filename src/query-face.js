@@ -323,6 +323,29 @@ export default function QueryFace() {
     return getQueriesByType(queryType);
   }
 
+  // function onExists() {
+  //   const [queryType, arg1] = [...arguments];
+  //   if (arguments.length === 2) {
+  //     if (isFunction(arg1)) {
+  //       extendQuery(
+  //         queryType,
+  //         [],
+  //         arg1
+  //           .call(
+  //             null,
+  //             new QueryFace(SUPPORTED_QUERIES.__CALLBACK_WHERE_EXISTS, true)
+  //           )
+  //           .getQuery()
+  //       );
+  //     } else {
+  //       throw new Error(`${queryType} -> parameter must be function`);
+  //     }
+  //   } else {
+  //     throw new Error(`${queryType} -> parameter count does not match`);
+  //   }
+  //   return getQueriesByType(queryType);
+  // }
+
   const queries = {
     /**
      * Prepares "select" query informations
@@ -514,9 +537,9 @@ export default function QueryFace() {
      * @example
      *
      * qf().select('*').from('users').whereExists(queryBuilder =>
-     *   queryBuilder.from('users').where('id', 1)
+     *   queryBuilder.from('tokens').whereRaw('users.id = tokens.user_id')
      * );
-     * // output: select `*` from `users` where exists (select * from `users` where `id` = 1)
+     * // output: select `*` from `users` where exists (select * from `tokens` where `users`.`id` = `tokens`.`user_id`)
      */
     [SUPPORTED_QUERIES.WHERE_EXISTS]: function(callback) {
       return whereExists(SUPPORTED_QUERIES.WHERE_EXISTS, ...arguments);
@@ -534,9 +557,9 @@ export default function QueryFace() {
      * @example
      *
      * qf().select('*').from('users').whereNotExists(queryBuilder =>
-     *   queryBuilder.from('users').where('id', 1)
+     *   queryBuilder.from('tokens').whereRaw('users.id = tokens.user_id')
      * );
-     * // output: select `*` from `users` where not exists (select * from `users` where `id` = 1)
+     * // output: select `*` from `users` where not exists (select * from `tokens` where `users`.`id` = `tokens`.`user_id`)
      */
     [SUPPORTED_QUERIES.WHERE_NOT_EXISTS]: function(callback) {
       return whereExists(SUPPORTED_QUERIES.WHERE_NOT_EXISTS, ...arguments);
@@ -905,6 +928,60 @@ export default function QueryFace() {
     },
     [SUPPORTED_QUERIES.OR_ON_NOT_NULL]: function(column) {
       return onNull(SUPPORTED_QUERIES.OR_ON_NOT_NULL, ...arguments);
+    },
+
+    /**
+     * Prepares "onExists" query informations.
+     * @memberof QueryFace#
+     * @function onExists
+     * @param {string} callback - callback to check on exists
+     * @returns {QueryFace} instance of this class
+     * @example
+     *
+     * qf()
+     *   .select('*')
+     *   .from('users')
+     *   .innerJoin('tokens', joinQueryBuilder =>
+     *     joinQueryBuilder.onExists(queryBuilder =>
+     *       queryBuilder.from('tokens').whereRaw('users.id = tokens.user_id')
+     *     )
+     *   );
+     */
+    [SUPPORTED_QUERIES.ON_EXISTS]: function(callback) {
+      return whereExists(SUPPORTED_QUERIES.ON_EXISTS, ...arguments);
+    },
+    [SUPPORTED_QUERIES.AND_ON_EXISTS]: function(callback) {
+      return whereExists(SUPPORTED_QUERIES.AND_ON_EXISTS, ...arguments);
+    },
+    [SUPPORTED_QUERIES.OR_ON_EXISTS]: function(callback) {
+      return whereExists(SUPPORTED_QUERIES.OR_ON_EXISTS, ...arguments);
+    },
+
+    /**
+     * Prepares "onNotExists" query informations.
+     * @memberof QueryFace#
+     * @function onNotExists
+     * @param {string} callback - callback to check on not exists
+     * @returns {QueryFace} instance of this class
+     * @example
+     *
+     * qf()
+     *   .select('*')
+     *   .from('users')
+     *   .innerJoin('tokens', joinQueryBuilder =>
+     *     joinQueryBuilder.onNotExists(queryBuilder =>
+     *       queryBuilder.from('tokens').whereRaw('users.id = tokens.user_id')
+     *     )
+     *   );
+     */
+    [SUPPORTED_QUERIES.ON_NOT_EXISTS]: function(callback) {
+      return whereExists(SUPPORTED_QUERIES.ON_NOT_EXISTS, ...arguments);
+    },
+    [SUPPORTED_QUERIES.AND_ON_NOT_EXISTS]: function(callback) {
+      return whereExists(SUPPORTED_QUERIES.AND_ON_NOT_EXISTS, ...arguments);
+    },
+    [SUPPORTED_QUERIES.OR_ON_NOT_EXISTS]: function(callback) {
+      return whereExists(SUPPORTED_QUERIES.OR_ON_NOT_EXISTS, ...arguments);
     },
 
     /**
