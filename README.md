@@ -99,8 +99,8 @@ chainable query structure is ready.
   - [ ] havingBetween
   - [ ] havingNotBetween
   -----------------------------------------------
-  - [ ] distinct
-  - [ ] groupBy
+  - [x] distinct
+  - [x] groupBy
   - [ ] groupByRaw
   - [ ] orderBy
   - [ ] orderByRaw

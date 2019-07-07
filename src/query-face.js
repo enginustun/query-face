@@ -182,13 +182,11 @@ export default function QueryFace() {
   }
 
   function whereNull() {
-    const [queryType, arg1] = [...arguments];
-    let column;
+    const [queryType, column] = [...arguments];
     if (arguments.length === 2) {
-      if (isFunction(arg1)) {
+      if (isFunction(column)) {
         throw new Error(`${queryType} does not support inner query`);
       }
-      column = arg1;
       extendQuery(queryType, [column]);
     } else {
       throw new Error(`${queryType} -> parameter count does not match`);
@@ -308,6 +306,19 @@ export default function QueryFace() {
   }
 
   function onNull() {
+    const [queryType, column] = [...arguments];
+    if (arguments.length === 2) {
+      if (isFunction(column)) {
+        throw new Error(`${queryType} does not support inner query`);
+      }
+      extendQuery(queryType, [column]);
+    } else {
+      throw new Error(`${queryType} -> parameter count does not match`);
+    }
+    return getQueriesByType(queryType);
+  }
+
+  function groupBy() {
     const [queryType, column] = [...arguments];
     if (arguments.length === 2) {
       if (isFunction(column)) {
@@ -1004,6 +1015,43 @@ export default function QueryFace() {
     },
     [SUPPORTED_QUERIES.OR_ON_NOT_BETWEEN]: function(column, range) {
       return whereBetween(SUPPORTED_QUERIES.OR_ON_NOT_BETWEEN, ...arguments);
+    },
+
+    /**
+     * Prepares "distinct" query informations.
+     * @memberof QueryFace#
+     * @function distinct
+     * @param {...string} [columnNames=*] - column names to get as unique records
+     * @returns {QueryFace} instance of this class
+     * @example
+     *
+     * qf()
+     *   .distinct('age')
+     *   .from('users')
+     */
+    [SUPPORTED_QUERIES.DISTINCT]: function() {
+      extendQuery(SUPPORTED_QUERIES.DISTINCT, [
+        ...(!arguments.length ? '*' : arguments),
+      ]);
+      return getQueriesByType(SUPPORTED_QUERIES.DISTINCT);
+    },
+
+    /**
+     * Prepares "groupBy" query informations.
+     * @memberof QueryFace#
+     * @function groupBy
+     * @param {string} column - column name to group result
+     * @returns {QueryFace} instance of this class
+     * @example
+     *
+     * qf()
+     *   .select('age')
+     *   .from('users')
+     *   .where('age', '>', 15)
+     *   .groupBy('age');
+     */
+    [SUPPORTED_QUERIES.GROUP_BY]: function(column) {
+      return groupBy(SUPPORTED_QUERIES.GROUP_BY, ...arguments);
     },
 
     /**

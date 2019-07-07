@@ -55,12 +55,18 @@
             <li class="doc-function">
               <a href="QueryFace.html#delete">delete</a>
             </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#distinct">distinct</a>
+            </li>
             <li class="doc-function"><a href="QueryFace.html#from">from</a></li>
             <li class="doc-function">
               <a href="QueryFace.html#fullOuterJoin">fullOuterJoin</a>
             </li>
             <li class="doc-function">
               <a href="QueryFace.html#getQuery">getQuery</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#groupBy">groupBy</a>
             </li>
             <li class="doc-function">
               <a href="QueryFace.html#innerJoin">innerJoin</a>
@@ -353,6 +359,86 @@ qf().select('*').from('users').crossJoin('tokens', queryBuilder =>
           ><code>qf().delete('users').where('name', 'engin');
 qf().delete('users').where('id', 1);</code></pre>
 
+          <h4 class="name" id="distinct">
+            <span class="type-signature"></span>distinct<span class="signature"
+              >(&hellip;columnNames<span class="signature-attributes">opt</span
+              >)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "distinct" query informations.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th>Attributes</th>
+
+                <th>Default</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>columnNames</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="attributes">
+                  &lt;optional><br />
+
+                  &lt;repeatable><br />
+                </td>
+
+                <td class="default">
+                  *
+                </td>
+
+                <td class="description last">
+                  column names to get as unique records
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre class="prettyprint"><code>qf()
+  .distinct('age')
+  .from('users')</code></pre>
+
           <h4 class="name" id="from">
             <span class="type-signature"></span>from<span class="signature"
               >(tableName)</span
@@ -563,6 +649,71 @@ qf().select('*').from('users').fullOuterJoin('tokens', queryBuilder =>
   { "$op": "from", "$params": ["users"] },
   { "$op": "where", "$params": ["user_id", "=", 2] }
 ]</code></pre>
+
+          <h4 class="name" id="groupBy">
+            <span class="type-signature"></span>groupBy<span class="signature"
+              >(column)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "groupBy" query informations.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>column</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">column name to group result</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre class="prettyprint"><code>qf()
+  .select('age')
+  .from('users')
+  .where('age', '>', 15)
+  .groupBy('age');</code></pre>
 
           <h4 class="name" id="innerJoin">
             <span class="type-signature"></span>innerJoin<span class="signature"
