@@ -81,6 +81,12 @@
             <li class="doc-function">
               <a href="QueryFace.html#leftOuterJoin">leftOuterJoin</a>
             </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#limit">limit</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#offset">offset</a>
+            </li>
             <li class="doc-function"><a href="QueryFace.html#on">on</a></li>
             <li class="doc-function">
               <a href="QueryFace.html#onBetween">onBetween</a>
@@ -1179,6 +1185,143 @@ qf().select('*').from('users').leftOuterJoin('tokens', queryBuilder =>
     .andOn('users.id', '=', 'tokens.creator_id')
     .orOn('users.id', '=', 'tokens.owner_id')
 )</code></pre>
+
+          <h4 class="name" id="limit">
+            <span class="type-signature"></span>limit<span class="signature"
+              >(limit)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "limit" query informations.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>limit</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">record count limit</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre class="prettyprint"><code>qf()
+  .select('*')
+  .from('users')
+  .where('age', '>', 15)
+  .limit(3);</code></pre>
+
+          <h4 class="name" id="offset">
+            <span class="type-signature"></span>offset<span class="signature"
+              >(offset)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "offset" query informations.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>offset</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">record count to pass off</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre class="prettyprint"><code>qf()
+  .select('*')
+  .from('users')
+  .where('age', '>', 15)
+  .offset(3);
+
+qf()
+  .select('*')
+  .from('users')
+  .where('age', '>', 15)
+  .limit(2)
+  .offset(3);</code></pre>
 
           <h4 class="name" id="on">
             <span class="type-signature"></span>on<span class="signature"

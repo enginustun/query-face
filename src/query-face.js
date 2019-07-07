@@ -348,6 +348,19 @@ export default function QueryFace() {
     return getQueriesByType(queryType);
   }
 
+  function limitOffset() {
+    const [queryType, limitOrOffset] = [...arguments];
+    if (arguments.length === 2) {
+      if (!Number.isInteger(limitOrOffset)) {
+        throw new Error(`${queryType} -> parameter must be an integer`);
+      }
+      extendQuery(queryType, [limitOrOffset]);
+    } else {
+      throw new Error(`${queryType} -> parameter count does not match`);
+    }
+    return getQueriesByType(queryType);
+  }
+
   const queries = {
     /**
      * Prepares "select" query informations
@@ -1105,6 +1118,49 @@ export default function QueryFace() {
      */
     [SUPPORTED_QUERIES.ORDER_BY]: function(columns, direction) {
       return orderBy(SUPPORTED_QUERIES.ORDER_BY, ...arguments);
+    },
+
+    /**
+     * Prepares "limit" query informations.
+     * @memberof QueryFace#
+     * @function limit
+     * @param {string} limit - record count limit
+     * @returns {QueryFace} instance of this class
+     * @example
+     *
+     * qf()
+     *   .select('*')
+     *   .from('users')
+     *   .where('age', '>', 15)
+     *   .limit(3);
+     */
+    [SUPPORTED_QUERIES.LIMIT]: function(limit) {
+      return limitOffset(SUPPORTED_QUERIES.LIMIT, ...arguments);
+    },
+
+    /**
+     * Prepares "offset" query informations.
+     * @memberof QueryFace#
+     * @function offset
+     * @param {string} offset - record count to pass off
+     * @returns {QueryFace} instance of this class
+     * @example
+     *
+     * qf()
+     *   .select('*')
+     *   .from('users')
+     *   .where('age', '>', 15)
+     *   .offset(3);
+     *
+     * qf()
+     *   .select('*')
+     *   .from('users')
+     *   .where('age', '>', 15)
+     *   .limit(2)
+     *   .offset(3);
+     */
+    [SUPPORTED_QUERIES.OFFSET]: function(offset) {
+      return limitOffset(SUPPORTED_QUERIES.OFFSET, ...arguments);
     },
 
     /**
