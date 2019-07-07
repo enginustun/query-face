@@ -331,6 +331,23 @@ export default function QueryFace() {
     return getQueriesByType(queryType);
   }
 
+  function orderBy() {
+    const [queryType, columns, direction = 'asc'] = [...arguments];
+    if (arguments.length === 2) {
+      extendQuery(queryType, [columns]);
+    } else if (arguments.length === 3) {
+      if (typeof columns !== 'string' || typeof direction !== 'string') {
+        throw new Error(
+          `${queryType} -> both parameters must be string when you pass 2 parameters`
+        );
+      }
+      extendQuery(queryType, [columns, direction]);
+    } else {
+      throw new Error(`${queryType} -> parameter count does not match`);
+    }
+    return getQueriesByType(queryType);
+  }
+
   const queries = {
     /**
      * Prepares "select" query informations
@@ -1052,6 +1069,42 @@ export default function QueryFace() {
      */
     [SUPPORTED_QUERIES.GROUP_BY]: function(column) {
       return groupBy(SUPPORTED_QUERIES.GROUP_BY, ...arguments);
+    },
+
+    /**
+     * Prepares "orderBy" query informations.
+     * @memberof QueryFace#
+     * @function orderBy
+     * @param {string|Array} columnOrColumns - column name to order result list
+     * @param {string} [direction=asc] - order direction
+     * @returns {QueryFace} instance of this class
+     * @example
+     *
+     * qf()
+     *   .select('age')
+     *   .from('users')
+     *   .orderBy('age');
+     *
+     * // multiple column ordering
+     * qf()
+     *   .select('username', 'age')
+     *   .from('users')
+     *   .orderBy([
+     *     'username', // default order: asc
+     *     { column: 'age', order: 'desc' }
+     *   ]);
+     *
+     * // multiple column ordering
+     * qf()
+     *   .select('username', 'age')
+     *   .from('users')
+     *   .orderBy([
+     *     { column: 'username', order: 'desc' }
+     *     { column: 'age', order: 'desc' }
+     *   ]);
+     */
+    [SUPPORTED_QUERIES.ORDER_BY]: function(columns, direction) {
+      return orderBy(SUPPORTED_QUERIES.ORDER_BY, ...arguments);
     },
 
     /**

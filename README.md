@@ -102,7 +102,7 @@ chainable query structure is ready.
   - [x] distinct
   - [x] groupBy
   - [ ] groupByRaw
-  - [ ] orderBy
+  - [x] orderBy
   - [ ] orderByRaw
   - [ ] offset
   - [ ] limit

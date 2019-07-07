@@ -105,6 +105,9 @@
               <a href="QueryFace.html#onNull">onNull</a>
             </li>
             <li class="doc-function">
+              <a href="QueryFace.html#orderBy">orderBy</a>
+            </li>
+            <li class="doc-function">
               <a href="QueryFace.html#rightJoin">rightJoin</a>
             </li>
             <li class="doc-function">
@@ -1863,6 +1866,119 @@ qf().select('*').from('users').innerJoin('tokens', queryBuilder =>
     .onNull('tokens.id')
     .orOnNull('users.id')
 )</code></pre>
+
+          <h4 class="name" id="orderBy">
+            <span class="type-signature"></span>orderBy<span class="signature"
+              >(columnOrColumns, direction<span class="signature-attributes"
+                >opt</span
+              >)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "orderBy" query informations.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th>Attributes</th>
+
+                <th>Default</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>columnOrColumns</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                  |
+
+                  <span class="param-type">Array</span>
+                </td>
+
+                <td class="attributes"></td>
+
+                <td class="default"></td>
+
+                <td class="description last">
+                  column name to order result list
+                </td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>direction</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="attributes">&lt;optional><br /></td>
+
+                <td class="default">
+                  asc
+                </td>
+
+                <td class="description last">order direction</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre class="prettyprint"><code>qf()
+  .select('age')
+  .from('users')
+  .orderBy('age');
+
+// multiple column ordering
+qf()
+  .select('username', 'age')
+  .from('users')
+  .orderBy([
+    'username', // default order: asc
+    { column: 'age', order: 'desc' }
+  ]);
+
+// multiple column ordering
+qf()
+  .select('username', 'age')
+  .from('users')
+  .orderBy([
+    { column: 'username', order: 'desc' }
+    { column: 'age', order: 'desc' }
+  ]);</code></pre>
 
           <h4 class="name" id="rightJoin">
             <span class="type-signature"></span>rightJoin<span class="signature"
