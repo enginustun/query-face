@@ -1,5 +1,6 @@
 import { isFunction } from './utils/function';
 import { isObject } from './utils/object';
+import { isNotString } from './utils/string';
 import {
   SUPPORTED_QUERIES,
   RETURN_QUERIES_BY_TYPE,
@@ -336,7 +337,7 @@ export default function QueryFace() {
     if (arguments.length === 2) {
       extendQuery(queryType, [columns]);
     } else if (arguments.length === 3) {
-      if (typeof columns !== 'string' || typeof direction !== 'string') {
+      if (isNotString(columns) || isNotString(direction)) {
         throw new Error(
           `${queryType} -> both parameters must be string when you pass 2 parameters`
         );
@@ -357,6 +358,21 @@ export default function QueryFace() {
       extendQuery(queryType, [limitOrOffset]);
     } else {
       throw new Error(`${queryType} -> parameter count does not match`);
+    }
+    return getQueriesByType(queryType);
+  }
+
+  function returning() {
+    const [queryType, columns] = [...arguments];
+    if (arguments.length === 2) {
+      if (!Array.isArray(columns) && isNotString(columns)) {
+        throw new Error(`${queryType} -> parameter must be an array or string`);
+      }
+      extendQuery(queryType, [columns]);
+    } else {
+      throw new Error(
+        `${queryType} -> parameter must be a string or string array`
+      );
     }
     return getQueriesByType(queryType);
   }
@@ -1164,6 +1180,23 @@ export default function QueryFace() {
     },
 
     /**
+     * Prepares "returning" query informations
+     * @memberof QueryFace#
+     * @function returning
+     * @param {...string} columnNames - one or more column names to include result object
+     * @returns {QueryFace} instance of this class
+     * @example
+     *
+     * qf()
+     *   .returning('id')
+     *   .insert({ name: 'engin', age: 28 })
+     *   .into('users');
+     */
+    [SUPPORTED_QUERIES.RETURNING]: function() {
+      return returning(SUPPORTED_QUERIES.RETURNING, ...arguments);
+    },
+
+    /**
      * Prepares "insert" query informations
      * @memberof QueryFace#
      * @function insert
@@ -1175,7 +1208,7 @@ export default function QueryFace() {
      */
     [SUPPORTED_QUERIES.INSERT]: function(values) {
       extendQuery(SUPPORTED_QUERIES.INSERT, [values]);
-      return getQueriesByType(SUPPORTED_QUERIES.INSERT, ...arguments);
+      return getQueriesByType(SUPPORTED_QUERIES.INSERT);
     },
 
     /**
@@ -1202,7 +1235,7 @@ export default function QueryFace() {
      * qf().update('users');
      */
     [SUPPORTED_QUERIES.UPDATE]: function(tableName) {
-      if (typeof tableName !== 'string') {
+      if (isNotString(tableName)) {
         throw new Error(
           'tableName parameter must be string for .update(tableName) function'
         );
@@ -1240,14 +1273,14 @@ export default function QueryFace() {
           );
         }
       } else if (arguments.length === 2) {
-        if (typeof arguments[0] !== 'string') {
+        if (isNotString(arguments[0])) {
           throw new Error(
             'When you pass two parameters to .set(column, value) function, first parameter must be a string.'
           );
         }
       }
       extendQuery(SUPPORTED_QUERIES.SET, [...arguments]);
-      return getQueriesByType(SUPPORTED_QUERIES.SET, ...arguments);
+      return getQueriesByType(SUPPORTED_QUERIES.SET);
     },
 
     /**
@@ -1261,7 +1294,7 @@ export default function QueryFace() {
      * qf().delete('users').where('id', 1);
      */
     [SUPPORTED_QUERIES.DELETE]: function(tableName) {
-      if (typeof tableName !== 'string') {
+      if (isNotString(tableName)) {
         throw new Error(
           'tableName parameter must be string for .delete(tableName) function'
         );

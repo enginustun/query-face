@@ -106,7 +106,7 @@ chainable query structure is ready.
   - [ ] orderByRaw
   - [x] offset
   - [x] limit
-  - [ ] returning
+  - [x] returning
   - [ ] count
   - [ ] min
   - [ ] max

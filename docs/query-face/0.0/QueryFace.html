@@ -114,6 +114,9 @@
               <a href="QueryFace.html#orderBy">orderBy</a>
             </li>
             <li class="doc-function">
+              <a href="QueryFace.html#returning">returning</a>
+            </li>
+            <li class="doc-function">
               <a href="QueryFace.html#rightJoin">rightJoin</a>
             </li>
             <li class="doc-function">
@@ -2122,6 +2125,76 @@ qf()
     { column: 'username', order: 'desc' }
     { column: 'age', order: 'desc' }
   ]);</code></pre>
+
+          <h4 class="name" id="returning">
+            <span class="type-signature"></span>returning<span class="signature"
+              >(&hellip;columnNames)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "returning" query informations
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th>Attributes</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>columnNames</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="attributes">&lt;repeatable><br /></td>
+
+                <td class="description last">
+                  one or more column names to include result object
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre class="prettyprint"><code>qf()
+  .returning('id')
+  .insert({ name: 'engin', age: 28 })
+  .into('users');</code></pre>
 
           <h4 class="name" id="rightJoin">
             <span class="type-signature"></span>rightJoin<span class="signature"
