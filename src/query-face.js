@@ -377,6 +377,19 @@ export default function QueryFace() {
     return getQueriesByType(queryType);
   }
 
+  function aggregate() {
+    const [queryType, column] = [...arguments];
+    if (arguments.length === 2) {
+      if (isNotString(column)) {
+        throw new Error(`${queryType} -> column parameter must be string `);
+      }
+      extendQuery(queryType, [column]);
+    } else {
+      throw new Error(`${queryType} -> parameter must be a string`);
+    }
+    return getQueriesByType(queryType);
+  }
+
   const queries = {
     /**
      * Prepares "select" query informations
@@ -1180,10 +1193,95 @@ export default function QueryFace() {
     },
 
     /**
+     * Prepares "count" query informations.
+     * Performs a count on the specified column
+     * @memberof QueryFace#
+     * @function count
+     * @param {string} column - column name to find its count
+     * @returns {QueryFace} instance of this class
+     * @example
+     *
+     * qf()
+     *   .from('users')
+     *   .count('age');
+     */
+    [SUPPORTED_QUERIES.COUNT]: function(column) {
+      return aggregate(SUPPORTED_QUERIES.COUNT, ...arguments);
+    },
+
+    /**
+     * Prepares "min" query informations.
+     * Performs a min on the specified column
+     * @memberof QueryFace#
+     * @function min
+     * @param {string} column - column name to find its min
+     * @returns {QueryFace} instance of this class
+     * @example
+     *
+     * qf()
+     *   .from('users')
+     *   .min('age');
+     */
+    [SUPPORTED_QUERIES.MIN]: function(column) {
+      return aggregate(SUPPORTED_QUERIES.MIN, ...arguments);
+    },
+
+    /**
+     * Prepares "max" query informations.
+     * Performs a max on the specified column
+     * @memberof QueryFace#
+     * @function max
+     * @param {string} column - column name to find its max
+     * @returns {QueryFace} instance of this class
+     * @example
+     *
+     * qf()
+     *   .from('users')
+     *   .max('age');
+     */
+    [SUPPORTED_QUERIES.MAX]: function(column) {
+      return aggregate(SUPPORTED_QUERIES.MAX, ...arguments);
+    },
+
+    /**
+     * Prepares "sum" query informations.
+     * Performs a sum on the specified column
+     * @memberof QueryFace#
+     * @function sum
+     * @param {string} column - column name to find sum of in all records
+     * @returns {QueryFace} instance of this class
+     * @example
+     *
+     * qf()
+     *   .from('users')
+     *   .sum('age');
+     */
+    [SUPPORTED_QUERIES.SUM]: function(column) {
+      return aggregate(SUPPORTED_QUERIES.SUM, ...arguments);
+    },
+
+    /**
+     * Prepares "avg" query informations.
+     * Performs a avg on the specified column
+     * @memberof QueryFace#
+     * @function avg
+     * @param {string} column - column name to find average of in all records
+     * @returns {QueryFace} instance of this class
+     * @example
+     *
+     * qf()
+     *   .from('users')
+     *   .avg('age');
+     */
+    [SUPPORTED_QUERIES.AVG]: function(column) {
+      return aggregate(SUPPORTED_QUERIES.AVG, ...arguments);
+    },
+
+    /**
      * Prepares "returning" query informations
      * @memberof QueryFace#
      * @function returning
-     * @param {...string} columnNames - one or more column names to include result object
+     * @param {string|Array<string>} columnNames - one or more column names to include result object
      * @returns {QueryFace} instance of this class
      * @example
      *

@@ -49,6 +49,10 @@
           <a href="QueryFace.html">QueryFace</a>
           <h3></h3>
           <ul class="">
+            <li class="doc-function"><a href="QueryFace.html#avg">avg</a></li>
+            <li class="doc-function">
+              <a href="QueryFace.html#count">count</a>
+            </li>
             <li class="doc-function">
               <a href="QueryFace.html#crossJoin">crossJoin</a>
             </li>
@@ -84,6 +88,8 @@
             <li class="doc-function">
               <a href="QueryFace.html#limit">limit</a>
             </li>
+            <li class="doc-function"><a href="QueryFace.html#max">max</a></li>
+            <li class="doc-function"><a href="QueryFace.html#min">min</a></li>
             <li class="doc-function">
               <a href="QueryFace.html#offset">offset</a>
             </li>
@@ -127,6 +133,7 @@
               <a href="QueryFace.html#select">select</a>
             </li>
             <li class="doc-function"><a href="QueryFace.html#set">set</a></li>
+            <li class="doc-function"><a href="QueryFace.html#sum">sum</a></li>
             <li class="doc-function">
               <a href="QueryFace.html#update">update</a>
             </li>
@@ -197,6 +204,136 @@ qf().insert({ name: 'engin', age: 28 }).into('users'); // Creates a new QueryFac
           </div>
 
           <h3 class="subsection-title">Methods</h3>
+
+          <h4 class="name" id="avg">
+            <span class="type-signature"></span>avg<span class="signature"
+              >(column)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "avg" query informations. Performs a avg on the specified
+            column
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>column</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">
+                  column name to find average of in all records
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre class="prettyprint"><code>qf()
+  .from('users')
+  .avg('age');</code></pre>
+
+          <h4 class="name" id="count">
+            <span class="type-signature"></span>count<span class="signature"
+              >(column)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "count" query informations. Performs a count on the
+            specified column
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>column</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">column name to find its count</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre class="prettyprint"><code>qf()
+  .from('users')
+  .count('age');</code></pre>
 
           <h4 class="name" id="crossJoin">
             <span class="type-signature"></span>crossJoin<span class="signature"
@@ -1254,6 +1391,134 @@ qf().select('*').from('users').leftOuterJoin('tokens', queryBuilder =>
   .where('age', '>', 15)
   .limit(3);</code></pre>
 
+          <h4 class="name" id="max">
+            <span class="type-signature"></span>max<span class="signature"
+              >(column)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "max" query informations. Performs a max on the specified
+            column
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>column</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">column name to find its max</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre class="prettyprint"><code>qf()
+  .from('users')
+  .max('age');</code></pre>
+
+          <h4 class="name" id="min">
+            <span class="type-signature"></span>min<span class="signature"
+              >(column)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "min" query informations. Performs a min on the specified
+            column
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>column</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">column name to find its min</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre class="prettyprint"><code>qf()
+  .from('users')
+  .min('age');</code></pre>
+
           <h4 class="name" id="offset">
             <span class="type-signature"></span>offset<span class="signature"
               >(offset)</span
@@ -2128,7 +2393,7 @@ qf()
 
           <h4 class="name" id="returning">
             <span class="type-signature"></span>returning<span class="signature"
-              >(&hellip;columnNames)</span
+              >(columnNames)</span
             ><span class="type-signature">
               &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
             >
@@ -2147,8 +2412,6 @@ qf()
 
                 <th>Type</th>
 
-                <th>Attributes</th>
-
                 <th class="last">Description</th>
               </tr>
             </thead>
@@ -2159,9 +2422,10 @@ qf()
 
                 <td class="type">
                   <span class="param-type">string</span>
-                </td>
+                  |
 
-                <td class="attributes">&lt;repeatable><br /></td>
+                  <span class="param-type">Array.&lt;string></span>
+                </td>
 
                 <td class="description last">
                   one or more column names to include result object
@@ -2781,6 +3045,72 @@ qf().select('id', 'name');</code></pre>
             class="prettyprint"
           ><code>qf().update('users').set('name', 'engin').where(...);
 qf().update('users').set({ name: 'engin', age: 29 }).where(...);</code></pre>
+
+          <h4 class="name" id="sum">
+            <span class="type-signature"></span>sum<span class="signature"
+              >(column)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "sum" query informations. Performs a sum on the specified
+            column
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>column</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">
+                  column name to find sum of in all records
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre class="prettyprint"><code>qf()
+  .from('users')
+  .sum('age');</code></pre>
 
           <h4 class="name" id="update">
             <span class="type-signature"></span>update<span class="signature"

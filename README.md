@@ -107,11 +107,11 @@ chainable query structure is ready.
   - [x] offset
   - [x] limit
   - [x] returning
-  - [ ] count
-  - [ ] min
-  - [ ] max
-  - [ ] sum
-  - [ ] avg
+  - [x] count
+  - [x] min
+  - [x] max
+  - [x] sum
+  - [x] avg
   - [ ] increment
   - [ ] decrement
   - [ ] truncate
