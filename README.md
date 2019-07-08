@@ -115,9 +115,9 @@ chainable query structure is ready.
   - [ ] increment
   - [ ] decrement
   - [ ] truncate
-  - [ ] pluck
-  - [ ] first
-  - [ ] columnInfo
+  - [x] pluck
+  - [x] first
+  - [x] columnInfo
   - [ ] raw?
 - [x] run  
 this is the function that sends query to server.

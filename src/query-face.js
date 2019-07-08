@@ -319,19 +319,6 @@ export default function QueryFace() {
     return getQueriesByType(queryType);
   }
 
-  function groupBy() {
-    const [queryType, column] = [...arguments];
-    if (arguments.length === 2) {
-      if (isFunction(column)) {
-        throw new Error(`${queryType} does not support inner query`);
-      }
-      extendQuery(queryType, [column]);
-    } else {
-      throw new Error(`${queryType} -> parameter count does not match`);
-    }
-    return getQueriesByType(queryType);
-  }
-
   function orderBy() {
     const [queryType, columns, direction = 'asc'] = [...arguments];
     if (arguments.length === 2) {
@@ -1110,7 +1097,7 @@ export default function QueryFace() {
      *   .groupBy('age');
      */
     [SUPPORTED_QUERIES.GROUP_BY]: function(column) {
-      return groupBy(SUPPORTED_QUERIES.GROUP_BY, ...arguments);
+      return aggregate(SUPPORTED_QUERIES.GROUP_BY, ...arguments);
     },
 
     /**
@@ -1153,7 +1140,7 @@ export default function QueryFace() {
      * Prepares "limit" query informations.
      * @memberof QueryFace#
      * @function limit
-     * @param {string} limit - record count limit
+     * @param {number} limit - record count limit
      * @returns {QueryFace} instance of this class
      * @example
      *
@@ -1171,7 +1158,7 @@ export default function QueryFace() {
      * Prepares "offset" query informations.
      * @memberof QueryFace#
      * @function offset
-     * @param {string} offset - record count to pass off
+     * @param {number} offset - record count to pass off
      * @returns {QueryFace} instance of this class
      * @example
      *
@@ -1262,7 +1249,7 @@ export default function QueryFace() {
 
     /**
      * Prepares "avg" query informations.
-     * Performs a avg on the specified column
+     * Performs an avg on the specified column
      * @memberof QueryFace#
      * @function avg
      * @param {string} column - column name to find average of in all records
@@ -1275,6 +1262,59 @@ export default function QueryFace() {
      */
     [SUPPORTED_QUERIES.AVG]: function(column) {
       return aggregate(SUPPORTED_QUERIES.AVG, ...arguments);
+    },
+
+    /**
+     * Prepares "pluck" query informations.
+     * Performs a pluck on the specified column
+     * @memberof QueryFace#
+     * @function pluck
+     * @param {string} column - column name to get as an array result
+     * @returns {QueryFace} instance of this class
+     * @example
+     *
+     * qf()
+     *   .from('users')
+     *   .pluck('id');
+     */
+    [SUPPORTED_QUERIES.PLUCK]: function(column) {
+      return aggregate(SUPPORTED_QUERIES.PLUCK, ...arguments);
+    },
+
+    /**
+     * Prepares "first" query informations
+     * @memberof QueryFace#
+     * @function first
+     * @returns {QueryFace} instance of this class
+     * @example
+     *
+     * qf()
+     *   .from('users')
+     *   .first();
+     */
+    [SUPPORTED_QUERIES.FIRST]: function() {
+      extendQuery(SUPPORTED_QUERIES.FIRST, []);
+      return getQueriesByType(SUPPORTED_QUERIES.FIRST);
+    },
+
+    /**
+     * Prepares "columnInfo" query informations.
+     * Performs a columnInfo on the specified column
+     * @memberof QueryFace#
+     * @function columnInfo
+     * @param {string} [column=*] - column name to get column info, empty or '*' parameter will return all column informations
+     * @returns {QueryFace} instance of this class
+     * @example
+     *
+     * qf()
+     *   .from('users')
+     *   .columnInfo('id');
+     */
+    [SUPPORTED_QUERIES.COLUMN_INFO]: function(column) {
+      return aggregate(
+        SUPPORTED_QUERIES.COLUMN_INFO,
+        ...(!arguments.length ? '*' : arguments)
+      );
     },
 
     /**

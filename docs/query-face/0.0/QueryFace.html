@@ -51,6 +51,9 @@
           <ul class="">
             <li class="doc-function"><a href="QueryFace.html#avg">avg</a></li>
             <li class="doc-function">
+              <a href="QueryFace.html#columnInfo">columnInfo</a>
+            </li>
+            <li class="doc-function">
               <a href="QueryFace.html#count">count</a>
             </li>
             <li class="doc-function">
@@ -61,6 +64,9 @@
             </li>
             <li class="doc-function">
               <a href="QueryFace.html#distinct">distinct</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#first">first</a>
             </li>
             <li class="doc-function"><a href="QueryFace.html#from">from</a></li>
             <li class="doc-function">
@@ -118,6 +124,9 @@
             </li>
             <li class="doc-function">
               <a href="QueryFace.html#orderBy">orderBy</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#pluck">pluck</a>
             </li>
             <li class="doc-function">
               <a href="QueryFace.html#returning">returning</a>
@@ -214,7 +223,7 @@ qf().insert({ name: 'engin', age: 28 }).into('users'); // Creates a new QueryFac
           </h4>
 
           <div class="description">
-            Prepares "avg" query informations. Performs a avg on the specified
+            Prepares "avg" query informations. Performs an avg on the specified
             column
           </div>
 
@@ -270,6 +279,84 @@ qf().insert({ name: 'engin', age: 28 }).into('users'); // Creates a new QueryFac
           <pre class="prettyprint"><code>qf()
   .from('users')
   .avg('age');</code></pre>
+
+          <h4 class="name" id="columnInfo">
+            <span class="type-signature"></span>columnInfo<span
+              class="signature"
+              >(column<span class="signature-attributes">opt</span>)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "columnInfo" query informations. Performs a columnInfo on
+            the specified column
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th>Attributes</th>
+
+                <th>Default</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>column</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="attributes">&lt;optional><br /></td>
+
+                <td class="default">
+                  *
+                </td>
+
+                <td class="description last">
+                  column name to get column info, empty or '*' parameter will
+                  return all column informations
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre class="prettyprint"><code>qf()
+  .from('users')
+  .columnInfo('id');</code></pre>
 
           <h4 class="name" id="count">
             <span class="type-signature"></span>count<span class="signature"
@@ -587,6 +674,43 @@ qf().delete('users').where('id', 1);</code></pre>
           <pre class="prettyprint"><code>qf()
   .distinct('age')
   .from('users')</code></pre>
+
+          <h4 class="name" id="first">
+            <span class="type-signature"></span>first<span class="signature"
+              >()</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "first" query informations
+          </div>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre class="prettyprint"><code>qf()
+  .from('users')
+  .first();</code></pre>
 
           <h4 class="name" id="from">
             <span class="type-signature"></span>from<span class="signature"
@@ -1356,7 +1480,7 @@ qf().select('*').from('users').leftOuterJoin('tokens', queryBuilder =>
                 <td class="name"><code>limit</code></td>
 
                 <td class="type">
-                  <span class="param-type">string</span>
+                  <span class="param-type">number</span>
                 </td>
 
                 <td class="description last">record count limit</td>
@@ -1549,7 +1673,7 @@ qf().select('*').from('users').leftOuterJoin('tokens', queryBuilder =>
                 <td class="name"><code>offset</code></td>
 
                 <td class="type">
-                  <span class="param-type">string</span>
+                  <span class="param-type">number</span>
                 </td>
 
                 <td class="description last">record count to pass off</td>
@@ -2390,6 +2514,72 @@ qf()
     { column: 'username', order: 'desc' }
     { column: 'age', order: 'desc' }
   ]);</code></pre>
+
+          <h4 class="name" id="pluck">
+            <span class="type-signature"></span>pluck<span class="signature"
+              >(column)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "pluck" query informations. Performs a pluck on the
+            specified column
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>column</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">
+                  column name to get as an array result
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre class="prettyprint"><code>qf()
+  .from('users')
+  .pluck('id');</code></pre>
 
           <h4 class="name" id="returning">
             <span class="type-signature"></span>returning<span class="signature"
