@@ -13,7 +13,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run docs && npm test && git add ./docs",
+      "pre-commit": "npm run docs && git add ./docs",
       "pre-push": "npm test"
     }
   },

@@ -79,6 +79,33 @@
               <a href="QueryFace.html#groupBy">groupBy</a>
             </li>
             <li class="doc-function">
+              <a href="QueryFace.html#having">having</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#havingBetween">havingBetween</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#havingExists">havingExists</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#havingIn">havingIn</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#havingNotBetween">havingNotBetween</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#havingNotExists">havingNotExists</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#havingNotIn">havingNotIn</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#havingNotNull">havingNotNull</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#havingNull">havingNull</a>
+            </li>
+            <li class="doc-function">
               <a href="QueryFace.html#innerJoin">innerJoin</a>
             </li>
             <li class="doc-function">
@@ -987,6 +1014,682 @@ qf().select('*').from('users').fullOuterJoin('tokens', queryBuilder =>
   .from('users')
   .where('age', '>', 15)
   .groupBy('age');</code></pre>
+
+          <h4 class="name" id="having">
+            <span class="type-signature"></span>having<span class="signature"
+              >(column1, op, column2)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "having" query informations.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>column1</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">
+                  column name to compare another one
+                </td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>op</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">comparasion operator</td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>column2</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">
+                  column name to compare another one
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre class="prettyprint"><code>qf()
+  .select('age')
+  .from('users')
+  .groupBy('age')
+  .having('age', '>', 5);</code></pre>
+
+          <h4 class="name" id="havingBetween">
+            <span class="type-signature"></span>havingBetween<span
+              class="signature"
+              >(column, range)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "havingBetween" query informations.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>column</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">
+                  column name to check if it is between range
+                </td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>range</code></td>
+
+                <td class="type">
+                  <span class="param-type">Array</span>
+                </td>
+
+                <td class="description last">
+                  min and max values to check if given column's value is between
+                  them
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre class="prettyprint"><code>qf()
+  .select('age')
+  .from('users')
+  .groupBy('age')
+  .havingBetween('age', [5, 25]);</code></pre>
+
+          <h4 class="name" id="havingExists">
+            <span class="type-signature"></span>havingExists<span
+              class="signature"
+              >(callback)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "havingExists" query informations.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>callback</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">callback to check on exists</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre class="prettyprint"><code>qf()
+  .select('age')
+  .from('users')
+  .groupBy('age')
+  .havingExists(qb =>
+    qb.select('*').from('users').whereRaw('age > 10')
+  );</code></pre>
+
+          <h4 class="name" id="havingIn">
+            <span class="type-signature"></span>havingIn<span class="signature"
+              >(column, values)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "havingIn" query informations.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>column</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">column name to compare</td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>values</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">
+                  array of values to check if given column's value is in it
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre class="prettyprint"><code>qf()
+  .select('age')
+  .from('users')
+  .groupBy('age')
+  .havingIn('age', [5, 25]);</code></pre>
+
+          <h4 class="name" id="havingNotBetween">
+            <span class="type-signature"></span>havingNotBetween<span
+              class="signature"
+              >(column, range)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "havingNotBetween" query informations.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>column</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">
+                  column name to check if it is not between range
+                </td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>range</code></td>
+
+                <td class="type">
+                  <span class="param-type">Array</span>
+                </td>
+
+                <td class="description last">
+                  min and max values to check if given column's value is not
+                  between them
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre class="prettyprint"><code>qf()
+  .select('age')
+  .from('users')
+  .groupBy('age')
+  .havingNotBetween('age', [5, 25]);</code></pre>
+
+          <h4 class="name" id="havingNotExists">
+            <span class="type-signature"></span>havingNotExists<span
+              class="signature"
+              >(callback)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "havingNotExists" query informations.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>callback</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">
+                  callback to check on not exists
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre class="prettyprint"><code>qf()
+  .select('age')
+  .from('users')
+  .groupBy('age')
+  .havingNotExists(qb =>
+    qb.select('*').from('users').whereRaw('age > 10')
+  );</code></pre>
+
+          <h4 class="name" id="havingNotIn">
+            <span class="type-signature"></span>havingNotIn<span
+              class="signature"
+              >(column, values)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "havingNotIn" query informations.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>column</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">column name to compare</td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>values</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">
+                  array of values to check if given column's value is in it
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre class="prettyprint"><code>qf()
+  .select('age')
+  .from('users')
+  .groupBy('age')
+  .havingNotIn('age', [5, 25]);</code></pre>
+
+          <h4 class="name" id="havingNotNull">
+            <span class="type-signature"></span>havingNotNull<span
+              class="signature"
+              >(column)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "havingNotNull" query informations.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>column</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">column name to check if null</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre class="prettyprint"><code>qf()
+  .select('age')
+  .from('users')
+  .groupBy('age')
+  .havingNotNull('age');</code></pre>
+
+          <h4 class="name" id="havingNull">
+            <span class="type-signature"></span>havingNull<span
+              class="signature"
+              >(column)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "havingNull" query informations.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>column</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">column name to check if null</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre class="prettyprint"><code>qf()
+  .select('age')
+  .from('users')
+  .groupBy('age')
+  .havingNull('age');</code></pre>
 
           <h4 class="name" id="innerJoin">
             <span class="type-signature"></span>innerJoin<span class="signature"

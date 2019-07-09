@@ -89,15 +89,15 @@ chainable query structure is ready.
   - [x] onBetween / andOnBetween / orOnBetween
   - [x] onNotBetween / andOnNotBetween / orOnNotBetween
   -----------------------------------------------
-  - [ ] having
-  - [ ] havingIn
-  - [ ] havingNotIn
-  - [ ] havingNull
-  - [ ] havingNotNull
-  - [ ] havingExists
-  - [ ] havingNotExists
-  - [ ] havingBetween
-  - [ ] havingNotBetween
+  - [x] having
+  - [x] havingIn
+  - [x] havingNotIn
+  - [x] havingNull
+  - [x] havingNotNull
+  - [x] havingExists
+  - [x] havingNotExists
+  - [x] havingBetween
+  - [x] havingNotBetween
   -----------------------------------------------
   - [x] distinct
   - [x] groupBy

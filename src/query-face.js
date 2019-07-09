@@ -1064,6 +1064,238 @@ export default function QueryFace() {
     },
 
     /**
+     * Prepares "having" query informations.
+     * @memberof QueryFace#
+     * @function having
+     * @param {string} column1 - column name to compare another one
+     * @param {string} op - comparasion operator
+     * @param {string} column2 - column name to compare another one
+     * @returns {QueryFace} instance of this class
+     * @example
+     *
+     * qf()
+     *   .select('age')
+     *   .from('users')
+     *   .groupBy('age')
+     *   .having('age', '>', 5);
+     */
+    [SUPPORTED_QUERIES.HAVING]: function(column1, op, column2) {
+      return on(SUPPORTED_QUERIES.HAVING, ...arguments);
+    },
+    [SUPPORTED_QUERIES.AND_HAVING]: function(column1, op, column2) {
+      return on(SUPPORTED_QUERIES.AND_HAVING, ...arguments);
+    },
+    [SUPPORTED_QUERIES.OR_HAVING]: function(column1, op, column2) {
+      return on(SUPPORTED_QUERIES.OR_HAVING, ...arguments);
+    },
+
+    /**
+     * Prepares "havingIn" query informations.
+     * @memberof QueryFace#
+     * @function havingIn
+     * @param {string} column - column name to compare
+     * @param {string} values -  array of values to check if given column's value is in it
+     * @returns {QueryFace} instance of this class
+     * @example
+     *
+     * qf()
+     *   .select('age')
+     *   .from('users')
+     *   .groupBy('age')
+     *   .havingIn('age', [5, 25]);
+     */
+    [SUPPORTED_QUERIES.HAVING_IN]: function(column, values) {
+      return onIn(SUPPORTED_QUERIES.HAVING_IN, ...arguments);
+    },
+    [SUPPORTED_QUERIES.AND_HAVING_IN]: function(column, values) {
+      return onIn(SUPPORTED_QUERIES.AND_HAVING_IN, ...arguments);
+    },
+    [SUPPORTED_QUERIES.OR_HAVING_IN]: function(column, values) {
+      return onIn(SUPPORTED_QUERIES.OR_HAVING_IN, ...arguments);
+    },
+
+    /**
+     * Prepares "havingNotIn" query informations.
+     * @memberof QueryFace#
+     * @function havingNotIn
+     * @param {string} column - column name to compare
+     * @param {string} values -  array of values to check if given column's value is in it
+     * @returns {QueryFace} instance of this class
+     * @example
+     *
+     * qf()
+     *   .select('age')
+     *   .from('users')
+     *   .groupBy('age')
+     *   .havingNotIn('age', [5, 25]);
+     */
+    [SUPPORTED_QUERIES.HAVING_NOT_IN]: function(column, values) {
+      return onIn(SUPPORTED_QUERIES.HAVING_NOT_IN, ...arguments);
+    },
+    [SUPPORTED_QUERIES.AND_HAVING_NOT_IN]: function(column, values) {
+      return onIn(SUPPORTED_QUERIES.AND_HAVING_NOT_IN, ...arguments);
+    },
+    [SUPPORTED_QUERIES.OR_HAVING_NOT_IN]: function(column, values) {
+      return onIn(SUPPORTED_QUERIES.OR_HAVING_NOT_IN, ...arguments);
+    },
+
+    /**
+     * Prepares "havingNull" query informations.
+     * @memberof QueryFace#
+     * @function havingNull
+     * @param {string} column - column name to check if null
+     * @returns {QueryFace} instance of this class
+     * @example
+     *
+     * qf()
+     *   .select('age')
+     *   .from('users')
+     *   .groupBy('age')
+     *   .havingNull('age');
+     */
+    [SUPPORTED_QUERIES.HAVING_NULL]: function(column) {
+      return onNull(SUPPORTED_QUERIES.HAVING_NULL, ...arguments);
+    },
+    [SUPPORTED_QUERIES.AND_HAVING_NULL]: function(column) {
+      return onNull(SUPPORTED_QUERIES.AND_HAVING_NULL, ...arguments);
+    },
+    [SUPPORTED_QUERIES.OR_HAVING_NULL]: function(column) {
+      return onNull(SUPPORTED_QUERIES.OR_HAVING_NULL, ...arguments);
+    },
+
+    /**
+     * Prepares "havingNotNull" query informations.
+     * @memberof QueryFace#
+     * @function havingNotNull
+     * @param {string} column - column name to check if null
+     * @returns {QueryFace} instance of this class
+     * @example
+     *
+     * qf()
+     *   .select('age')
+     *   .from('users')
+     *   .groupBy('age')
+     *   .havingNotNull('age');
+     */
+    [SUPPORTED_QUERIES.HAVING_NOT_NULL]: function(column) {
+      return onNull(SUPPORTED_QUERIES.HAVING_NOT_NULL, ...arguments);
+    },
+    [SUPPORTED_QUERIES.AND_HAVING_NOT_NULL]: function(column) {
+      return onNull(SUPPORTED_QUERIES.AND_HAVING_NOT_NULL, ...arguments);
+    },
+    [SUPPORTED_QUERIES.OR_HAVING_NOT_NULL]: function(column) {
+      return onNull(SUPPORTED_QUERIES.OR_HAVING_NOT_NULL, ...arguments);
+    },
+
+    /**
+     * Prepares "havingExists" query informations.
+     * @memberof QueryFace#
+     * @function havingExists
+     * @param {string} callback - callback to check on exists
+     * @returns {QueryFace} instance of this class
+     * @example
+     *
+     * qf()
+     *   .select('age')
+     *   .from('users')
+     *   .groupBy('age')
+     *   .havingExists(qb =>
+     *     qb.select('*').from('users').whereRaw('age > 10')
+     *   );
+     */
+    [SUPPORTED_QUERIES.HAVING_EXISTS]: function(callback) {
+      return whereExists(SUPPORTED_QUERIES.HAVING_EXISTS, ...arguments);
+    },
+    [SUPPORTED_QUERIES.AND_HAVING_EXISTS]: function(callback) {
+      return whereExists(SUPPORTED_QUERIES.AND_HAVING_EXISTS, ...arguments);
+    },
+    [SUPPORTED_QUERIES.OR_HAVING_EXISTS]: function(callback) {
+      return whereExists(SUPPORTED_QUERIES.OR_HAVING_EXISTS, ...arguments);
+    },
+
+    /**
+     * Prepares "havingNotExists" query informations.
+     * @memberof QueryFace#
+     * @function havingNotExists
+     * @param {string} callback - callback to check on not exists
+     * @returns {QueryFace} instance of this class
+     * @example
+     *
+     * qf()
+     *   .select('age')
+     *   .from('users')
+     *   .groupBy('age')
+     *   .havingNotExists(qb =>
+     *     qb.select('*').from('users').whereRaw('age > 10')
+     *   );
+     */
+    [SUPPORTED_QUERIES.HAVING_NOT_EXISTS]: function(callback) {
+      return whereExists(SUPPORTED_QUERIES.HAVING_NOT_EXISTS, ...arguments);
+    },
+    [SUPPORTED_QUERIES.AND_HAVING_NOT_EXISTS]: function(callback) {
+      return whereExists(SUPPORTED_QUERIES.AND_HAVING_NOT_EXISTS, ...arguments);
+    },
+    [SUPPORTED_QUERIES.OR_HAVING_NOT_EXISTS]: function(callback) {
+      return whereExists(SUPPORTED_QUERIES.OR_HAVING_NOT_EXISTS, ...arguments);
+    },
+
+    /**
+     * Prepares "havingBetween" query informations.
+     * @memberof QueryFace#
+     * @function havingBetween
+     * @param {string} column - column name to check if it is between range
+     * @param {Array} range - min and max values to check if given column's value is between them
+     * @returns {QueryFace} instance of this class
+     * @example
+     *
+     * qf()
+     *   .select('age')
+     *   .from('users')
+     *   .groupBy('age')
+     *   .havingBetween('age', [5, 25]);
+     */
+    [SUPPORTED_QUERIES.HAVING_BETWEEN]: function(column, range) {
+      return whereBetween(SUPPORTED_QUERIES.HAVING_BETWEEN, ...arguments);
+    },
+    [SUPPORTED_QUERIES.AND_HAVING_BETWEEN]: function(column, range) {
+      return whereBetween(SUPPORTED_QUERIES.AND_HAVING_BETWEEN, ...arguments);
+    },
+    [SUPPORTED_QUERIES.OR_HAVING_BETWEEN]: function(column, range) {
+      return whereBetween(SUPPORTED_QUERIES.OR_HAVING_BETWEEN, ...arguments);
+    },
+
+    /**
+     * Prepares "havingNotBetween" query informations.
+     * @memberof QueryFace#
+     * @function havingNotBetween
+     * @param {string} column - column name to check if it is not between range
+     * @param {Array} range - min and max values to check if given column's value is not between them
+     * @returns {QueryFace} instance of this class
+     * @example
+     *
+     * qf()
+     *   .select('age')
+     *   .from('users')
+     *   .groupBy('age')
+     *   .havingNotBetween('age', [5, 25]);
+     */
+    [SUPPORTED_QUERIES.HAVING_NOT_BETWEEN]: function(column, range) {
+      return whereBetween(SUPPORTED_QUERIES.HAVING_NOT_BETWEEN, ...arguments);
+    },
+    [SUPPORTED_QUERIES.AND_HAVING_NOT_BETWEEN]: function(column, range) {
+      return whereBetween(
+        SUPPORTED_QUERIES.AND_HAVING_NOT_BETWEEN,
+        ...arguments
+      );
+    },
+    [SUPPORTED_QUERIES.OR_HAVING_NOT_BETWEEN]: function(column, range) {
+      return whereBetween(
+        SUPPORTED_QUERIES.OR_HAVING_NOT_BETWEEN,
+        ...arguments
+      );
+    },
+
+    /**
      * Prepares "distinct" query informations.
      * @memberof QueryFace#
      * @function distinct
