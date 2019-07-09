@@ -1,6 +1,7 @@
+import babel from 'rollup-plugin-babel';
 import pkg from './package.json';
 const libFolder = 'lib';
-// import { terser } from 'rollup-plugin-terser';
+//import { terser } from 'rollup-plugin-terser';
 export default [
   {
     input: '.jsdoc/src/versions.js',
@@ -38,7 +39,25 @@ export default [
         exports: 'named',
       },
     ],
-    plugins: [],
+    plugins: [
+      babel({
+        exclude: 'node_modules/**',
+        presets: [['@babel/preset-env', { modules: false }]],
+        plugins: [
+          [
+            '@babel/plugin-proposal-object-rest-spread',
+            { loose: true, useBuiltIns: true },
+          ],
+        ],
+      }),
+      // prod build configurations
+      // terser({
+      //   mangle: {
+      //     properties: false,
+      //     keep_fnames: true,
+      //   },
+      // }),
+    ],
     external: [...Object.keys(pkg.dependencies || {})],
   },
 ];

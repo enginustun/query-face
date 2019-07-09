@@ -20,8 +20,14 @@
   "keywords": [],
   "author": "engin üstün",
   "license": "MIT",
+  "jest": {
+    "transform": {
+      "^.+\\.js$": "<rootDir>/jest.transform.js"
+    }
+  },
   "devDependencies": {
     "@babel/core": "^7.4.4",
+    "@babel/plugin-proposal-object-rest-spread": "^7.5.4",
     "@babel/preset-env": "^7.4.4",
     "@types/jest": "^24.0.11",
     "eslint": "^5.16.0",
@@ -32,6 +38,7 @@
     "jsdoc": "^3.5.5",
     "prettier": "1.17.0",
     "rollup": "^1.10.1",
+    "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-terser": "^4.0.4"
   }
 }
