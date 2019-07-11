@@ -377,6 +377,31 @@ export default function QueryFace() {
     return getQueriesByType(queryType);
   }
 
+  function withAll() {
+    const [queryType, alias, callback] = [...arguments];
+    console.log(queryType, alias, callback, arguments);
+    if (arguments.length === 3) {
+      if (isNotString(alias) || !isFunction(callback)) {
+        throw new Error(
+          `${queryType} -> first parameter must be string, second one must be function`
+        );
+      }
+      extendQuery(
+        queryType,
+        [alias],
+        callback
+          .call(
+            null,
+            new QueryFace(SUPPORTED_QUERIES.__CALLBACK_WHERE_EXISTS, true)
+          )
+          .getQuery()
+      );
+    } else {
+      throw new Error(`${queryType} -> parameter count does not match`);
+    }
+    return getQueriesByType(queryType);
+  }
+
   const queries = {
     /**
      * Prepares "select" query informations
@@ -1579,6 +1604,53 @@ export default function QueryFace() {
      */
     [SUPPORTED_QUERIES.UNION_ALL]: function(callback) {
       return whereExists(SUPPORTED_QUERIES.UNION_ALL, ...arguments);
+    },
+
+    /**
+     * Prepares "with" query informations.
+     * @memberof QueryFace#
+     * @function with
+     * @param {string} alias - alias name of with query
+     * @param {function} callback - callback inner query for with operation
+     * @returns {QueryFace} instance of this class
+     * @example
+     *
+     * qf()
+     *  .with('userInfo', qb => qb.select('id', 'username').from('users'))
+     *  .select('*')
+     *  .from('userInfo');
+     */
+    [SUPPORTED_QUERIES.WITH]: function(alias, callback) {
+      return withAll(SUPPORTED_QUERIES.WITH, ...arguments);
+    },
+
+    /**
+     * Prepares "withRecursive" query informations.
+     * @memberof QueryFace#
+     * @function withRecursive
+     * @param {string} alias - alias name of withRecursive query
+     * @param {function} callback - callback inner query for withRecursive operation
+     * @returns {QueryFace} instance of this class
+     * @example
+     *
+     * qf()
+     *   .withRecursive('userInfo', qb =>
+     *     qb
+     *       .select('id', 'username', 'age')
+     *       .from('users')
+     *       .where('id', 1)
+     *       .union(qb =>
+     *         qb
+     *           .select('u1.id', 'u1.username', 'u1.age')
+     *           .from('users as u1')
+     *           .innerJoin('userInfo as u2', 'u2.id', 'u1.family_id')
+     *       )
+     *   )
+     *   .select('*')
+     *   .from('userInfo');
+     */
+    [SUPPORTED_QUERIES.WITH_RECURSIVE]: function(alias, callback) {
+      return withAll(SUPPORTED_QUERIES.WITH_RECURSIVE, ...arguments);
     },
 
     /**

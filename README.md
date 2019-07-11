@@ -77,7 +77,6 @@ chainable query structure is ready.
   - [x] rightOuterJoin
   - [x] fullOuterJoin
   - [x] crossJoin
-  - [ ] joinRaw
   -----------------------------------------------
   - [x] on
   - [x] onIn / andOnIn / orOnIn
@@ -101,9 +100,7 @@ chainable query structure is ready.
   -----------------------------------------------
   - [x] distinct
   - [x] groupBy
-  - [ ] groupByRaw
   - [x] orderBy
-  - [ ] orderByRaw
   - [x] offset
   - [x] limit
   - [x] returning
@@ -112,14 +109,13 @@ chainable query structure is ready.
   - [x] max
   - [x] sum
   - [x] avg
-  - [ ] increment
-  - [ ] decrement
   - [ ] truncate
   - [x] pluck
   - [x] first
   - [x] columnInfo
   - [x] union
   - [x] unionAll
-  - [ ] raw?
+  - [x] with
+  - [x] withRecursive
 - [x] run  
 this is the function that sends query to server.

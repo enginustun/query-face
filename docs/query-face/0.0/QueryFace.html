@@ -212,6 +212,10 @@
             <li class="doc-function">
               <a href="QueryFace.html#whereRaw">whereRaw</a>
             </li>
+            <li class="doc-function"><a href="QueryFace.html#with">with</a></li>
+            <li class="doc-function">
+              <a href="QueryFace.html#withRecursive">withRecursive</a>
+            </li>
           </ul>
         </li>
       </ul>
@@ -5117,6 +5121,172 @@ qf().select('*').from('users').whereNot('age', '>', 18);</code></pre>
 qf().select('*').from('users').whereRaw('age &lt; 25');
 qf().select('*').from('users').whereRaw('age &lt; ?', [25]);
 qf().select('*').from('users').whereRaw('age in (18, 27)');</code></pre>
+
+          <h4 class="name" id="with">
+            <span class="type-signature"></span>with<span class="signature"
+              >(alias, callback)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "with" query informations.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>alias</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">alias name of with query</td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>callback</code></td>
+
+                <td class="type">
+                  <span class="param-type">function</span>
+                </td>
+
+                <td class="description last">
+                  callback inner query for with operation
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre class="prettyprint"><code>qf()
+ .with('userInfo', qb => qb.select('id', 'username').from('users'))
+ .select('*')
+ .from('userInfo');</code></pre>
+
+          <h4 class="name" id="withRecursive">
+            <span class="type-signature"></span>withRecursive<span
+              class="signature"
+              >(alias, callback)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "withRecursive" query informations.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>alias</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">
+                  alias name of withRecursive query
+                </td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>callback</code></td>
+
+                <td class="type">
+                  <span class="param-type">function</span>
+                </td>
+
+                <td class="description last">
+                  callback inner query for withRecursive operation
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre class="prettyprint"><code>qf()
+  .withRecursive('userInfo', qb =>
+    qb
+      .select('id', 'username', 'age')
+      .from('users')
+      .where('id', 1)
+      .union(qb =>
+        qb
+          .select('u1.id', 'u1.username', 'u1.age')
+          .from('users as u1')
+          .innerJoin('userInfo as u2', 'u2.id', 'u1.family_id')
+      )
+  )
+  .select('*')
+  .from('userInfo');</code></pre>
         </article>
       </section>
     </div>
