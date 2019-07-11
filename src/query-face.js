@@ -1550,6 +1550,38 @@ export default function QueryFace() {
     },
 
     /**
+     * Prepares "union" query informations.
+     * @memberof QueryFace#
+     * @function union
+     * @param {function} callback - callback to union with first query
+     * @returns {QueryFace} instance of this class
+     * @example
+     *
+     * qf().select('*').from('users').union(queryBuilder =>
+     *   queryBuilder.from('users').where('id', '>', 10)
+     * );
+     */
+    [SUPPORTED_QUERIES.UNION]: function(callback) {
+      return whereExists(SUPPORTED_QUERIES.UNION, ...arguments);
+    },
+
+    /**
+     * Prepares "unionAll" query informations.
+     * @memberof QueryFace#
+     * @function unionAll
+     * @param {function} callback - callback to unionAll with first query
+     * @returns {QueryFace} instance of this class
+     * @example
+     *
+     * qf().select('*').from('users').unionAll(queryBuilder =>
+     *   queryBuilder.from('users').where('id', '>', 10)
+     * );
+     */
+    [SUPPORTED_QUERIES.UNION_ALL]: function(callback) {
+      return whereExists(SUPPORTED_QUERIES.UNION_ALL, ...arguments);
+    },
+
+    /**
      * Prepares "returning" query informations
      * @memberof QueryFace#
      * @function returning

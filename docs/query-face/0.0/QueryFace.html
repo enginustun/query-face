@@ -171,6 +171,12 @@
             <li class="doc-function"><a href="QueryFace.html#set">set</a></li>
             <li class="doc-function"><a href="QueryFace.html#sum">sum</a></li>
             <li class="doc-function">
+              <a href="QueryFace.html#union">union</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#unionAll">unionAll</a>
+            </li>
+            <li class="doc-function">
               <a href="QueryFace.html#update">update</a>
             </li>
             <li class="doc-function">
@@ -4004,6 +4010,140 @@ qf().update('users').set({ name: 'engin', age: 29 }).where(...);</code></pre>
           <pre class="prettyprint"><code>qf()
   .from('users')
   .sum('age');</code></pre>
+
+          <h4 class="name" id="union">
+            <span class="type-signature"></span>union<span class="signature"
+              >(callback)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "union" query informations.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>callback</code></td>
+
+                <td class="type">
+                  <span class="param-type">function</span>
+                </td>
+
+                <td class="description last">
+                  callback to union with first query
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre
+            class="prettyprint"
+          ><code>qf().select('*').from('users').union(queryBuilder =>
+  queryBuilder.from('users').where('id', '>', 10)
+);</code></pre>
+
+          <h4 class="name" id="unionAll">
+            <span class="type-signature"></span>unionAll<span class="signature"
+              >(callback)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "unionAll" query informations.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>callback</code></td>
+
+                <td class="type">
+                  <span class="param-type">function</span>
+                </td>
+
+                <td class="description last">
+                  callback to unionAll with first query
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre
+            class="prettyprint"
+          ><code>qf().select('*').from('users').unionAll(queryBuilder =>
+  queryBuilder.from('users').where('id', '>', 10)
+);</code></pre>
 
           <h4 class="name" id="update">
             <span class="type-signature"></span>update<span class="signature"

@@ -118,6 +118,8 @@ chainable query structure is ready.
   - [x] pluck
   - [x] first
   - [x] columnInfo
+  - [x] union
+  - [x] unionAll
   - [ ] raw?
 - [x] run  
 this is the function that sends query to server.
