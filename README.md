@@ -117,5 +117,6 @@ chainable query structure is ready.
   - [x] unionAll
   - [x] with
   - [x] withRecursive
+  - [ ] withSchema
 - [x] run  
 this is the function that sends query to server.
