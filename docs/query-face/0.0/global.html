@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>query-face Class: Config</title>
+    <title>query-face Global</title>
 
     <script src="../../public/scripts/prettify/prettify.js"></script>
     <script src="../../public/scripts/prettify/lang-css.js"></script>
@@ -223,48 +223,32 @@
     </nav>
 
     <div id="main">
-      <h1 class="page-title">Class: Config</h1>
+      <h1 class="page-title">Global</h1>
 
       <section>
+        <header>
+          <h2></h2>
+        </header>
+
         <article>
           <div class="container-overview">
-            <div class="description">
-              This is the configuration class that you can manage internal and
-              external configurations you need.
-              <div>
-                This class and its methods are all static. You cannot create
-                instance of this class.
-              </div>
-            </div>
-
             <dl class="details"></dl>
-
-            <h5>Example</h5>
-
-            <pre
-              class="prettyprint"
-            ><code>import QueryFace, { Config } from 'query-face';
-
-Config.set('user.name', 'engin');
-Config.get('user.name');</code></pre>
           </div>
 
-          <h3 class="subsection-title">Methods</h3>
+          <h3 class="subsection-title">Type Definitions</h3>
 
-          <h4 class="name" id=".get">
-            <span class="type-signature">(static) </span>get<span
-              class="signature"
-              >(key)</span
-            ><span class="type-signature"></span>
-          </h4>
+          <h4 class="name" id="QueryFaceOptions">QueryFaceOptions</h4>
 
-          <div class="description">
-            You can get configuration value by string key.
-          </div>
+          <h5>Type:</h5>
+          <ul>
+            <li>
+              <span class="param-type">Object</span>
+            </li>
+          </ul>
 
-          <h5>Parameters:</h5>
+          <h5 class="subsection-title">Properties:</h5>
 
-          <table class="params">
+          <table class="props">
             <thead>
               <tr>
                 <th>Name</th>
@@ -277,133 +261,32 @@ Config.get('user.name');</code></pre>
 
             <tbody>
               <tr>
-                <td class="name"><code>key</code></td>
+                <td class="name"><code>dbName</code></td>
 
                 <td class="type">
                   <span class="param-type">string</span>
                 </td>
 
                 <td class="description last">
-                  parameter to get value from configuration object
+                  database name or alias you want to run your query on
+                </td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>queryName</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">
+                  unique name of query to compare with template on backend
                 </td>
               </tr>
             </tbody>
           </table>
 
           <dl class="details"></dl>
-
-          <h5>Returns:</h5>
-
-          <div class="param-desc">
-            value of given key parameter
-          </div>
-
-          <h5>Examples</h5>
-
-          <pre
-            class="prettyprint"
-          ><code>// lets assume we have user config as below
-Config.set('user', { name: 'engin', email: 'enginustun@outlook.com' });
-// or we can set as below
-Config.set('user.name', 'engin');
-Config.set('user.email', 'enginustun@outlook.com');</code></pre>
-
-          <pre class="prettyprint"><code>// if we want to get user config
-Config.get('user'); // returns {name: "engin", email: "enginustun@outlook.com"}
-Config.get('user.name'); // returns "engin"
-Config.get('user.email'); // returns "enginustun@outlook.com"</code></pre>
-
-          <h4 class="name" id=".set">
-            <span class="type-signature">(static) </span>set<span
-              class="signature"
-              >(key, value<span class="signature-attributes">opt</span>)</span
-            ><span class="type-signature"></span>
-          </h4>
-
-          <div class="description">
-            Sets configuration object based on key and value. It can set
-            configurations deeply.
-          </div>
-
-          <h5>Parameters:</h5>
-
-          <table class="params">
-            <thead>
-              <tr>
-                <th>Name</th>
-
-                <th>Type</th>
-
-                <th>Attributes</th>
-
-                <th class="last">Description</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              <tr>
-                <td class="name"><code>key</code></td>
-
-                <td class="type">
-                  <span class="param-type">string</span>
-                  |
-
-                  <span class="param-type">Object</span>
-                </td>
-
-                <td class="attributes"></td>
-
-                <td class="description last">
-                  required key or key/value object
-                </td>
-              </tr>
-
-              <tr>
-                <td class="name"><code>value</code></td>
-
-                <td class="type">
-                  <span class="param-type">string</span>
-                  |
-
-                  <span class="param-type">Object</span>
-                </td>
-
-                <td class="attributes">&lt;optional><br /></td>
-
-                <td class="description last">
-                  optional value, when key is string the value is required. it
-                  can be a string or object
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <dl class="details"></dl>
-
-          <h5>Example</h5>
-
-          <pre
-            class="prettyprint"
-          ><code>// single parameter as Object, it will be useful to initialize configurations.
-Config.set({
-  endpoint: 'https://github.com',
-  headers: {
-    'Content-Type': 'application/json'
-  }
-});
-
-// single key, string value
-Config.set('token', 'Ye4tpWyBNIjl8HVPjZF5OJnjEPAO5mIo');
-
-// single key, object value
-Config.set('user', { name: 'engin', email: 'enginustun@outlook.com' });
-
-// nested keys, string value
-Config.set('user.name', 'engin');
-Config.set('user.email', 'enginustun@outlook.com');
-
-// nested keys, object value
-Config.set('user.info', { age: 28, address: 'İstanbul' })</code></pre>
         </article>
       </section>
     </div>

@@ -219,6 +219,7 @@
           </ul>
         </li>
       </ul>
+      <h3><a href="global.html">Global</a></h3>
     </nav>
 
     <div id="main">
@@ -232,21 +233,56 @@
               create ORM queries for backend with chainable methods.
             </div>
 
+            <h5>Parameters:</h5>
+
+            <table class="params">
+              <thead>
+                <tr>
+                  <th>Name</th>
+
+                  <th>Type</th>
+
+                  <th class="last">Description</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr>
+                  <td class="name"><code>options</code></td>
+
+                  <td class="type">
+                    <span class="param-type"
+                      ><a href="global.html#QueryFaceOptions"
+                        >QueryFaceOptions</a
+                      ></span
+                    >
+                  </td>
+
+                  <td class="description last">initial settings of query</td>
+                </tr>
+              </tbody>
+            </table>
+
             <dl class="details"></dl>
 
             <h5>Example</h5>
 
             <pre class="prettyprint"><code>import QueryFace from 'query-face';
-new QueryFace();
-QueryFace(); // shortened
+new QueryFace(options);
+QueryFace(options); // shortened
 // -----
-const qf = QueryFace();
+const qf = QueryFace({ queryName: 'getUsers', dbName: 'myProject' });
 qf.select('*').from('users');
 
 // Suggested Usage
 import qf from 'query-face';
-qf().select('*').from('users'); // Creates QueryFace instance
-qf().insert({ name: 'engin', age: 28 }).into('users'); // Creates a new QueryFace instance</code></pre>
+qf({ queryName: 'getUsers', dbName: 'myProject' })
+  .select('*')
+  .from('users');
+
+qf({ queryName: 'insertUser', dbName: 'myProject' })
+  .insert({ name: 'engin', age: 28 })
+  .into('users');</code></pre>
           </div>
 
           <h3 class="subsection-title">Methods</h3>

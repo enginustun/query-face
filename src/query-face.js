@@ -19,20 +19,32 @@ Config.set({
 });
 
 /**
+ * @typedef {Object} QueryFaceOptions
+ * @property {string} dbName - database name or alias you want to run your query on
+ * @property {string} queryName - unique name of query to compare with template on backend
+ */
+
+/**
  * This is the base class of query-face library that you can use to create ORM queries for backend with chainable methods.
  * @class QueryFace
+ * @param {QueryFaceOptions} options - initial settings of query
  * @example
  * import QueryFace from 'query-face';
- * new QueryFace();
- * QueryFace(); // shortened
+ * new QueryFace(options);
+ * QueryFace(options); // shortened
  * // -----
- * const qf = QueryFace();
+ * const qf = QueryFace({ queryName: 'getUsers', dbName: 'myProject' });
  * qf.select('*').from('users');
  *
  * // Suggested Usage
  * import qf from 'query-face';
- * qf().select('*').from('users'); // Creates QueryFace instance
- * qf().insert({ name: 'engin', age: 28 }).into('users'); // Creates a new QueryFace instance
+ * qf({ queryName: 'getUsers', dbName: 'myProject' })
+ *   .select('*')
+ *   .from('users');
+ *
+ * qf({ queryName: 'insertUser', dbName: 'myProject' })
+ *   .insert({ name: 'engin', age: 28 })
+ *   .into('users');
  */
 export default function QueryFace() {
   if (!new.target) {
@@ -48,6 +60,16 @@ export default function QueryFace() {
    * @argument
    */
   let type = arguments[0];
+
+  /**
+   * initial configuration definition if there are any
+   */
+  const {
+    dbName: db = Config.get('dbName'),
+    queryName: query = Config.get('queryName'),
+  } = {
+    ...arguments[0],
+  };
 
   /**
    * This is the hidden/private argument to specify instance is created by inner query.
@@ -379,7 +401,6 @@ export default function QueryFace() {
 
   function withAll() {
     const [queryType, alias, callback] = [...arguments];
-    console.log(queryType, alias, callback, arguments);
     if (arguments.length === 3) {
       if (isNotString(alias) || !isFunction(callback)) {
         throw new Error(
@@ -1810,6 +1831,8 @@ export default function QueryFace() {
       credentials = Config.get('credentials'),
       redirect = Config.get('redirect'),
       referrer = Config.get('referrer'),
+      dbName = db,
+      queryName = query,
     } = {}) => {
       if (!endpoint) {
         throw new Error('endpoint must be provided to run any query.');
@@ -1817,7 +1840,7 @@ export default function QueryFace() {
       const configs = {
         method,
         headers: { ...Config.get('headers'), ...headers },
-        body: JSON.stringify({ query: getQuery() }),
+        body: JSON.stringify({ dbName, queryName, query: getQuery() }),
         mode,
         cache,
         credentials,
