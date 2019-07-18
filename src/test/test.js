@@ -2,6 +2,7 @@ import {
   DEFAULT_QUERY_TYPE,
   RETURN_QUERIES_BY_TYPE,
   SUPPORTED_QUERIES,
+  CONST_PREFIX,
 } from '../constants';
 let qf;
 
@@ -31,6 +32,6 @@ describe('query-face', () => {
     expect(query.length).toBe(1);
     expect(query[0].$op).toBe(SUPPORTED_QUERIES.SELECT);
     expect(query[0].$params.length).toBe(1);
-    expect(query[0].$params[0]).toBe('*');
+    expect(query[0].$params[0]).toBe(`${CONST_PREFIX}*`);
   });
 });

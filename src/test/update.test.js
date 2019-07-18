@@ -1,4 +1,8 @@
-import { RETURN_QUERIES_BY_TYPE, SUPPORTED_QUERIES } from '../constants';
+import {
+  RETURN_QUERIES_BY_TYPE,
+  SUPPORTED_QUERIES,
+  CONST_PREFIX,
+} from '../constants';
 const qf = require('../index').default;
 const fakeData = { name: 'engin', age: 29 };
 
@@ -16,7 +20,7 @@ describe('update', () => {
     const query = queryBuilder.getQuery();
     expect(query.length).toBe(1);
     expect(query[0].$op).toBe(SUPPORTED_QUERIES.UPDATE);
-    expect(query[0].$params).toEqual(['users']);
+    expect(query[0].$params).toEqual([`${CONST_PREFIX}users`]);
   });
   it('with non-string single parameter throws error', () => {
     expect(() => {

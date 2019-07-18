@@ -5,6 +5,7 @@ import {
   SUPPORTED_QUERIES,
   RETURN_QUERIES_BY_TYPE,
   DEFAULT_QUERY_TYPE,
+  CONST_PREFIX,
 } from './constants';
 import Config from './config';
 
@@ -157,13 +158,13 @@ export default function QueryFace() {
         throw new Error(`${queryType} -> parameter must be function`);
       }
     } else if (arguments.length === 3) {
-      column = arg1;
-      op = '=';
+      column = `${CONST_PREFIX}${arg1}`;
+      op = `${CONST_PREFIX}=`;
       value = arg2;
       extendQuery(queryType, [column, op, value]);
     } else if (arguments.length === 4) {
-      column = arg1;
-      op = arg2;
+      column = `${CONST_PREFIX}${arg1}`;
+      op = `${CONST_PREFIX}${arg2}`;
       value = arg3;
       extendQuery(queryType, [column, op, value]);
     }
@@ -210,7 +211,7 @@ export default function QueryFace() {
       if (isFunction(column)) {
         throw new Error(`${queryType} does not support inner query`);
       }
-      extendQuery(queryType, [column]);
+      extendQuery(queryType, [`${CONST_PREFIX}${column}`]);
     } else {
       throw new Error(`${queryType} -> parameter count does not match`);
     }
@@ -248,7 +249,7 @@ export default function QueryFace() {
           `${queryType} -> second parameter must be a 2-element array: [min, max]`
         );
       }
-      extendQuery(queryType, [column, range]);
+      extendQuery(queryType, [`${CONST_PREFIX}${column}`, range]);
     } else {
       throw new Error(`${queryType} -> parameter count does not match`);
     }
@@ -289,7 +290,7 @@ export default function QueryFace() {
       }
       extendQuery(
         queryType,
-        [tableName],
+        [`${CONST_PREFIX}${tableName}`],
         onColumn1OrCallback
           .call(
             null,
@@ -298,7 +299,11 @@ export default function QueryFace() {
           .getQuery()
       );
     } else if (arguments.length === 4) {
-      extendQuery(queryType, [tableName, onColumn1OrCallback, onColumn2]);
+      extendQuery(queryType, [
+        `${CONST_PREFIX}${tableName}`,
+        `${CONST_PREFIX}${onColumn1OrCallback}`,
+        `${CONST_PREFIX}${onColumn2}`,
+      ]);
     } else {
       throw new Error(`${queryType} -> parameter count does not match`);
     }
@@ -308,7 +313,11 @@ export default function QueryFace() {
   function on() {
     const [queryType, column1, op, column2] = [...arguments];
     if (arguments.length === 4) {
-      extendQuery(queryType, [column1, op, column2]);
+      extendQuery(queryType, [
+        `${CONST_PREFIX}${column1}`,
+        `${CONST_PREFIX}${op}`,
+        `${CONST_PREFIX}${column2}`,
+      ]);
     } else {
       throw new Error(`${queryType} -> parameter count does not match`);
     }
@@ -321,7 +330,7 @@ export default function QueryFace() {
       if (!Array.isArray(values)) {
         throw new Error(`${queryType} -> second parameter must be an array`);
       }
-      extendQuery(queryType, [column, values]);
+      extendQuery(queryType, [`${CONST_PREFIX}${column}`, values]);
     } else {
       throw new Error(`${queryType} -> parameter count does not match`);
     }
@@ -334,7 +343,7 @@ export default function QueryFace() {
       if (isFunction(column)) {
         throw new Error(`${queryType} does not support inner query`);
       }
-      extendQuery(queryType, [column]);
+      extendQuery(queryType, [`${CONST_PREFIX}${column}`]);
     } else {
       throw new Error(`${queryType} -> parameter count does not match`);
     }
@@ -392,7 +401,7 @@ export default function QueryFace() {
       if (isNotString(column)) {
         throw new Error(`${queryType} -> column parameter must be string `);
       }
-      extendQuery(queryType, [column]);
+      extendQuery(queryType, [`${CONST_PREFIX}${column}`]);
     } else {
       throw new Error(`${queryType} -> parameter must be a string`);
     }
@@ -435,7 +444,10 @@ export default function QueryFace() {
      * qf().select('id', 'name');
      */
     [SUPPORTED_QUERIES.SELECT]: function() {
-      extendQuery(SUPPORTED_QUERIES.SELECT, [...arguments]);
+      extendQuery(
+        SUPPORTED_QUERIES.SELECT,
+        [...arguments].map(arg => `${CONST_PREFIX}${arg}`)
+      );
       return getQueriesByType(SUPPORTED_QUERIES.SELECT);
     },
 
@@ -449,7 +461,7 @@ export default function QueryFace() {
      * qf().select('*').from('users');
      */
     [SUPPORTED_QUERIES.FROM]: function(tableName) {
-      extendQuery(SUPPORTED_QUERIES.FROM, [tableName]);
+      extendQuery(SUPPORTED_QUERIES.FROM, [`${CONST_PREFIX}${tableName}`]);
       return getQueriesByType(SUPPORTED_QUERIES.FROM);
     },
 
@@ -1716,7 +1728,7 @@ export default function QueryFace() {
      * qf().insert({ name: 'engin', age: 28 }).into('users');
      */
     [SUPPORTED_QUERIES.INTO]: function(tableName) {
-      extendQuery(SUPPORTED_QUERIES.INTO, [tableName]);
+      extendQuery(SUPPORTED_QUERIES.INTO, [`${CONST_PREFIX}${tableName}`]);
       return getQueriesByType(SUPPORTED_QUERIES.INTO);
     },
 
@@ -1735,7 +1747,7 @@ export default function QueryFace() {
           'tableName parameter must be string for .update(tableName) function'
         );
       }
-      extendQuery(SUPPORTED_QUERIES.UPDATE, [tableName]);
+      extendQuery(SUPPORTED_QUERIES.UPDATE, [`${CONST_PREFIX}${tableName}`]);
       return getQueriesByType(SUPPORTED_QUERIES.UPDATE);
     },
 
@@ -1794,7 +1806,7 @@ export default function QueryFace() {
           'tableName parameter must be string for .delete(tableName) function'
         );
       }
-      extendQuery(SUPPORTED_QUERIES.DELETE, [tableName]);
+      extendQuery(SUPPORTED_QUERIES.DELETE, [`${CONST_PREFIX}${tableName}`]);
       return getQueriesByType(SUPPORTED_QUERIES.DELETE);
     },
 
@@ -1837,10 +1849,13 @@ export default function QueryFace() {
       if (!endpoint) {
         throw new Error('endpoint must be provided to run any query.');
       }
+
       const configs = {
         method,
         headers: { ...Config.get('headers'), ...headers },
-        body: JSON.stringify({ dbName, queryName, query: getQuery() }),
+        ...(method.toLowerCase() === 'post'
+          ? { body: JSON.stringify({ dbName, queryName, query: getQuery() }) }
+          : {}),
         mode,
         cache,
         credentials,
