@@ -28,7 +28,7 @@ describe('query-face', () => {
   it(`select query generated successfully`, () => {
     const instance = qf();
     instance.select('*');
-    const query = instance.getQuery();
+    const { query } = instance.getQuery();
     expect(query.length).toBe(1);
     expect(query[0].$op).toBe(SUPPORTED_QUERIES.SELECT);
     expect(query[0].$params.length).toBe(1);

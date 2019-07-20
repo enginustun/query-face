@@ -17,7 +17,7 @@ describe('delete', () => {
   });
   it('works well', () => {
     const queryBuilder = qf().delete('users');
-    const query = queryBuilder.getQuery();
+    const { query } = queryBuilder.getQuery();
     expect(query.length).toBe(1);
     expect(query[0].$op).toBe(SUPPORTED_QUERIES.DELETE);
     expect(query[0].$params).toEqual([`${CONST_PREFIX}users`]);

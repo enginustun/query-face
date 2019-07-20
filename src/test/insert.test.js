@@ -17,14 +17,14 @@ describe('insert', () => {
   });
   it('single works well', () => {
     const queryBuilder = qf().insert(fakeData);
-    const query = queryBuilder.getQuery();
+    const { query } = queryBuilder.getQuery();
     expect(query.length).toBe(1);
     expect(query[0].$op).toBe(SUPPORTED_QUERIES.INSERT);
     expect(query[0].$params).toEqual([fakeData]);
   });
   it('bulk works well', () => {
     const queryBuilder = qf().insert(fakeBulkData);
-    const query = queryBuilder.getQuery();
+    const { query } = queryBuilder.getQuery();
     expect(query.length).toBe(1);
     expect(query[0].$op).toBe(SUPPORTED_QUERIES.INSERT);
     expect(query[0].$params).toEqual([fakeBulkData]);
@@ -33,7 +33,7 @@ describe('insert', () => {
     const queryBuilder = qf()
       .insert(fakeData)
       .into('users');
-    const query = queryBuilder.getQuery();
+    const { query } = queryBuilder.getQuery();
     expect(query.length).toBe(2);
     expect(query[1].$op).toBe(SUPPORTED_QUERIES.INTO);
     expect(query[1].$params.length).toBe(1);

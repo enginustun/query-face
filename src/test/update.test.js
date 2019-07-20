@@ -17,7 +17,7 @@ describe('update', () => {
   });
   it('works well', () => {
     const queryBuilder = qf().update('users');
-    const query = queryBuilder.getQuery();
+    const { query } = queryBuilder.getQuery();
     expect(query.length).toBe(1);
     expect(query[0].$op).toBe(SUPPORTED_QUERIES.UPDATE);
     expect(query[0].$params).toEqual([`${CONST_PREFIX}users`]);
@@ -44,7 +44,7 @@ describe('set', () => {
     const queryBuilder = qf()
       .update('users')
       .set(fakeData);
-    const query = queryBuilder.getQuery();
+    const { query } = queryBuilder.getQuery();
     expect(query.length).toBe(2);
     expect(query[1].$op).toBe(SUPPORTED_QUERIES.SET);
     expect(query[1].$params).toEqual([fakeData]);
@@ -53,7 +53,7 @@ describe('set', () => {
     const queryBuilder = qf()
       .update('users')
       .set('name', 'engin');
-    const query = queryBuilder.getQuery();
+    const { query } = queryBuilder.getQuery();
     expect(query.length).toBe(2);
     expect(query[1].$op).toBe(SUPPORTED_QUERIES.SET);
     expect(query[1].$params.length).toBe(2);

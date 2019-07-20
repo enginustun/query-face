@@ -66,8 +66,10 @@ export default function QueryFace() {
    * initial configuration definition if there are any
    */
   const {
-    dbName: db = Config.get('dbName'),
-    queryName: query = Config.get('queryName'),
+    dbName = Config.get('dbName'),
+    queryName,
+    transaction = false,
+    dependent = false,
   } = {
     ...arguments[0],
   };
@@ -122,7 +124,7 @@ export default function QueryFace() {
    * ]
    */
   function getQuery() {
-    return queryStack;
+    return { dbName, queryName, query: queryStack };
   }
 
   /**
@@ -1843,8 +1845,7 @@ export default function QueryFace() {
       credentials = Config.get('credentials'),
       redirect = Config.get('redirect'),
       referrer = Config.get('referrer'),
-      dbName = db,
-      queryName = query,
+      queries = [this],
     } = {}) => {
       if (!endpoint) {
         throw new Error('endpoint must be provided to run any query.');
@@ -1854,7 +1855,13 @@ export default function QueryFace() {
         method,
         headers: { ...Config.get('headers'), ...headers },
         ...(method.toLowerCase() === 'post'
-          ? { body: JSON.stringify({ dbName, queryName, query: getQuery() }) }
+          ? {
+              body: JSON.stringify({
+                queries: queries.map(q => q.getQuery()),
+                transaction,
+                dependent,
+              }),
+            }
           : {}),
         mode,
         cache,
