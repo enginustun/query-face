@@ -70,6 +70,7 @@ export default function QueryFace() {
     queryName,
     transaction = false,
     dependent = false,
+    responseAlias,
   } = {
     ...arguments[0],
   };
@@ -124,7 +125,7 @@ export default function QueryFace() {
    * ]
    */
   function getQuery() {
-    return { dbName, queryName, query: queryStack };
+    return { dbName, queryName, query: queryStack, responseAlias };
   }
 
   /**
@@ -140,7 +141,11 @@ export default function QueryFace() {
     queryStack.push({
       $op,
       $params,
-      ...($callback ? { $callback } : {}),
+      ...($callback
+        ? {
+            $callback: $callback.query || [],
+          }
+        : {}),
     });
   }
 
