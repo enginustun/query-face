@@ -1851,6 +1851,8 @@ export default function QueryFace() {
       redirect = Config.get('redirect'),
       referrer = Config.get('referrer'),
       queries = [this],
+      beforeRun = () => true,
+      afterRun = () => {},
     } = {}) => {
       if (!endpoint) {
         throw new Error('endpoint must be provided to run any query.');
@@ -1874,7 +1876,24 @@ export default function QueryFace() {
         redirect,
         referrer,
       };
-      return fetch(endpoint, configs);
+      if (QueryFace.beforeEveryRun() === false) {
+        return Promise.reject({
+          blocked: true,
+          message: 'request blocked by beforeEveryRun',
+        });
+      } else if (beforeRun() === false) {
+        return Promise.reject({
+          blocked: true,
+          message: 'request blocked by beforeRun',
+        });
+      } else {
+        return fetch(endpoint, configs).then(res => {
+          const resJson = res.json();
+          afterRun(resJson);
+          QueryFace.afterEveryRun();
+          return resJson;
+        });
+      }
     },
   };
 
@@ -1900,3 +1919,6 @@ export default function QueryFace() {
 
   return getQueriesByType(type);
 }
+
+QueryFace.beforeEveryRun = () => true;
+QueryFace.afterEveryRun = () => {};
