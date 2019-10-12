@@ -1,8 +1,8 @@
 {
   "name": "query-face",
   "nameVar": "queryFace",
-  "version": "0.0.1",
-  "description": "front-end ORM for javascript projects.",
+  "version": "0.0.2",
+  "description": "Secure SQL query building library to get rid of static endpoints. Works best with Node.js query-face-node package.",
   "main": "lib/query-face.js",
   "module": "lib/query-face.module.js",
   "types": "lib/index.d.ts",
@@ -18,7 +18,13 @@
       "pre-push": "npm test"
     }
   },
-  "keywords": [],
+  "keywords": [
+    "query-builder",
+    "orm-like",
+    "sql",
+    "javascript",
+    "client"
+  ],
   "author": "engin üstün",
   "license": "MIT",
   "jest": {
@@ -42,5 +48,13 @@
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-prettier": "^0.6.0",
     "rollup-plugin-terser": "^4.0.4"
+  },
+  "homepage": "https://github.com/enginustun/query-face#readme",
+  "bugs": {
+    "url": "https://github.com/enginustun/query-face/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/enginustun/query-face.git"
   }
 }
