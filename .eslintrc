@@ -1,6 +1,5 @@
 {
   "extends": ["plugin:prettier/recommended"],
-  "rules": {},
   "parserOptions": {
     "sourceType": "module",
     "ecmaVersion": 2018

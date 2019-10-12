@@ -25,7 +25,7 @@ describe('query-face', () => {
       }
     );
   });
-  it(`select query generated successfully`, () => {
+  it('select query generated successfully', () => {
     const instance = qf();
     instance.select('*');
     const { query } = instance.getQuery();

@@ -183,7 +183,7 @@ export default function QueryFace() {
     let column, op, value;
     if (arguments.length === 2) {
       if (isFunction(arg1)) {
-        throw new Error(`whereIn does not support inner query`);
+        throw new Error('whereIn does not support inner query');
       }
     } else if (arguments.length === 3) {
       column = arg1;
@@ -200,7 +200,7 @@ export default function QueryFace() {
     let column, op, value;
     if (arguments.length === 2) {
       if (isFunction(arg1)) {
-        throw new Error(`whereNotIn does not support inner query`);
+        throw new Error('whereNotIn does not support inner query');
       }
     } else if (arguments.length === 3) {
       column = arg1;
