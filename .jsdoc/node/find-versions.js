@@ -16,7 +16,11 @@ module.exports = function() {
       versions = stdOut.split('\n').filter(Boolean);
     }
     versions = [
-      ...new Set(versions.map(version => (version || '0.0.0').substr(0, 3))),
+      ...new Set(
+        versions.map(version =>
+          (version.replace('v', '') || '0.0.0').substr(0, 3)
+        )
+      ),
     ];
     const versionsText = `export default { versions: ${JSON.stringify(
       versions
