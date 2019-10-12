@@ -1,7 +1,7 @@
 {
   "name": "query-face",
   "nameVar": "queryFace",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "front-end ORM for javascript projects.",
   "main": "lib/query-face.js",
   "module": "lib/query-face.module.js",
