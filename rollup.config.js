@@ -1,4 +1,5 @@
 import babel from 'rollup-plugin-babel';
+import prettier from 'rollup-plugin-prettier';
 import pkg from './package.json';
 const libFolder = 'lib';
 //import { terser } from 'rollup-plugin-terser';
@@ -12,6 +13,7 @@ export default [
         name: 'versionInfo', // the global which can be used in a browser
       },
     ],
+    plugins: [prettier()],
   },
   {
     input: 'src/index.js', // our source file
