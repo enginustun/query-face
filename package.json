@@ -15,7 +15,8 @@
   "husky": {
     "hooks": {
       "pre-commit": "npm run docs && git add ./docs",
-      "pre-push": "npm test"
+      "pre-push": "npm test",
+      "push-to-checkout": "npm publish"
     }
   },
   "keywords": [

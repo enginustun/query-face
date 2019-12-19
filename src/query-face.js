@@ -173,7 +173,17 @@ export default function QueryFace() {
       column = `${CONST_PREFIX}${arg1}`;
       op = `${CONST_PREFIX}${arg2}`;
       value = arg3;
-      extendQuery(queryType, [column, op, value]);
+      if (isFunction(arg3)) {
+        extendQuery(
+          queryType,
+          [],
+          arg3
+            .call(null, new QueryFace(SUPPORTED_QUERIES.__CALLBACK_WHERE, true))
+            .getQuery()
+        );
+      } else {
+        extendQuery(queryType, [column, op, value]);
+      }
     }
     return getQueriesByType(queryType);
   }
