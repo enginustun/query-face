@@ -1,7 +1,7 @@
 {
   "name": "query-face",
   "nameVar": "queryFace",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Secure SQL query building library to get rid of static endpoints. Works best with Node.js query-face-node package.",
   "main": "lib/query-face.js",
   "module": "lib/query-face.module.js",
