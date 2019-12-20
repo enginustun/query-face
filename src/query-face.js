@@ -173,11 +173,11 @@ export default function QueryFace() {
       column = `${CONST_PREFIX}${arg1}`;
       op = `${CONST_PREFIX}${arg2}`;
       value = arg3;
-      if (isFunction(arg3)) {
+      if (isFunction(value)) {
         extendQuery(
           queryType,
-          [],
-          arg3
+          [column, op],
+          value
             .call(null, new QueryFace(SUPPORTED_QUERIES.__CALLBACK_WHERE, true))
             .getQuery()
         );
