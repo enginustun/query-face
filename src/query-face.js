@@ -14,7 +14,7 @@ Config.set({
   headers: { 'Content-Type': 'application/json' },
   mode: 'cors', // no-cors, cors, *same-origin
   cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-  credentials: 'same-origin', // include, *same-origin, omit
+  credentials: 'include', // include, *same-origin, omit
   redirect: 'follow', // manual, *follow, error
   referrer: 'no-referrer', // no-referrer, *client
 });
@@ -1836,7 +1836,7 @@ export default function QueryFace() {
      * @param {string} [method=POST] - request method
      * @param {string} [mode=cors] - request mode
      * @param {string} [cache=no-cache] - request cache
-     * @param {string} [credentials=same-origin] - request credentials
+     * @param {string} [credentials=include] - request credentials
      * @param {string} [redirect=follow] - request redirect
      * @param {string} [referrer=no-referrer] - request referrer
      * @returns {Promise<Response>} server's response as promise object, directly returns fetch's result
