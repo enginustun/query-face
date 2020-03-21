@@ -15,8 +15,7 @@
   "husky": {
     "hooks": {
       "pre-commit": "npm run docs && git add ./docs",
-      "pre-push": "npm test",
-      "push-to-checkout": "npm publish"
+      "pre-push": "npm test"
     }
   },
   "keywords": [
@@ -57,5 +56,8 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/enginustun/query-face.git"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
