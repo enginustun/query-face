@@ -12,6 +12,7 @@ before_deploy:
   - npm run build
 deploy:
   provider: npm
+  email: 'enginustun@outlook.com'
   skip_cleanup: true
   on:
     branch: master
