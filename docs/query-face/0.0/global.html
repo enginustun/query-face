@@ -49,6 +49,12 @@
           <a href="QueryFace.html">QueryFace</a>
           <h3></h3>
           <ul class="">
+            <li class="doc-function">
+              <a href="QueryFace.html#.afterEveryRun">afterEveryRun</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#.beforeEveryRun">beforeEveryRun</a>
+            </li>
             <li class="doc-function"><a href="QueryFace.html#avg">avg</a></li>
             <li class="doc-function">
               <a href="QueryFace.html#columnInfo">columnInfo</a>
@@ -255,6 +261,8 @@
 
                 <th>Type</th>
 
+                <th>Attributes</th>
+
                 <th class="last">Description</th>
               </tr>
             </thead>
@@ -266,6 +274,8 @@
                 <td class="type">
                   <span class="param-type">string</span>
                 </td>
+
+                <td class="attributes"></td>
 
                 <td class="description last">
                   database name or alias you want to run your query on
@@ -279,8 +289,39 @@
                   <span class="param-type">string</span>
                 </td>
 
+                <td class="attributes"></td>
+
                 <td class="description last">
                   unique name of query to compare with template on backend
+                </td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>params</code></td>
+
+                <td class="type">
+                  <span class="param-type">Object</span>
+                </td>
+
+                <td class="attributes">&lt;optional><br /></td>
+
+                <td class="description last">
+                  unique name of query to compare with template on backend
+                </td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>responseAlias</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="attributes">&lt;optional><br /></td>
+
+                <td class="description last">
+                  when you set dependent=true and responseAlias='query1' you can
+                  use this alias as parameter in following queries.
                 </td>
               </tr>
             </tbody>

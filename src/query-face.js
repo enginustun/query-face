@@ -23,6 +23,9 @@ Config.set({
  * @typedef {Object} QueryFaceOptions
  * @property {string} dbName - database name or alias you want to run your query on
  * @property {string} queryName - unique name of query to compare with template on backend
+ * @property {Object} [params] - unique name of query to compare with template on backend
+ * @property {string} [responseAlias] - when you set dependent=true and responseAlias='query1'
+ * you can use this alias as parameter in following queries.
  */
 
 /**
@@ -68,6 +71,7 @@ export default function QueryFace() {
   const {
     dbName = Config.get('dbName'),
     queryName,
+    params,
     transaction = false,
     dependent = false,
     responseAlias,
@@ -125,7 +129,7 @@ export default function QueryFace() {
    * ]
    */
   function getQuery() {
-    return { dbName, queryName, query: queryStack, responseAlias };
+    return { dbName, queryName, params, query: queryStack, responseAlias };
   }
 
   /**
@@ -1829,9 +1833,14 @@ export default function QueryFace() {
 
     /**
      * Sends query to server and fetches response
+     *
      * @memberof QueryFace#
      * @function run
-     * @param {string} [endpoint] - endpoint url to send request
+     *
+     * @param {Array} [queries=[]] - for executing multiple queries
+     * @param {boolean} [transaction=false] - activate transaction for multiple queries
+     * @param {boolean} [dependent=false] - activate dependency for multiple queries
+     * @param {string} [endpoint=Config.endpoint] - endpoint url to send request
      * @param {object} [headers] - key-value header map
      * @param {string} [method=POST] - request method
      * @param {string} [mode=cors] - request mode
@@ -1839,6 +1848,9 @@ export default function QueryFace() {
      * @param {string} [credentials=include] - request credentials
      * @param {string} [redirect=follow] - request redirect
      * @param {string} [referrer=no-referrer] - request referrer
+     * @param {function} [beforeRun=()=>true] - function will be executed before run, if it returns false then process terminated
+     * @param {function} [afterRun=()=>{}] - function will be executed after run
+     *
      * @returns {Promise<Response>} server's response as promise object, directly returns fetch's result
      * @example
      * const promiseResponse = qf().select('*').from('users').where('id', 1).run();
@@ -1930,5 +1942,21 @@ export default function QueryFace() {
   return getQueriesByType(type);
 }
 
+/**
+ * When you set this function, it will be run before every request
+ * If it returns false then process terminated
+ *
+ * @function beforeEveryRun
+ * @memberof QueryFace
+ * @static
+ */
 QueryFace.beforeEveryRun = () => true;
+
+/**
+ * When you set this function, it will be run after every request
+ *
+ * @function afterEveryRun
+ * @memberof QueryFace
+ * @static
+ */
 QueryFace.afterEveryRun = () => {};
