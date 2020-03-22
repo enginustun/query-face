@@ -1,4 +1,4 @@
-# query-face
+# query-face &middot; [![Build Status](https://travis-ci.org/enginustun/query-face.svg?branch=master)](https://travis-ci.org/enginustun/query-face) ![npm](https://img.shields.io/npm/v/query-face) ![GitHub](https://img.shields.io/github/license/enginustun/query-face)
 
 ORM-like query language to get rid of static endpoints.
 
