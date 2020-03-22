@@ -8,13 +8,10 @@ before_script:
   - npm install
 script:
   - npm test
-before_deploy:
-  - chmod +x ./before-deploy.sh && ./before-deploy.sh
 deploy:
-  provider: npm
-  email: 'enginustun@outlook.com'
+  provider: script
   skip_cleanup: true
+  script:
+    - chmod +x ./deploy.sh && ./deploy.sh
   on:
     branch: master
-  api_key:
-    secure: RrpKS+sXjAty+IzwAo+kUhqvInnMTr+esLdrp9SPNbecHFEdzVqS80Uh25mrgQLPav+iBHSj5ZA3fFAJiBwCcmW2xvCp06hit2MuJh4Gq94Eow+6Kp8ffVgvV9ZJIi7yqzi83+FsbwPBTnwIcRK2W6iak1TaF+XZeRJ+JEbomXTN0RxVfE+bxqfAOhbLW+n1vrYbAcYZmveHOzY20gIOfddgapRPe1mpWxVZgFh4cDAiArrHiX+SSCqmnu0q6rJfd9CJhU2y//arpto1VSQIjXSgQZRR2OijdP3BrFRfooifvoxFVN56kpWFZKbNRZOZL98ni8HeHrPX4pR0c6w+YiHUJ52otOedWvu0mI+EE2oW9ZlAtrX0sLsz6E2OpdABUnrjB5qvDSRdE1R0sens2knsRvNe2u+ovD+PbhOvlFLznIIHXZiD9T7n8mG6URwqN/xCjHzYraWgWfYjetoEAvs2Dfh7jSAIhj+andqkzt33PYWGxfz00bE0VlzFLa8YH/FhFW8azy3s6D4YGcX99Ta+bg2jTbiFxs1uckMMSnHBj6Xd7a28UP5JhqnF2fbeegIVgLMAEihJUiWDhSsjKBmRMyLzC71EWi3Y9Dv2+QZ9I/hhy1c8tL0l1XBU0+DNP2gOO1KxnOs0bsdGhNdQM2jopI3YGWM2ndNct0ZhSXs=

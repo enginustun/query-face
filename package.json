@@ -1,7 +1,7 @@
 {
   "name": "query-face",
   "nameVar": "queryFace",
-  "version": "0.0.7",
+  "version": "0.0.0-development",
   "description": "Secure SQL query building library to get rid of static endpoints. Works best with Node.js query-face-node package.",
   "main": "lib/query-face.js",
   "module": "lib/query-face.module.js",
@@ -9,7 +9,8 @@
   "scripts": {
     "build": "eslint --fix src/ && rollup -c",
     "test": "jest --verbose",
-    "docs": "node .jsdoc/node/before-generation.js && npm run build && eslint --fix .jsdoc/src && jsdoc -c ./.jsdoc/config.js -t ./.jsdoc/custom-template && node .jsdoc/node/after-generation.js && prettier --write ./docs/query-face/**/*.html"
+    "docs": "node .jsdoc/node/before-generation.js && npm run build && eslint --fix .jsdoc/src && jsdoc -c ./.jsdoc/config.js -t ./.jsdoc/custom-template && node .jsdoc/node/after-generation.js && prettier --write ./docs/query-face/**/*.html",
+    "semantic-release": "semantic-release"
   },
   "husky": {
     "hooks": {
@@ -46,7 +47,8 @@
     "rollup": "^1.17.0",
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-prettier": "^0.6.0",
-    "rollup-plugin-terser": "^4.0.4"
+    "rollup-plugin-terser": "^4.0.4",
+    "semantic-release": "^17.0.4"
   },
   "homepage": "https://github.com/enginustun/query-face#readme",
   "bugs": {
@@ -54,7 +56,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/enginustun/query-face.git"
+    "url": "https://github.com/enginustun/query-face.git"
   },
   "publishConfig": {
     "access": "public"
