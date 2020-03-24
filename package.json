@@ -7,21 +7,24 @@
   "module": "lib/query-face.module.js",
   "types": "lib/index.d.ts",
   "scripts": {
-    "build": "eslint --fix src/ && rollup -c",
+    "build": "rollup -c",
     "test": "jest --verbose",
-    "docs": "node .jsdoc/node/before-generation.js && npm run build && eslint --fix .jsdoc/src && jsdoc -c ./.jsdoc/config.js -t ./.jsdoc/custom-template && node .jsdoc/node/after-generation.js && prettier --write ./docs/query-face/**/*.html",
+    "docs": "node .jsdoc/node/before-generation.js && jsdoc -c ./.jsdoc/config.js -t ./.jsdoc/custom-template && node .jsdoc/node/after-generation.js",
     "semantic-release": "semantic-release"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged && npm run docs && git add ./docs",
+      "pre-commit": "npm run docs && git add ./docs ./.jsdoc && lint-staged",
       "pre-push": "npm test"
     }
   },
   "lint-staged": {
-    "src/**/*.js": [
-      "prettier --config ./.prettierrc --write",
-      "git add"
+    "{.jsdoc,.}/src/**/*.js": [
+      "prettier --write",
+      "eslint --fix"
+    ],
+    "./docs/query-face/**/*.html": [
+      "prettier --write"
     ]
   },
   "keywords": [
