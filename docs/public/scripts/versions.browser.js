@@ -1,7 +1,1 @@
-var versionInfo = (function() {
-  'use strict';
-
-  var versions = { versions: ['0.0'], latestVersion: '0.0' };
-
-  return versions;
-})();
+var versionInfo = (function() { 'use strict'; var versions = { versions: ["0.0","1.0"], latestVersion: "1.0"}; return versions; })();
