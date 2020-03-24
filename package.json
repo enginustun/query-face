@@ -7,16 +7,25 @@
   "module": "lib/query-face.module.js",
   "types": "lib/index.d.ts",
   "scripts": {
-    "build": "eslint --fix src/ && rollup -c",
+    "build": "rollup -c",
     "test": "jest --verbose",
-    "docs": "node .jsdoc/node/before-generation.js && npm run build && eslint --fix .jsdoc/src && jsdoc -c ./.jsdoc/config.js -t ./.jsdoc/custom-template && node .jsdoc/node/after-generation.js && prettier --write ./docs/query-face/**/*.html",
+    "docs": "node .jsdoc/node/before-generation.js && jsdoc -c ./.jsdoc/config.js -t ./.jsdoc/custom-template && node .jsdoc/node/after-generation.js",
     "semantic-release": "semantic-release"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run docs && git add ./docs",
+      "pre-commit": "npm run docs && git add ./docs ./.jsdoc && lint-staged",
       "pre-push": "npm test"
     }
+  },
+  "lint-staged": {
+    "{.jsdoc,.}/src/**/*.js": [
+      "prettier --write",
+      "eslint --fix"
+    ],
+    "./docs/query-face/**/*.html": [
+      "prettier --write"
+    ]
   },
   "keywords": [
     "query-builder",
@@ -43,7 +52,8 @@
     "husky": "^2.7.0",
     "jest": "^24.8.0",
     "jsdoc": "^3.6.3",
-    "prettier": "1.17.0",
+    "lint-staged": "^10.0.9",
+    "prettier": "^1.17.0",
     "rollup": "^1.17.0",
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-prettier": "^0.6.0",
