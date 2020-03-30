@@ -1,6 +1,6 @@
 import { isFunction } from './utils/function';
 import { isObject } from './utils/object';
-import { isNotString } from './utils/string';
+import { isNotString, isString } from './utils/string';
 import {
   SUPPORTED_QUERIES,
   RETURN_QUERIES_BY_TYPE,
@@ -68,7 +68,7 @@ export default function QueryFace() {
   /**
    * initial configuration definition if there are any
    */
-  const {
+  let {
     dbName = Config.get('dbName'),
     queryName,
     params,
@@ -91,7 +91,7 @@ export default function QueryFace() {
    *  // queryBuilder is new innerQuery instance of QueryFace class.
    * })
    */
-  let isInnerQuery = arguments[1];
+  let isInnerQuery = arguments[1] === true;
 
   if (!RETURN_QUERIES_BY_TYPE[type]) {
     type = DEFAULT_QUERY_TYPE;
@@ -1938,6 +1938,14 @@ export default function QueryFace() {
     isInnerQuery && delete this[SUPPORTED_QUERIES.RUN];
     return this;
   };
+
+  if (isObject(arguments[1])) {
+    params = arguments[1];
+  }
+  if (isString(arguments[0]) && !isInnerQuery) {
+    queryName = arguments[0];
+    return queries[SUPPORTED_QUERIES.RUN]();
+  }
 
   return getQueriesByType(type);
 }
