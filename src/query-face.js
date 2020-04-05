@@ -371,6 +371,15 @@ export default function QueryFace() {
     return getQueriesByType(queryType);
   }
 
+  function groupBy() {
+    const [queryType, ...columns] = [...arguments];
+    if (columns.some(column => isNotString(column))) {
+      throw new Error(`${queryType} -> parameters must be string`);
+    }
+    extendQuery(queryType, columns);
+    return getQueriesByType(queryType);
+  }
+
   function orderBy() {
     const [queryType, columns, direction = 'asc'] = [...arguments];
     if (arguments.length === 2) {
@@ -1408,7 +1417,7 @@ export default function QueryFace() {
      *   .groupBy('age');
      */
     [SUPPORTED_QUERIES.GROUP_BY]: function(column) {
-      return aggregate(SUPPORTED_QUERIES.GROUP_BY, ...arguments);
+      return groupBy(SUPPORTED_QUERIES.GROUP_BY, ...arguments);
     },
 
     /**
