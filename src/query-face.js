@@ -1920,8 +1920,8 @@ export default function QueryFace() {
       } else {
         return fetch(endpoint, configs).then(res => {
           const resJson = res.json();
-          afterRun(resJson);
-          QueryFace.afterEveryRun();
+          afterRun(res);
+          QueryFace.afterEveryRun(res);
           return resJson;
         });
       }
