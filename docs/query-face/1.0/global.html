@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>query-face Global</title>
+
+    <script src="../../public/scripts/prettify/prettify.js"></script>
+    <script src="../../public/scripts/prettify/lang-css.js"></script>
+    <script src="../../public/scripts/versions.browser.js"></script>
+    <script>
+      var locationArray = location.href.split('/');
+      locationArray.pop();
+      var documentVersion = locationArray.pop();
+    </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="../../public/styles/prettify-tomorrow.css"
+    />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="../../public/styles/jsdoc-default.css"
+    />
+  </head>
+
+  <body>
+    <div class="header">
+      <span class="lib-title">query-face</span>
+      <span>Document version:</span
+      ><select id="versions"></select>
+    </div>
+
+    <nav id="nav">
+      <h3>Classes</h3>
+      <ul class="classes">
+        <li class="doc-class">
+          <a href="Config.html">Config</a>
+          <h3></h3>
+          <ul class="">
+            <li class="doc-function"><a href="Config.html#.get">get</a></li>
+            <li class="doc-function"><a href="Config.html#.set">set</a></li>
+          </ul>
+        </li>
+        <li class="doc-class">
+          <a href="QueryFace.html">QueryFace</a>
+          <h3></h3>
+          <ul class="">
+            <li class="doc-function">
+              <a href="QueryFace.html#.afterEveryRun">afterEveryRun</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#.beforeEveryRun">beforeEveryRun</a>
+            </li>
+            <li class="doc-function"><a href="QueryFace.html#avg">avg</a></li>
+            <li class="doc-function">
+              <a href="QueryFace.html#columnInfo">columnInfo</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#count">count</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#crossJoin">crossJoin</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#delete">delete</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#distinct">distinct</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#first">first</a>
+            </li>
+            <li class="doc-function"><a href="QueryFace.html#from">from</a></li>
+            <li class="doc-function">
+              <a href="QueryFace.html#fullOuterJoin">fullOuterJoin</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#getQuery">getQuery</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#groupBy">groupBy</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#having">having</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#havingBetween">havingBetween</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#havingExists">havingExists</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#havingIn">havingIn</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#havingNotBetween">havingNotBetween</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#havingNotExists">havingNotExists</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#havingNotIn">havingNotIn</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#havingNotNull">havingNotNull</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#havingNull">havingNull</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#innerJoin">innerJoin</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#insert">insert</a>
+            </li>
+            <li class="doc-function"><a href="QueryFace.html#into">into</a></li>
+            <li class="doc-function">
+              <a href="QueryFace.html#leftJoin">leftJoin</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#leftOuterJoin">leftOuterJoin</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#limit">limit</a>
+            </li>
+            <li class="doc-function"><a href="QueryFace.html#max">max</a></li>
+            <li class="doc-function"><a href="QueryFace.html#min">min</a></li>
+            <li class="doc-function">
+              <a href="QueryFace.html#offset">offset</a>
+            </li>
+            <li class="doc-function"><a href="QueryFace.html#on">on</a></li>
+            <li class="doc-function">
+              <a href="QueryFace.html#onBetween">onBetween</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#onExists">onExists</a>
+            </li>
+            <li class="doc-function"><a href="QueryFace.html#onIn">onIn</a></li>
+            <li class="doc-function">
+              <a href="QueryFace.html#onNotBetween">onNotBetween</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#onNotExists">onNotExists</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#onNotIn">onNotIn</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#onNotNull">onNotNull</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#onNull">onNull</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#orderBy">orderBy</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#pluck">pluck</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#returning">returning</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#rightJoin">rightJoin</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#rightOuterJoin">rightOuterJoin</a>
+            </li>
+            <li class="doc-function"><a href="QueryFace.html#run">run</a></li>
+            <li class="doc-function">
+              <a href="QueryFace.html#select">select</a>
+            </li>
+            <li class="doc-function"><a href="QueryFace.html#set">set</a></li>
+            <li class="doc-function"><a href="QueryFace.html#sum">sum</a></li>
+            <li class="doc-function">
+              <a href="QueryFace.html#union">union</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#unionAll">unionAll</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#update">update</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#where">where</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#whereBetween">whereBetween</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#whereExists">whereExists</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#whereIn">whereIn</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#whereNot">whereNot</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#whereNotBetween">whereNotBetween</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#whereNotExists">whereNotExists</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#whereNotIn">whereNotIn</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#whereNotNull">whereNotNull</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#whereNull">whereNull</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#whereRaw">whereRaw</a>
+            </li>
+            <li class="doc-function"><a href="QueryFace.html#with">with</a></li>
+            <li class="doc-function">
+              <a href="QueryFace.html#withRecursive">withRecursive</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <h3><a href="global.html">Global</a></h3>
+    </nav>
+
+    <div id="main">
+      <h1 class="page-title">Global</h1>
+
+      <section>
+        <header>
+          <h2></h2>
+        </header>
+
+        <article>
+          <div class="container-overview">
+            <dl class="details"></dl>
+          </div>
+
+          <h3 class="subsection-title">Type Definitions</h3>
+
+          <h4 class="name" id="QueryFaceOptions">QueryFaceOptions</h4>
+
+          <h5>Type:</h5>
+          <ul>
+            <li>
+              <span class="param-type">Object</span>
+            </li>
+          </ul>
+
+          <h5 class="subsection-title">Properties:</h5>
+
+          <table class="props">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th>Attributes</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>dbName</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="attributes"></td>
+
+                <td class="description last">
+                  database name or alias you want to run your query on
+                </td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>queryName</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="attributes"></td>
+
+                <td class="description last">
+                  unique name of query to compare with template on backend
+                </td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>params</code></td>
+
+                <td class="type">
+                  <span class="param-type">Object</span>
+                </td>
+
+                <td class="attributes">&lt;optional><br /></td>
+
+                <td class="description last">
+                  unique name of query to compare with template on backend
+                </td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>responseAlias</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="attributes">&lt;optional><br /></td>
+
+                <td class="description last">
+                  when you set dependent=true and responseAlias='query1' you can
+                  use this alias as parameter in following queries.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+        </article>
+      </section>
+    </div>
+
+    <br class="clear" />
+
+    <script>
+      prettyPrint();
+    </script>
+    <script src="../../public/scripts/linenumber.js"></script>
+
+    <script>
+      var versionInfo = versionInfo || {};
+      var versionList = versionInfo.versions || [];
+      var navElement = document.getElementById('nav');
+      var selectElement = document.getElementById('versions');
+      selectElement.addEventListener('change', function(e) {
+        window.location.replace(`../${e.target.value}/QueryFace.html`);
+      });
+      for (var i = 0; i < versionList.length; i++) {
+        var version = versionList[i];
+        var optionElement = document.createElement('option');
+        optionElement.value = version;
+        optionElement.text = version;
+        optionElement.selected = version === documentVersion;
+        selectElement.appendChild(optionElement);
+      }
+
+      document.querySelectorAll('.doc-function a').forEach(elem => {
+        elem.addEventListener('click', function() {
+          setTimeout(() => {
+            window.scrollBy(0, -50);
+          }, 1);
+        });
+      });
+    </script>
+  </body>
+</html>

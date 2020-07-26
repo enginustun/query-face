@@ -1,0 +1,5492 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>query-face Class: QueryFace</title>
+
+    <script src="../../public/scripts/prettify/prettify.js"></script>
+    <script src="../../public/scripts/prettify/lang-css.js"></script>
+    <script src="../../public/scripts/versions.browser.js"></script>
+    <script>
+      var locationArray = location.href.split('/');
+      locationArray.pop();
+      var documentVersion = locationArray.pop();
+    </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="../../public/styles/prettify-tomorrow.css"
+    />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="../../public/styles/jsdoc-default.css"
+    />
+  </head>
+
+  <body>
+    <div class="header">
+      <span class="lib-title">query-face</span>
+      <span>Document version:</span
+      ><select id="versions"></select>
+    </div>
+
+    <nav id="nav">
+      <h3>Classes</h3>
+      <ul class="classes">
+        <li class="doc-class">
+          <a href="Config.html">Config</a>
+          <h3></h3>
+          <ul class="">
+            <li class="doc-function"><a href="Config.html#.get">get</a></li>
+            <li class="doc-function"><a href="Config.html#.set">set</a></li>
+          </ul>
+        </li>
+        <li class="doc-class">
+          <a href="QueryFace.html">QueryFace</a>
+          <h3></h3>
+          <ul class="">
+            <li class="doc-function">
+              <a href="QueryFace.html#.afterEveryRun">afterEveryRun</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#.beforeEveryRun">beforeEveryRun</a>
+            </li>
+            <li class="doc-function"><a href="QueryFace.html#avg">avg</a></li>
+            <li class="doc-function">
+              <a href="QueryFace.html#columnInfo">columnInfo</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#count">count</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#crossJoin">crossJoin</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#delete">delete</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#distinct">distinct</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#first">first</a>
+            </li>
+            <li class="doc-function"><a href="QueryFace.html#from">from</a></li>
+            <li class="doc-function">
+              <a href="QueryFace.html#fullOuterJoin">fullOuterJoin</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#getQuery">getQuery</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#groupBy">groupBy</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#having">having</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#havingBetween">havingBetween</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#havingExists">havingExists</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#havingIn">havingIn</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#havingNotBetween">havingNotBetween</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#havingNotExists">havingNotExists</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#havingNotIn">havingNotIn</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#havingNotNull">havingNotNull</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#havingNull">havingNull</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#innerJoin">innerJoin</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#insert">insert</a>
+            </li>
+            <li class="doc-function"><a href="QueryFace.html#into">into</a></li>
+            <li class="doc-function">
+              <a href="QueryFace.html#leftJoin">leftJoin</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#leftOuterJoin">leftOuterJoin</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#limit">limit</a>
+            </li>
+            <li class="doc-function"><a href="QueryFace.html#max">max</a></li>
+            <li class="doc-function"><a href="QueryFace.html#min">min</a></li>
+            <li class="doc-function">
+              <a href="QueryFace.html#offset">offset</a>
+            </li>
+            <li class="doc-function"><a href="QueryFace.html#on">on</a></li>
+            <li class="doc-function">
+              <a href="QueryFace.html#onBetween">onBetween</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#onExists">onExists</a>
+            </li>
+            <li class="doc-function"><a href="QueryFace.html#onIn">onIn</a></li>
+            <li class="doc-function">
+              <a href="QueryFace.html#onNotBetween">onNotBetween</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#onNotExists">onNotExists</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#onNotIn">onNotIn</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#onNotNull">onNotNull</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#onNull">onNull</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#orderBy">orderBy</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#pluck">pluck</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#returning">returning</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#rightJoin">rightJoin</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#rightOuterJoin">rightOuterJoin</a>
+            </li>
+            <li class="doc-function"><a href="QueryFace.html#run">run</a></li>
+            <li class="doc-function">
+              <a href="QueryFace.html#select">select</a>
+            </li>
+            <li class="doc-function"><a href="QueryFace.html#set">set</a></li>
+            <li class="doc-function"><a href="QueryFace.html#sum">sum</a></li>
+            <li class="doc-function">
+              <a href="QueryFace.html#union">union</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#unionAll">unionAll</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#update">update</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#where">where</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#whereBetween">whereBetween</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#whereExists">whereExists</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#whereIn">whereIn</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#whereNot">whereNot</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#whereNotBetween">whereNotBetween</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#whereNotExists">whereNotExists</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#whereNotIn">whereNotIn</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#whereNotNull">whereNotNull</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#whereNull">whereNull</a>
+            </li>
+            <li class="doc-function">
+              <a href="QueryFace.html#whereRaw">whereRaw</a>
+            </li>
+            <li class="doc-function"><a href="QueryFace.html#with">with</a></li>
+            <li class="doc-function">
+              <a href="QueryFace.html#withRecursive">withRecursive</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <h3><a href="global.html">Global</a></h3>
+    </nav>
+
+    <div id="main">
+      <h1 class="page-title">Class: QueryFace</h1>
+
+      <section>
+        <article>
+          <div class="container-overview">
+            <div class="description">
+              This is the base class of query-face library that you can use to
+              create ORM queries for backend with chainable methods.
+            </div>
+
+            <h5>Parameters:</h5>
+
+            <table class="params">
+              <thead>
+                <tr>
+                  <th>Name</th>
+
+                  <th>Type</th>
+
+                  <th class="last">Description</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr>
+                  <td class="name"><code>options</code></td>
+
+                  <td class="type">
+                    <span class="param-type"
+                      ><a href="global.html#QueryFaceOptions"
+                        >QueryFaceOptions</a
+                      ></span
+                    >
+                  </td>
+
+                  <td class="description last">initial settings of query</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <dl class="details"></dl>
+
+            <h5>Example</h5>
+
+            <pre class="prettyprint"><code>import QueryFace from 'query-face';
+new QueryFace(options);
+QueryFace(options); // shortened
+// -----
+const qf = QueryFace({ queryName: 'getUsers', dbName: 'myProject' });
+qf.select('*').from('users');
+
+// Suggested Usage
+import qf from 'query-face';
+qf({ queryName: 'getUsers', dbName: 'myProject' })
+  .select('*')
+  .from('users');
+
+qf({ queryName: 'insertUser', dbName: 'myProject' })
+  .insert({ name: 'engin', age: 28 })
+  .into('users');</code></pre>
+          </div>
+
+          <h3 class="subsection-title">Methods</h3>
+
+          <h4 class="name" id=".afterEveryRun">
+            <span class="type-signature">(static) </span>afterEveryRun<span
+              class="signature"
+              >()</span
+            ><span class="type-signature"></span>
+          </h4>
+
+          <div class="description">
+            When you set this function, it will be run after every request
+          </div>
+
+          <dl class="details"></dl>
+
+          <h4 class="name" id=".beforeEveryRun">
+            <span class="type-signature">(static) </span>beforeEveryRun<span
+              class="signature"
+              >()</span
+            ><span class="type-signature"></span>
+          </h4>
+
+          <div class="description">
+            When you set this function, it will be run before every request If
+            it returns false then process terminated
+          </div>
+
+          <dl class="details"></dl>
+
+          <h4 class="name" id="avg">
+            <span class="type-signature"></span>avg<span class="signature"
+              >(column)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "avg" query informations. Performs an avg on the specified
+            column
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>column</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">
+                  column name to find average of in all records
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre class="prettyprint"><code>qf()
+  .from('users')
+  .avg('age');</code></pre>
+
+          <h4 class="name" id="columnInfo">
+            <span class="type-signature"></span>columnInfo<span
+              class="signature"
+              >(column<span class="signature-attributes">opt</span>)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "columnInfo" query informations. Performs a columnInfo on
+            the specified column
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th>Attributes</th>
+
+                <th>Default</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>column</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="attributes">&lt;optional><br /></td>
+
+                <td class="default">
+                  *
+                </td>
+
+                <td class="description last">
+                  column name to get column info, empty or '*' parameter will
+                  return all column informations
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre class="prettyprint"><code>qf()
+  .from('users')
+  .columnInfo('id');</code></pre>
+
+          <h4 class="name" id="count">
+            <span class="type-signature"></span>count<span class="signature"
+              >(column)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "count" query informations. Performs a count on the
+            specified column
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>column</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">column name to find its count</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre class="prettyprint"><code>qf()
+  .from('users')
+  .count('age');</code></pre>
+
+          <h4 class="name" id="crossJoin">
+            <span class="type-signature"></span>crossJoin<span class="signature"
+              >(tableName, onColumn1OrCallback, onColumn2<span
+                class="signature-attributes"
+                >opt</span
+              >)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "crossJoin" query informations.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th>Attributes</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>tableName</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="attributes"></td>
+
+                <td class="description last">
+                  table name to perform join operation
+                </td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>onColumn1OrCallback</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                  |
+
+                  <span class="param-type">function</span>
+                </td>
+
+                <td class="attributes"></td>
+
+                <td class="description last">
+                  column name to compare another one or callback function
+                </td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>onColumn2</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="attributes">&lt;optional><br /></td>
+
+                <td class="description last">
+                  column name and required if column1 is string column name
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre
+            class="prettyprint"
+          ><code>qf().select('*').from('users').crossJoin('tokens', 'users.id', 'tokens.user_id');
+qf().select('*').from('users').crossJoin('tokens', queryBuilder =>
+  queryBuilder
+    .on('users.id', '=', 'tokens.user_id')
+    .andOn('users.id', '=', 'tokens.creator_id')
+    .orOn('users.id', '=', 'tokens.owner_id')
+)</code></pre>
+
+          <h4 class="name" id="delete">
+            <span class="type-signature"></span>delete<span class="signature"
+              >(tableName)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "delete" query informations
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>tableName</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">table name to delete record(s)</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre
+            class="prettyprint"
+          ><code>qf().delete('users').where('name', 'engin');
+qf().delete('users').where('id', 1);</code></pre>
+
+          <h4 class="name" id="distinct">
+            <span class="type-signature"></span>distinct<span class="signature"
+              >(&hellip;columnNames<span class="signature-attributes">opt</span
+              >)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "distinct" query informations.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th>Attributes</th>
+
+                <th>Default</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>columnNames</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="attributes">
+                  &lt;optional><br />
+
+                  &lt;repeatable><br />
+                </td>
+
+                <td class="default">
+                  *
+                </td>
+
+                <td class="description last">
+                  column names to get as unique records
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre class="prettyprint"><code>qf()
+  .distinct('age')
+  .from('users')</code></pre>
+
+          <h4 class="name" id="first">
+            <span class="type-signature"></span>first<span class="signature"
+              >()</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "first" query informations
+          </div>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre class="prettyprint"><code>qf()
+  .from('users')
+  .first();</code></pre>
+
+          <h4 class="name" id="from">
+            <span class="type-signature"></span>from<span class="signature"
+              >(tableName)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "from" query informations
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>tableName</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">table name to query</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre
+            class="prettyprint"
+          ><code>qf().select('*').from('users');</code></pre>
+
+          <h4 class="name" id="fullOuterJoin">
+            <span class="type-signature"></span>fullOuterJoin<span
+              class="signature"
+              >(tableName, onColumn1OrCallback, onColumn2<span
+                class="signature-attributes"
+                >opt</span
+              >)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "fullOuterJoin" query informations.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th>Attributes</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>tableName</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="attributes"></td>
+
+                <td class="description last">
+                  table name to perform join operation
+                </td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>onColumn1OrCallback</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                  |
+
+                  <span class="param-type">function</span>
+                </td>
+
+                <td class="attributes"></td>
+
+                <td class="description last">
+                  column name to compare another one or callback function
+                </td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>onColumn2</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="attributes">&lt;optional><br /></td>
+
+                <td class="description last">
+                  column name and required if column1 is string column name
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre
+            class="prettyprint"
+          ><code>qf().select('*').from('users').fullOuterJoin('tokens', 'users.id', 'tokens.user_id');
+qf().select('*').from('users').fullOuterJoin('tokens', queryBuilder =>
+  queryBuilder
+    .on('users.id', '=', 'tokens.user_id')
+    .andOn('users.id', '=', 'tokens.creator_id')
+    .orOn('users.id', '=', 'tokens.owner_id')
+)</code></pre>
+
+          <h4 class="name" id="getQuery">
+            <span class="type-signature"></span>getQuery<span class="signature"
+              >()</span
+            ><span class="type-signature"> &rarr; {Array.&lt;QueryInfo>}</span>
+          </h4>
+
+          <div class="description">
+            Returns current queryStack array
+          </div>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type">Array.&lt;QueryInfo></span>
+            </dd>
+          </dl>
+
+          <h5>Examples</h5>
+
+          <pre class="prettyprint"><code>qf()
+  .select('*')
+  .from('users')
+  .where('user_id', 2)
+  .getQuery();</code></pre>
+
+          <pre class="prettyprint"><code>// output
+[
+  { "$op": "select", "$params": ["*"] },
+  { "$op": "from", "$params": ["users"] },
+  { "$op": "where", "$params": ["user_id", "=", 2] }
+]</code></pre>
+
+          <h4 class="name" id="groupBy">
+            <span class="type-signature"></span>groupBy<span class="signature"
+              >(column)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "groupBy" query informations.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>column</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">column name to group result</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre class="prettyprint"><code>qf()
+  .select('age')
+  .from('users')
+  .where('age', '>', 15)
+  .groupBy('age');</code></pre>
+
+          <h4 class="name" id="having">
+            <span class="type-signature"></span>having<span class="signature"
+              >(column1, op, column2)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "having" query informations.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>column1</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">
+                  column name to compare another one
+                </td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>op</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">comparasion operator</td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>column2</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">
+                  column name to compare another one
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre class="prettyprint"><code>qf()
+  .select('age')
+  .from('users')
+  .groupBy('age')
+  .having('age', '>', 5);</code></pre>
+
+          <h4 class="name" id="havingBetween">
+            <span class="type-signature"></span>havingBetween<span
+              class="signature"
+              >(column, range)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "havingBetween" query informations.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>column</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">
+                  column name to check if it is between range
+                </td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>range</code></td>
+
+                <td class="type">
+                  <span class="param-type">Array</span>
+                </td>
+
+                <td class="description last">
+                  min and max values to check if given column's value is between
+                  them
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre class="prettyprint"><code>qf()
+  .select('age')
+  .from('users')
+  .groupBy('age')
+  .havingBetween('age', [5, 25]);</code></pre>
+
+          <h4 class="name" id="havingExists">
+            <span class="type-signature"></span>havingExists<span
+              class="signature"
+              >(callback)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "havingExists" query informations.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>callback</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">callback to check on exists</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre class="prettyprint"><code>qf()
+  .select('age')
+  .from('users')
+  .groupBy('age')
+  .havingExists(qb =>
+    qb.select('*').from('users').whereRaw('age > 10')
+  );</code></pre>
+
+          <h4 class="name" id="havingIn">
+            <span class="type-signature"></span>havingIn<span class="signature"
+              >(column, values)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "havingIn" query informations.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>column</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">column name to compare</td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>values</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">
+                  array of values to check if given column's value is in it
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre class="prettyprint"><code>qf()
+  .select('age')
+  .from('users')
+  .groupBy('age')
+  .havingIn('age', [5, 25]);</code></pre>
+
+          <h4 class="name" id="havingNotBetween">
+            <span class="type-signature"></span>havingNotBetween<span
+              class="signature"
+              >(column, range)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "havingNotBetween" query informations.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>column</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">
+                  column name to check if it is not between range
+                </td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>range</code></td>
+
+                <td class="type">
+                  <span class="param-type">Array</span>
+                </td>
+
+                <td class="description last">
+                  min and max values to check if given column's value is not
+                  between them
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre class="prettyprint"><code>qf()
+  .select('age')
+  .from('users')
+  .groupBy('age')
+  .havingNotBetween('age', [5, 25]);</code></pre>
+
+          <h4 class="name" id="havingNotExists">
+            <span class="type-signature"></span>havingNotExists<span
+              class="signature"
+              >(callback)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "havingNotExists" query informations.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>callback</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">
+                  callback to check on not exists
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre class="prettyprint"><code>qf()
+  .select('age')
+  .from('users')
+  .groupBy('age')
+  .havingNotExists(qb =>
+    qb.select('*').from('users').whereRaw('age > 10')
+  );</code></pre>
+
+          <h4 class="name" id="havingNotIn">
+            <span class="type-signature"></span>havingNotIn<span
+              class="signature"
+              >(column, values)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "havingNotIn" query informations.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>column</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">column name to compare</td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>values</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">
+                  array of values to check if given column's value is in it
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre class="prettyprint"><code>qf()
+  .select('age')
+  .from('users')
+  .groupBy('age')
+  .havingNotIn('age', [5, 25]);</code></pre>
+
+          <h4 class="name" id="havingNotNull">
+            <span class="type-signature"></span>havingNotNull<span
+              class="signature"
+              >(column)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "havingNotNull" query informations.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>column</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">column name to check if null</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre class="prettyprint"><code>qf()
+  .select('age')
+  .from('users')
+  .groupBy('age')
+  .havingNotNull('age');</code></pre>
+
+          <h4 class="name" id="havingNull">
+            <span class="type-signature"></span>havingNull<span
+              class="signature"
+              >(column)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "havingNull" query informations.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>column</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">column name to check if null</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre class="prettyprint"><code>qf()
+  .select('age')
+  .from('users')
+  .groupBy('age')
+  .havingNull('age');</code></pre>
+
+          <h4 class="name" id="innerJoin">
+            <span class="type-signature"></span>innerJoin<span class="signature"
+              >(tableName, onColumn1OrCallback, onColumn2<span
+                class="signature-attributes"
+                >opt</span
+              >)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "innerJoin" query informations.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th>Attributes</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>tableName</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="attributes"></td>
+
+                <td class="description last">
+                  table name to perform join operation
+                </td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>onColumn1OrCallback</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                  |
+
+                  <span class="param-type">function</span>
+                </td>
+
+                <td class="attributes"></td>
+
+                <td class="description last">
+                  column name to compare another one or callback function
+                </td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>onColumn2</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="attributes">&lt;optional><br /></td>
+
+                <td class="description last">
+                  column name and required if column1 is string column name
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre
+            class="prettyprint"
+          ><code>qf().select('*').from('users').innerJoin('tokens', 'users.id', 'tokens.user_id');
+qf().select('*').from('users').innerJoin('tokens', queryBuilder =>
+  queryBuilder
+    .on('users.id', '=', 'tokens.user_id')
+    .andOn('users.id', '=', 'tokens.creator_id')
+    .orOn('users.id', '=', 'tokens.owner_id')
+)</code></pre>
+
+          <h4 class="name" id="insert">
+            <span class="type-signature"></span>insert<span class="signature"
+              >(values)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "insert" query informations
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>values</code></td>
+
+                <td class="type">
+                  <span class="param-type">Object</span>
+                  |
+
+                  <span class="param-type">Array.&lt;Object></span>
+                </td>
+
+                <td class="description last">
+                  values to insert table - { key: value, key: value, ... } | [{
+                  key: value, key: value, ... }, { key: value, key: value, ...
+                  }, ...]
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre
+            class="prettyprint"
+          ><code>qf().insert({ name: 'engin', age: 28 });
+qf().insert([{ name: 'engin', age: 28 }, { name: 'jon', age: 30 }]); // bulk insert</code></pre>
+
+          <h4 class="name" id="into">
+            <span class="type-signature"></span>into<span class="signature"
+              >(tableName)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "into" query informations
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>tableName</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">table name to insert values to</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre
+            class="prettyprint"
+          ><code>qf().insert({ name: 'engin', age: 28 }).into('users');</code></pre>
+
+          <h4 class="name" id="leftJoin">
+            <span class="type-signature"></span>leftJoin<span class="signature"
+              >(tableName, onColumn1OrCallback, onColumn2<span
+                class="signature-attributes"
+                >opt</span
+              >)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "leftJoin" query informations.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th>Attributes</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>tableName</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="attributes"></td>
+
+                <td class="description last">
+                  table name to perform join operation
+                </td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>onColumn1OrCallback</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                  |
+
+                  <span class="param-type">function</span>
+                </td>
+
+                <td class="attributes"></td>
+
+                <td class="description last">
+                  column name to compare another one or callback function
+                </td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>onColumn2</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="attributes">&lt;optional><br /></td>
+
+                <td class="description last">
+                  column name and required if column1 is string column name
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre
+            class="prettyprint"
+          ><code>qf().select('*').from('users').leftJoin('tokens', 'users.id', 'tokens.user_id');
+qf().select('*').from('users').leftJoin('tokens', queryBuilder =>
+  queryBuilder
+    .on('users.id', '=', 'tokens.user_id')
+    .andOn('users.id', '=', 'tokens.creator_id')
+    .orOn('users.id', '=', 'tokens.owner_id')
+)</code></pre>
+
+          <h4 class="name" id="leftOuterJoin">
+            <span class="type-signature"></span>leftOuterJoin<span
+              class="signature"
+              >(tableName, onColumn1OrCallback, onColumn2<span
+                class="signature-attributes"
+                >opt</span
+              >)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "leftOuterJoin" query informations.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th>Attributes</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>tableName</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="attributes"></td>
+
+                <td class="description last">
+                  table name to perform join operation
+                </td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>onColumn1OrCallback</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                  |
+
+                  <span class="param-type">function</span>
+                </td>
+
+                <td class="attributes"></td>
+
+                <td class="description last">
+                  column name to compare another one or callback function
+                </td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>onColumn2</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="attributes">&lt;optional><br /></td>
+
+                <td class="description last">
+                  column name and required if column1 is string column name
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre
+            class="prettyprint"
+          ><code>qf().select('*').from('users').leftOuterJoin('tokens', 'users.id', 'tokens.user_id');
+qf().select('*').from('users').leftOuterJoin('tokens', queryBuilder =>
+  queryBuilder
+    .on('users.id', '=', 'tokens.user_id')
+    .andOn('users.id', '=', 'tokens.creator_id')
+    .orOn('users.id', '=', 'tokens.owner_id')
+)</code></pre>
+
+          <h4 class="name" id="limit">
+            <span class="type-signature"></span>limit<span class="signature"
+              >(limit)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "limit" query informations.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>limit</code></td>
+
+                <td class="type">
+                  <span class="param-type">number</span>
+                </td>
+
+                <td class="description last">record count limit</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre class="prettyprint"><code>qf()
+  .select('*')
+  .from('users')
+  .where('age', '>', 15)
+  .limit(3);</code></pre>
+
+          <h4 class="name" id="max">
+            <span class="type-signature"></span>max<span class="signature"
+              >(column)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "max" query informations. Performs a max on the specified
+            column
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>column</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">column name to find its max</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre class="prettyprint"><code>qf()
+  .from('users')
+  .max('age');</code></pre>
+
+          <h4 class="name" id="min">
+            <span class="type-signature"></span>min<span class="signature"
+              >(column)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "min" query informations. Performs a min on the specified
+            column
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>column</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">column name to find its min</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre class="prettyprint"><code>qf()
+  .from('users')
+  .min('age');</code></pre>
+
+          <h4 class="name" id="offset">
+            <span class="type-signature"></span>offset<span class="signature"
+              >(offset)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "offset" query informations.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>offset</code></td>
+
+                <td class="type">
+                  <span class="param-type">number</span>
+                </td>
+
+                <td class="description last">record count to pass off</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre class="prettyprint"><code>qf()
+  .select('*')
+  .from('users')
+  .where('age', '>', 15)
+  .offset(3);
+
+qf()
+  .select('*')
+  .from('users')
+  .where('age', '>', 15)
+  .limit(2)
+  .offset(3);</code></pre>
+
+          <h4 class="name" id="on">
+            <span class="type-signature"></span>on<span class="signature"
+              >(column1, op, column2)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "on" query informations.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>column1</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">
+                  column name to compare another one
+                </td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>op</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">comparasion operator</td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>column2</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">
+                  column name to compare another one
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre
+            class="prettyprint"
+          ><code>qf().select('*').from('users').innerJoin('tokens', 'users.id', 'tokens.user_id');
+qf().select('*').from('users').innerJoin('tokens', queryBuilder =>
+  queryBuilder
+    .on('users.id', '=', 'tokens.user_id')
+    .andOn('users.id', '=', 'tokens.creator_id')
+    .orOn('users.id', '=', 'tokens.owner_id')
+)</code></pre>
+
+          <h4 class="name" id="onBetween">
+            <span class="type-signature"></span>onBetween<span class="signature"
+              >(column, range)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "onBetween" query informations.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>column</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">
+                  column name to check if it is between range
+                </td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>range</code></td>
+
+                <td class="type">
+                  <span class="param-type">Array</span>
+                </td>
+
+                <td class="description last">
+                  min and max values to check if given column's value is between
+                  them
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre
+            class="prettyprint"
+          ><code>qf().select('*').from('users').innerJoin('tokens', queryBuilder =>
+  queryBuilder
+    .onBetween('users.id', [2, 8])
+)</code></pre>
+
+          <h4 class="name" id="onExists">
+            <span class="type-signature"></span>onExists<span class="signature"
+              >(callback)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "onExists" query informations.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>callback</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">callback to check on exists</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre class="prettyprint"><code>qf()
+  .select('*')
+  .from('users')
+  .innerJoin('tokens', joinQueryBuilder =>
+    joinQueryBuilder.onExists(queryBuilder =>
+      queryBuilder.from('tokens').whereRaw('users.id = tokens.user_id')
+    )
+  );</code></pre>
+
+          <h4 class="name" id="onIn">
+            <span class="type-signature"></span>onIn<span class="signature"
+              >(column, values)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "onIn" query informations.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>column</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">column name to compare</td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>values</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">
+                  array of values to check if given column's value is in it
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre
+            class="prettyprint"
+          ><code>qf().select('*').from('users').innerJoin('tokens', queryBuilder =>
+  queryBuilder
+    .onIn('tokens.id', [3, 4])
+    .andOnIn('users.id', [1, 2])
+)</code></pre>
+
+          <h4 class="name" id="onNotBetween">
+            <span class="type-signature"></span>onNotBetween<span
+              class="signature"
+              >(column, range)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "onNotBetween" query informations.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>column</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">
+                  column name to check if it is not between range
+                </td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>range</code></td>
+
+                <td class="type">
+                  <span class="param-type">Array</span>
+                </td>
+
+                <td class="description last">
+                  min and max values to check if given column's value is not
+                  between them
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre
+            class="prettyprint"
+          ><code>qf().select('*').from('users').innerJoin('tokens', queryBuilder =>
+  queryBuilder
+    .onNotBetween('users.id', [2, 8])
+)</code></pre>
+
+          <h4 class="name" id="onNotExists">
+            <span class="type-signature"></span>onNotExists<span
+              class="signature"
+              >(callback)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "onNotExists" query informations.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>callback</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">
+                  callback to check on not exists
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre class="prettyprint"><code>qf()
+  .select('*')
+  .from('users')
+  .innerJoin('tokens', joinQueryBuilder =>
+    joinQueryBuilder.onNotExists(queryBuilder =>
+      queryBuilder.from('tokens').whereRaw('users.id = tokens.user_id')
+    )
+  );</code></pre>
+
+          <h4 class="name" id="onNotIn">
+            <span class="type-signature"></span>onNotIn<span class="signature"
+              >(column, values)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "onNotIn" query informations.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>column</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">column name to compare</td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>values</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">
+                  array of values to check if given column's value is in it
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre
+            class="prettyprint"
+          ><code>qf().select('*').from('users').innerJoin('tokens', queryBuilder =>
+  queryBuilder
+    .onNotIn('tokens.id', [3, 4])
+    .andOnNotIn('users.id', [1, 2])
+)</code></pre>
+
+          <h4 class="name" id="onNotNull">
+            <span class="type-signature"></span>onNotNull<span class="signature"
+              >(column)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "onNotNull" query informations.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>column</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">column name to check if null</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre
+            class="prettyprint"
+          ><code>qf().select('*').from('users').innerJoin('tokens', queryBuilder =>
+  queryBuilder
+    .onNotNull('tokens.id')
+    .orOnNotNull('users.id')
+)</code></pre>
+
+          <h4 class="name" id="onNull">
+            <span class="type-signature"></span>onNull<span class="signature"
+              >(column)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "onNull" query informations.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>column</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">column name to check if null</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre
+            class="prettyprint"
+          ><code>qf().select('*').from('users').innerJoin('tokens', queryBuilder =>
+  queryBuilder
+    .onNull('tokens.id')
+    .orOnNull('users.id')
+)</code></pre>
+
+          <h4 class="name" id="orderBy">
+            <span class="type-signature"></span>orderBy<span class="signature"
+              >(columnOrColumns, direction<span class="signature-attributes"
+                >opt</span
+              >)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "orderBy" query informations.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th>Attributes</th>
+
+                <th>Default</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>columnOrColumns</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                  |
+
+                  <span class="param-type">Array</span>
+                </td>
+
+                <td class="attributes"></td>
+
+                <td class="default"></td>
+
+                <td class="description last">
+                  column name to order result list
+                </td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>direction</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="attributes">&lt;optional><br /></td>
+
+                <td class="default">
+                  asc
+                </td>
+
+                <td class="description last">order direction</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre class="prettyprint"><code>qf()
+  .select('age')
+  .from('users')
+  .orderBy('age');
+
+// multiple column ordering
+qf()
+  .select('username', 'age')
+  .from('users')
+  .orderBy([
+    'username', // default order: asc
+    { column: 'age', order: 'desc' }
+  ]);
+
+// multiple column ordering
+qf()
+  .select('username', 'age')
+  .from('users')
+  .orderBy([
+    { column: 'username', order: 'desc' }
+    { column: 'age', order: 'desc' }
+  ]);</code></pre>
+
+          <h4 class="name" id="pluck">
+            <span class="type-signature"></span>pluck<span class="signature"
+              >(column)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "pluck" query informations. Performs a pluck on the
+            specified column
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>column</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">
+                  column name to get as an array result
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre class="prettyprint"><code>qf()
+  .from('users')
+  .pluck('id');</code></pre>
+
+          <h4 class="name" id="returning">
+            <span class="type-signature"></span>returning<span class="signature"
+              >(columnNames)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "returning" query informations
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>columnNames</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                  |
+
+                  <span class="param-type">Array.&lt;string></span>
+                </td>
+
+                <td class="description last">
+                  one or more column names to include result object
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre class="prettyprint"><code>qf()
+  .returning('id')
+  .insert({ name: 'engin', age: 28 })
+  .into('users');</code></pre>
+
+          <h4 class="name" id="rightJoin">
+            <span class="type-signature"></span>rightJoin<span class="signature"
+              >(tableName, onColumn1OrCallback, onColumn2<span
+                class="signature-attributes"
+                >opt</span
+              >)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "rightJoin" query informations.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th>Attributes</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>tableName</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="attributes"></td>
+
+                <td class="description last">
+                  table name to perform join operation
+                </td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>onColumn1OrCallback</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                  |
+
+                  <span class="param-type">function</span>
+                </td>
+
+                <td class="attributes"></td>
+
+                <td class="description last">
+                  column name to compare another one or callback function
+                </td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>onColumn2</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="attributes">&lt;optional><br /></td>
+
+                <td class="description last">
+                  column name and required if column1 is string column name
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre
+            class="prettyprint"
+          ><code>qf().select('*').from('users').rightJoin('tokens', 'users.id', 'tokens.user_id');
+qf().select('*').from('users').rightJoin('tokens', queryBuilder =>
+  queryBuilder
+    .on('users.id', '=', 'tokens.user_id')
+    .andOn('users.id', '=', 'tokens.creator_id')
+    .orOn('users.id', '=', 'tokens.owner_id')
+)</code></pre>
+
+          <h4 class="name" id="rightOuterJoin">
+            <span class="type-signature"></span>rightOuterJoin<span
+              class="signature"
+              >(tableName, onColumn1OrCallback, onColumn2<span
+                class="signature-attributes"
+                >opt</span
+              >)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "rightOuterJoin" query informations.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th>Attributes</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>tableName</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="attributes"></td>
+
+                <td class="description last">
+                  table name to perform join operation
+                </td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>onColumn1OrCallback</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                  |
+
+                  <span class="param-type">function</span>
+                </td>
+
+                <td class="attributes"></td>
+
+                <td class="description last">
+                  column name to compare another one or callback function
+                </td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>onColumn2</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="attributes">&lt;optional><br /></td>
+
+                <td class="description last">
+                  column name and required if column1 is string column name
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre
+            class="prettyprint"
+          ><code>qf().select('*').from('users').rightOuterJoin('tokens', 'users.id', 'tokens.user_id');
+qf().select('*').from('users').rightOuterJoin('tokens', queryBuilder =>
+  queryBuilder
+    .on('users.id', '=', 'tokens.user_id')
+    .andOn('users.id', '=', 'tokens.creator_id')
+    .orOn('users.id', '=', 'tokens.owner_id')
+)</code></pre>
+
+          <h4 class="name" id="run">
+            <span class="type-signature"></span>run<span class="signature"
+              >(queries<span class="signature-attributes">opt</span>,
+              transaction<span class="signature-attributes">opt</span>,
+              dependent<span class="signature-attributes">opt</span>,
+              endpoint<span class="signature-attributes">opt</span>,
+              headers<span class="signature-attributes">opt</span>, method<span
+                class="signature-attributes"
+                >opt</span
+              >, mode<span class="signature-attributes">opt</span>, cache<span
+                class="signature-attributes"
+                >opt</span
+              >, credentials<span class="signature-attributes">opt</span>,
+              redirect<span class="signature-attributes">opt</span>,
+              referrer<span class="signature-attributes">opt</span>,
+              beforeRun<span class="signature-attributes">opt</span>,
+              afterRun<span class="signature-attributes">opt</span>)</span
+            ><span class="type-signature"> &rarr; {Promise.&lt;Response>}</span>
+          </h4>
+
+          <div class="description">
+            Sends query to server and fetches response
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th>Attributes</th>
+
+                <th>Default</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>queries</code></td>
+
+                <td class="type">
+                  <span class="param-type">Array</span>
+                </td>
+
+                <td class="attributes">&lt;optional><br /></td>
+
+                <td class="default">
+                  []
+                </td>
+
+                <td class="description last">for executing multiple queries</td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>transaction</code></td>
+
+                <td class="type">
+                  <span class="param-type">boolean</span>
+                </td>
+
+                <td class="attributes">&lt;optional><br /></td>
+
+                <td class="default">
+                  false
+                </td>
+
+                <td class="description last">
+                  activate transaction for multiple queries
+                </td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>dependent</code></td>
+
+                <td class="type">
+                  <span class="param-type">boolean</span>
+                </td>
+
+                <td class="attributes">&lt;optional><br /></td>
+
+                <td class="default">
+                  false
+                </td>
+
+                <td class="description last">
+                  activate dependency for multiple queries
+                </td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>endpoint</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="attributes">&lt;optional><br /></td>
+
+                <td class="default">
+                  Config.endpoint
+                </td>
+
+                <td class="description last">endpoint url to send request</td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>headers</code></td>
+
+                <td class="type">
+                  <span class="param-type">object</span>
+                </td>
+
+                <td class="attributes">&lt;optional><br /></td>
+
+                <td class="default"></td>
+
+                <td class="description last">key-value header map</td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>method</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="attributes">&lt;optional><br /></td>
+
+                <td class="default">
+                  POST
+                </td>
+
+                <td class="description last">request method</td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>mode</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="attributes">&lt;optional><br /></td>
+
+                <td class="default">
+                  cors
+                </td>
+
+                <td class="description last">request mode</td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>cache</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="attributes">&lt;optional><br /></td>
+
+                <td class="default">
+                  no-cache
+                </td>
+
+                <td class="description last">request cache</td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>credentials</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="attributes">&lt;optional><br /></td>
+
+                <td class="default">
+                  include
+                </td>
+
+                <td class="description last">request credentials</td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>redirect</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="attributes">&lt;optional><br /></td>
+
+                <td class="default">
+                  follow
+                </td>
+
+                <td class="description last">request redirect</td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>referrer</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="attributes">&lt;optional><br /></td>
+
+                <td class="default">
+                  no-referrer
+                </td>
+
+                <td class="description last">request referrer</td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>beforeRun</code></td>
+
+                <td class="type">
+                  <span class="param-type">function</span>
+                </td>
+
+                <td class="attributes">&lt;optional><br /></td>
+
+                <td class="default">
+                  ()=>true
+                </td>
+
+                <td class="description last">
+                  function will be executed before run, if it returns false then
+                  process terminated
+                </td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>afterRun</code></td>
+
+                <td class="type">
+                  <span class="param-type">function</span>
+                </td>
+
+                <td class="attributes">&lt;optional><br /></td>
+
+                <td class="default">
+                  ()=>{}
+                </td>
+
+                <td class="description last">
+                  function will be executed after run
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            server's response as promise object, directly returns fetch's result
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type">Promise.&lt;Response></span>
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre
+            class="prettyprint"
+          ><code>const promiseResponse = qf().select('*').from('users').where('id', 1).run();
+const users = promiseResponse.then(response => response.json());
+// or
+const response = await qf()
+  .select('*')
+  .from('users')
+  .where('id', 1)
+  .run();
+const users = await response.json();</code></pre>
+
+          <h4 class="name" id="select">
+            <span class="type-signature"></span>select<span class="signature"
+              >(&hellip;columnNames)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "select" query informations
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th>Attributes</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>columnNames</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="attributes">&lt;repeatable><br /></td>
+
+                <td class="description last">
+                  one or more column names to include result object
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre class="prettyprint"><code>qf().select('*');
+qf().select('id', 'name');</code></pre>
+
+          <h4 class="name" id="set">
+            <span class="type-signature"></span>set<span class="signature"
+              >(columnOrData, value<span class="signature-attributes">opt</span
+              >)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "set" query informations
+            <pre>
+(column, value)
+({ name: 'engin', age: 28, ... })
+</pre
+            >
+            <div class="doc-warning">
+              set() query cannot be directly run because of security reasons.
+              Updating all records is restricted.
+              <div>
+                <s>.set('name', 'engin').run()</s>
+              </div>
+            </div>
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th>Attributes</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>columnOrData</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                  |
+
+                  <span class="param-type">Object</span>
+                </td>
+
+                <td class="attributes"></td>
+
+                <td class="description last">string column or data object</td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>value</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                  |
+
+                  <span class="param-type">number</span>
+                  |
+
+                  <span class="param-type">boolean</span>
+                </td>
+
+                <td class="attributes">&lt;optional><br /></td>
+
+                <td class="description last">
+                  if first parameter is string column, this is required value
+                  parameter
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre
+            class="prettyprint"
+          ><code>qf().update('users').set('name', 'engin').where(...);
+qf().update('users').set({ name: 'engin', age: 29 }).where(...);</code></pre>
+
+          <h4 class="name" id="sum">
+            <span class="type-signature"></span>sum<span class="signature"
+              >(column)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "sum" query informations. Performs a sum on the specified
+            column
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>column</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">
+                  column name to find sum of in all records
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre class="prettyprint"><code>qf()
+  .from('users')
+  .sum('age');</code></pre>
+
+          <h4 class="name" id="union">
+            <span class="type-signature"></span>union<span class="signature"
+              >(callback)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "union" query informations.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>callback</code></td>
+
+                <td class="type">
+                  <span class="param-type">function</span>
+                </td>
+
+                <td class="description last">
+                  callback to union with first query
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre
+            class="prettyprint"
+          ><code>qf().select('*').from('users').union(queryBuilder =>
+  queryBuilder.from('users').where('id', '>', 10)
+);</code></pre>
+
+          <h4 class="name" id="unionAll">
+            <span class="type-signature"></span>unionAll<span class="signature"
+              >(callback)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "unionAll" query informations.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>callback</code></td>
+
+                <td class="type">
+                  <span class="param-type">function</span>
+                </td>
+
+                <td class="description last">
+                  callback to unionAll with first query
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre
+            class="prettyprint"
+          ><code>qf().select('*').from('users').unionAll(queryBuilder =>
+  queryBuilder.from('users').where('id', '>', 10)
+);</code></pre>
+
+          <h4 class="name" id="update">
+            <span class="type-signature"></span>update<span class="signature"
+              >(tableName)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "update" query informations
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>tableName</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">table name to update values</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre class="prettyprint"><code>qf().update('users');</code></pre>
+
+          <h4 class="name" id="where">
+            <span class="type-signature"></span>where<span class="signature"
+              >(columnOrInnerQueryFunction, operatorOrValue<span
+                class="signature-attributes"
+                >opt</span
+              >, value<span class="signature-attributes">opt</span>)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "where" query informations.
+            <code>~mixed</code>
+            Parameters can be:
+            <pre>
+(column, value)
+(column, operator, value)
+(innerQueryFunction)
+</pre
+            >
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th>Attributes</th>
+
+                <th>Default</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>columnOrInnerQueryFunction</code></td>
+
+                <td class="type">
+                  <span class="param-type">function</span>
+                  |
+
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="attributes"></td>
+
+                <td class="default"></td>
+
+                <td class="description last"></td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>operatorOrValue</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="attributes">&lt;optional><br /></td>
+
+                <td class="default">
+                  =
+                </td>
+
+                <td class="description last"></td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>value</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                  |
+
+                  <span class="param-type">number</span>
+                </td>
+
+                <td class="attributes">&lt;optional><br /></td>
+
+                <td class="default"></td>
+
+                <td class="description last"></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre class="prettyprint"><code>// function parameter
+qf().select('*').from('users').where((queryBuilder) => queryBuilder.where('name', 'engin').orWhere('age', '>', 18));
+
+// two parameters
+qf().select('*').from('users').where('name', 'engin'); // equals .where('name', '=', 'engin');
+
+//three parameters
+qf().select('*').from('users').where('age', '>', 18);</code></pre>
+
+          <h4 class="name" id="whereBetween">
+            <span class="type-signature"></span>whereBetween<span
+              class="signature"
+              >(column, range)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "whereBetween" query informations.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>column</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">
+                  column name to check if it is between range
+                </td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>range</code></td>
+
+                <td class="type">
+                  <span class="param-type">Array</span>
+                </td>
+
+                <td class="description last">
+                  min and max values to check if given column's value is between
+                  them
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre
+            class="prettyprint"
+          ><code>qf().select('*').from('users').whereBetween('age', [18, 25]);</code></pre>
+
+          <h4 class="name" id="whereExists">
+            <span class="type-signature"></span>whereExists<span
+              class="signature"
+              >(callback)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "whereExists" query informations.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>callback</code></td>
+
+                <td class="type">
+                  <span class="param-type">function</span>
+                </td>
+
+                <td class="description last">callback to check if exists</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre
+            class="prettyprint"
+          ><code>qf().select('*').from('users').whereExists(queryBuilder =>
+  queryBuilder.from('tokens').whereRaw('users.id = tokens.user_id')
+);
+// output: select `*` from `users` where exists (select * from `tokens` where `users`.`id` = `tokens`.`user_id`)</code></pre>
+
+          <h4 class="name" id="whereIn">
+            <span class="type-signature"></span>whereIn<span class="signature"
+              >(column, value)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "whereIn" query informations.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>column</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">column name to check</td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>value</code></td>
+
+                <td class="type">
+                  <span class="param-type">Array</span>
+                </td>
+
+                <td class="description last">
+                  array value to check if given column's value is in it
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre
+            class="prettyprint"
+          ><code>qf().select('*').from('users').whereIn('age', [18, 21]);
+// equals: .where('age', 'in', [18, 21])
+// output: select `*` from `users` where `age` in (18, 21)</code></pre>
+
+          <h4 class="name" id="whereNot">
+            <span class="type-signature"></span>whereNot<span class="signature"
+              >(columnOrInnerQueryFunction, operatorOrValue<span
+                class="signature-attributes"
+                >opt</span
+              >, value<span class="signature-attributes">opt</span>)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "whereNot" query informations. Parameters can be:
+            <pre>
+(column, value)
+(column, operator, value)
+(innerQueryFunction)
+</pre
+            >
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th>Attributes</th>
+
+                <th>Default</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>columnOrInnerQueryFunction</code></td>
+
+                <td class="type">
+                  <span class="param-type">function</span>
+                  |
+
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="attributes"></td>
+
+                <td class="default"></td>
+
+                <td class="description last"></td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>operatorOrValue</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="attributes">&lt;optional><br /></td>
+
+                <td class="default">
+                  =
+                </td>
+
+                <td class="description last"></td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>value</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                  |
+
+                  <span class="param-type">number</span>
+                </td>
+
+                <td class="attributes">&lt;optional><br /></td>
+
+                <td class="default"></td>
+
+                <td class="description last"></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre class="prettyprint"><code>// function parameter
+qf().select('*').from('users').whereNot((queryBuilder) => queryBuilder.where('name', 'engin').orWhere('age', '>', 18));
+
+// two parameters
+qf().select('*').from('users').whereNot('name', 'engin'); // equals .whereNot('name', '=', 'engin'); or .where('name', '!=', 'engin');
+
+//three parameters
+qf().select('*').from('users').whereNot('age', '>', 18);</code></pre>
+
+          <h4 class="name" id="whereNotBetween">
+            <span class="type-signature"></span>whereNotBetween<span
+              class="signature"
+              >(column, range)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "whereNotBetween" query informations.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>column</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">
+                  column name to check if it is not between range
+                </td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>range</code></td>
+
+                <td class="type">
+                  <span class="param-type">Array</span>
+                </td>
+
+                <td class="description last">
+                  min and max values to check if given column's value is not
+                  between them
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre
+            class="prettyprint"
+          ><code>qf().select('*').from('users').whereNotBetween('age', [18, 25]);</code></pre>
+
+          <h4 class="name" id="whereNotExists">
+            <span class="type-signature"></span>whereNotExists<span
+              class="signature"
+              >(callback)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "whereNotExists" query informations.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>callback</code></td>
+
+                <td class="type">
+                  <span class="param-type">function</span>
+                </td>
+
+                <td class="description last">
+                  callback to check if not exists
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre
+            class="prettyprint"
+          ><code>qf().select('*').from('users').whereNotExists(queryBuilder =>
+  queryBuilder.from('tokens').whereRaw('users.id = tokens.user_id')
+);
+// output: select `*` from `users` where not exists (select * from `tokens` where `users`.`id` = `tokens`.`user_id`)</code></pre>
+
+          <h4 class="name" id="whereNotIn">
+            <span class="type-signature"></span>whereNotIn<span
+              class="signature"
+              >(column, value)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "whereNotIn" query informations.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>column</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">column name to check</td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>value</code></td>
+
+                <td class="type">
+                  <span class="param-type">Array</span>
+                </td>
+
+                <td class="description last">
+                  array value to check if given column's value is not in it
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre
+            class="prettyprint"
+          ><code>qf().select('*').from('users').whereNotIn('age', [18, 21]);
+// equals: .where('age', 'not in', [18, 21])
+// NOT EQUALS: .whereNot('age', 'in', [18, 21])
+// output: select `*` from `users` where `age` not in (18, 21)</code></pre>
+
+          <h4 class="name" id="whereNotNull">
+            <span class="type-signature"></span>whereNotNull<span
+              class="signature"
+              >(column)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "whereNotNull" query informations.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>column</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">
+                  column name to check if it is not null
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre
+            class="prettyprint"
+          ><code>qf().select('*').from('users').whereNotNull('age');
+// output: select `*` from `users` where `age` is not null</code></pre>
+
+          <h4 class="name" id="whereNull">
+            <span class="type-signature"></span>whereNull<span class="signature"
+              >(column)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "whereNull" query informations.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>column</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">
+                  column name to check if it is null
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre
+            class="prettyprint"
+          ><code>qf().select('*').from('users').whereNull('age');
+// output: select `*` from `users` where `age` is null</code></pre>
+
+          <h4 class="name" id="whereRaw">
+            <span class="type-signature"></span>whereRaw<span class="signature"
+              >(rawQuery, bindings<span class="signature-attributes">opt</span
+              >)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "whereRaw" query informations.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th>Attributes</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>rawQuery</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="attributes"></td>
+
+                <td class="description last">raw query</td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>bindings</code></td>
+
+                <td class="type">
+                  <span class="param-type">Array</span>
+                </td>
+
+                <td class="attributes">&lt;optional><br /></td>
+
+                <td class="description last">
+                  array of parameter values you used in raw query
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre
+            class="prettyprint"
+          ><code>qf().select('*').from('users').whereRaw('age = 28');
+qf().select('*').from('users').whereRaw('age &lt; 25');
+qf().select('*').from('users').whereRaw('age &lt; ?', [25]);
+qf().select('*').from('users').whereRaw('age in (18, 27)');</code></pre>
+
+          <h4 class="name" id="with">
+            <span class="type-signature"></span>with<span class="signature"
+              >(alias, callback)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "with" query informations.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>alias</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">alias name of with query</td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>callback</code></td>
+
+                <td class="type">
+                  <span class="param-type">function</span>
+                </td>
+
+                <td class="description last">
+                  callback inner query for with operation
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre class="prettyprint"><code>qf()
+ .with('userInfo', qb => qb.select('id', 'username').from('users'))
+ .select('*')
+ .from('userInfo');</code></pre>
+
+          <h4 class="name" id="withRecursive">
+            <span class="type-signature"></span>withRecursive<span
+              class="signature"
+              >(alias, callback)</span
+            ><span class="type-signature">
+              &rarr; {<a href="QueryFace.html">QueryFace</a>}</span
+            >
+          </h4>
+
+          <div class="description">
+            Prepares "withRecursive" query informations.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>alias</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">
+                  alias name of withRecursive query
+                </td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>callback</code></td>
+
+                <td class="type">
+                  <span class="param-type">function</span>
+                </td>
+
+                <td class="description last">
+                  callback inner query for withRecursive operation
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details"></dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            instance of this class
+          </div>
+
+          <dl>
+            <dt>
+              Type
+            </dt>
+            <dd>
+              <span class="param-type"
+                ><a href="QueryFace.html">QueryFace</a></span
+              >
+            </dd>
+          </dl>
+
+          <h5>Example</h5>
+
+          <pre class="prettyprint"><code>qf()
+  .withRecursive('userInfo', qb =>
+    qb
+      .select('id', 'username', 'age')
+      .from('users')
+      .where('id', 1)
+      .union(qb =>
+        qb
+          .select('u1.id', 'u1.username', 'u1.age')
+          .from('users as u1')
+          .innerJoin('userInfo as u2', 'u2.id', 'u1.family_id')
+      )
+  )
+  .select('*')
+  .from('userInfo');</code></pre>
+        </article>
+      </section>
+    </div>
+
+    <br class="clear" />
+
+    <script>
+      prettyPrint();
+    </script>
+    <script src="../../public/scripts/linenumber.js"></script>
+
+    <script>
+      var versionInfo = versionInfo || {};
+      var versionList = versionInfo.versions || [];
+      var navElement = document.getElementById('nav');
+      var selectElement = document.getElementById('versions');
+      selectElement.addEventListener('change', function(e) {
+        window.location.replace(`../${e.target.value}/QueryFace.html`);
+      });
+      for (var i = 0; i < versionList.length; i++) {
+        var version = versionList[i];
+        var optionElement = document.createElement('option');
+        optionElement.value = version;
+        optionElement.text = version;
+        optionElement.selected = version === documentVersion;
+        selectElement.appendChild(optionElement);
+      }
+
+      document.querySelectorAll('.doc-function a').forEach(elem => {
+        elem.addEventListener('click', function() {
+          setTimeout(() => {
+            window.scrollBy(0, -50);
+          }, 1);
+        });
+      });
+    </script>
+  </body>
+</html>

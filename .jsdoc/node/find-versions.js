@@ -6,7 +6,7 @@ module.exports = function() {
     fs.readFileSync(path.join(__dirname, '..', '..', 'package.json'), 'utf8')
   );
 
-  require('child_process').exec('git tag -l', (err, stdOut) => {
+  require('child_process').execSync('git tag -l', (err, stdOut) => {
     let versions = [pkg.version];
     if (err) {
       console.log(err);
