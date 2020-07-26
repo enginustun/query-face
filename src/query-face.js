@@ -1884,6 +1884,7 @@ export default function QueryFace() {
       queries = [this],
       beforeRun = () => true,
       afterRun = () => {},
+      ...rest
     } = {}) => {
       if (!endpoint) {
         throw new Error('endpoint must be provided to run any query.');
@@ -1898,6 +1899,7 @@ export default function QueryFace() {
                 queries: queries.map(q => q.getQuery()),
                 transaction,
                 dependent,
+                ...rest,
               }),
             }
           : {}),
@@ -1920,8 +1922,8 @@ export default function QueryFace() {
       } else {
         return fetch(endpoint, configs).then(res => {
           const resJson = res.json();
-          afterRun(resJson);
-          QueryFace.afterEveryRun();
+          afterRun(res);
+          QueryFace.afterEveryRun(res);
           return resJson;
         });
       }
