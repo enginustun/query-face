@@ -1859,6 +1859,7 @@ export default function QueryFace() {
      * @param {string} [referrer=no-referrer] - request referrer
      * @param {function} [beforeRun=()=>true] - function will be executed before run, if it returns false then process terminated
      * @param {function} [afterRun=()=>{}] - function will be executed after run
+     * @param {arguments} [...rest] - all arguments except below ones to pass run function
      *
      * @returns {Promise<Response>} server's response as promise object, directly returns fetch's result
      * @example
